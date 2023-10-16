@@ -2,4 +2,4 @@
 
 ### My works from ITMO University 
 
-![pic](https://img.buzzfeed.com/buzzfeed-static/complex/images/ZmxfbG9zc3kvdjE=/gv0wmm9u6gymcxzcufxy/humble6.jpeg.jpeg?downsize=700:*&output-format=auto&output-quality=auto)
+![pic](https://i.pinimg.com/originals/bc/26/d7/bc26d77fcf9ca42b928789da3f104bae.gif)
