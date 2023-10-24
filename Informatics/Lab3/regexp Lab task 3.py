@@ -11,7 +11,7 @@ import re
 
 
 def task3(text):
-    words = re.findall(r'\b\w+\b', text)
+    words = re.findall(r'\b[a-zA-Zа-яА-Я0-9]+\b', text)
     vowels = ['Аа', 'Ее', 'Ёё', 'Ии', 'Оо', 'Уу', 'Ыы', 'Ээ', 'Юю', 'Яя']
     one_vowel_words = []
     for word in words:
