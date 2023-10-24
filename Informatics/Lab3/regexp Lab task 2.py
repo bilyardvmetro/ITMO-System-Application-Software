@@ -9,7 +9,7 @@ import re
 
 
 def correct_text(text):
-    pattern = r'\b(\w+)\s+\1\b'
+    pattern = r'\b(\w+)(\s+\1)+\b'
     corrected_text = re.sub(pattern, '\\1', text)
     print(corrected_text)
 
