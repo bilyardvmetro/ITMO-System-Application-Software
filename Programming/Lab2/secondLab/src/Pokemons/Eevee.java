@@ -1,5 +1,7 @@
 package Pokemons;
-import Moves.*;
+import Moves.PhysicalMoves.Tackle;
+import Moves.StatusMoves.Confide;
+import Moves.StatusMoves.Swagger;
 import ru.ifmo.se.pokemon.*;
 public class Eevee extends Pokemon {
     public Eevee(String name, int level){

@@ -1,4 +1,4 @@
-package Moves;
+package Moves.StatusMoves;
 import ru.ifmo.se.pokemon.*;
 public class Confide extends StatusMove {
     public Confide() {

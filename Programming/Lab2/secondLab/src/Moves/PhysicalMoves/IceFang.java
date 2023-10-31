@@ -1,4 +1,4 @@
-package Moves;
+package Moves.PhysicalMoves;
 import ru.ifmo.se.pokemon.*;
 public class IceFang extends PhysicalMove{
     public IceFang(){

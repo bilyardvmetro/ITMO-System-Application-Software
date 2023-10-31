@@ -1,5 +1,5 @@
 package Pokemons;
-import Moves.*;
+import Moves.PhysicalMoves.IceFang;
 import ru.ifmo.se.pokemon.*;
 public class Glaceon extends Eevee{
     public Glaceon(String name, int level){

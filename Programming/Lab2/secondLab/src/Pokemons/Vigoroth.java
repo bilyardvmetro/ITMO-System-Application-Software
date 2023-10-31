@@ -1,6 +1,7 @@
 package Pokemons;
+import Moves.PhysicalMoves.Slash;
 import ru.ifmo.se.pokemon.*;
-import Moves.*;
+
 public class Vigoroth extends  Slakoth{
     public Vigoroth(String name, int level){
         super(name, level);

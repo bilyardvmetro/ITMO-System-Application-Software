@@ -1,5 +1,5 @@
 package Pokemons;
-import Moves.*;
+import Moves.StatusMoves.Swagger;
 import ru.ifmo.se.pokemon.*;
 public class Slaking extends Vigoroth{
     public Slaking(String name, int level){

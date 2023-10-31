@@ -1,5 +1,8 @@
 package Pokemons;
-import Moves.*;
+import Moves.PhysicalMoves.Facade;
+import Moves.PhysicalMoves.HyperFang;
+import Moves.StatusMoves.Confide;
+import Moves.StatusMoves.Swagger;
 import ru.ifmo.se.pokemon.*;
 public class Pachirisu extends Pokemon{
     public Pachirisu(String name, int level){

@@ -1,6 +1,7 @@
 package Pokemons;
+import Moves.PhysicalMoves.ShadowClaw;
+import Moves.StatusMoves.Swagger;
 import ru.ifmo.se.pokemon.*;
-import Moves.*;
 public class Slakoth extends Pokemon {
     public Slakoth(String name, int level){
         super(name, level);
