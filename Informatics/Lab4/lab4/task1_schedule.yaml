@@ -1,0 +1,26 @@
+schedule: 
+    day: Понедельник
+    classes: 
+        - class: 
+            title: Мат. анализ
+            type: Лекция
+            weeks: Чётная, Нечётная
+            begin_time: 08:20
+            end_time: 09:50
+            teacher: Рванова Алла Сергеевна
+            building: Кронверкский пр., д. 49, лит. А
+            classroom: 1404
+        
+
+        - class: 
+            title: Мат. анализ
+            type: Практика
+            weeks: Чётная, Нечётная
+            begin_time: 10:00
+            end_time: 11:30
+            teacher: Исаева Татьяна Тимофеевна
+            building: Кронверкский пр., д. 49, лит. А
+            classroom: 2412
+        
+    
+

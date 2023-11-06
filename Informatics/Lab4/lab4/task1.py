@@ -5,9 +5,8 @@ XML ---> YAML
 """
 
 scheduleXml = open('schedule.xml', mode='r', encoding='utf-8')
-scheduleYaml = open('schedule.yaml', 'a')
+scheduleYaml = open('task1_schedule.yaml', mode='a', encoding='utf-8')
 schedule = [line.rstrip() for line in scheduleXml]
-
 
 for line in range(1, len(schedule)):
     s = schedule[line]
@@ -25,3 +24,5 @@ for line in range(1, len(schedule)):
         s = '        - class: '
 
     scheduleYaml.write(s + '\n')
+scheduleXml.close()
+scheduleYaml.close()
