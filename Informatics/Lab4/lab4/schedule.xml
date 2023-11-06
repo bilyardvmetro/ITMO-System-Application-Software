@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schedule>
+    <day>Понедельник</day>
+    <classes>
+        <class>
+            <title>Мат. анализ</title>
+            <type>Лекция</type>
+            <weeks>Чётная, Нечётная</weeks>
+            <begin_time>08:20</begin_time>
+            <end_time>09:50</end_time>
+            <teacher>Рванова Алла Сергеевна</teacher>
+            <building>Кронверкский пр., д. 49, лит. А</building>
+            <classroom>1404</classroom>
+        </class>
+
+        <class>
+            <title>Мат. анализ</title>
+            <type>Практика</type>
+            <weeks>Чётная, Нечётная</weeks>
+            <begin_time>10:00</begin_time>
+            <end_time>11:30</end_time>
+            <teacher>Исаева Татьяна Тимофеевна</teacher>
+            <building>Кронверкский пр., д. 49, лит. А</building>
+            <classroom>2412</classroom>
+        </class>
+    </classes>
+</schedule>
