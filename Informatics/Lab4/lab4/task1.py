@@ -18,10 +18,15 @@ for line in range(1, len(schedule)):
             s = s.replace(s[symbol], '*', 1)
         if s[symbol] != '/' and s[symbol+1] == '>':
             s = s.replace(s[symbol+1], '&', 1)
+        if s[symbol] == s[symbol+1] == ' ':
+            s = s.replace(s[symbol], '?', 1)
+            s = s.replace(s[symbol+1], '^', 1)
 
-    s = s.replace('*', '').replace('&', ': ')
-    if s == '        class: ':
-        s = '        - class: '
+    s = s.replace('*', '').replace('&', ': ').replace('?^', ' ')
+    if s == '      class: ':
+        s = '    - class: '
+    if s == '  day name="Понедельник": ':
+        s = "- day: \n    '@name': Понедельник"
 
     scheduleYaml.write(s + '\n')
 scheduleXml.close()
