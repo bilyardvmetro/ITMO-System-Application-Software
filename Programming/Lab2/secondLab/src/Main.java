@@ -10,12 +10,16 @@ public class Main {
         Pokemon Slakoth = new Slakoth("Слакот", 1);
         Pokemon Vigoroth = new Vigoroth("Вигорот", 1);
         Pokemon Slaking = new Slaking("Слакинг", 1);
-        battle.addAlly(Pachirisu);
-        battle.addAlly(Eevee);
-        battle.addAlly(Glaceon);
-        battle.addFoe(Slakoth);
-        battle.addFoe(Vigoroth);
-        battle.addFoe(Slaking);
+
+        Pokemon[] pokemonList = {Pachirisu, Eevee, Glaceon, Slakoth, Vigoroth, Slaking};
+        for (int i = 0; i < pokemonList.length; i++){
+            if (i < pokemonList.length /2){
+                battle.addAlly(pokemonList[i]);
+            }
+            else {
+                battle.addFoe(pokemonList[i]);
+            }
+        }
         battle.go();
     }
 }
