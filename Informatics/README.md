@@ -1,6 +1,6 @@
 # Лабы по инфе
 
-(!pic)[https://media.tenor.com/4ZlmebXLXXgAAAAC/tyler-the.gif]
+[!pic](https://media.tenor.com/4ZlmebXLXXgAAAAC/tyler-the.gif)
 
 ### Прогресс
 | Лаба | процент | баллы | максимум |
