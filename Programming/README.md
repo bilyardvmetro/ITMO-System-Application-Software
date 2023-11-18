@@ -1,5 +1,5 @@
 # Лабы по проге с Фахри Рашидовичем
-[!pic](https://media.giphy.com/media/4ilFRqgbzbx4c/giphy.gif)
+[!pic](https://i.giphy.com/media/4ilFRqgbzbx4c/giphy.webp)
 ### Прогресс
 | Лаба | процент | баллы | максимум |
 | ---- | ------- | ----- | -------- | 
