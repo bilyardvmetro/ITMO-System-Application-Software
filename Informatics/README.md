@@ -1,6 +1,6 @@
 # Лабы по инфе
 
-[!pic](https://media.tenor.com/4ZlmebXLXXgAAAAC/tyler-the.gif)
+[!pic](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/infLabReadme.gif)
 
 ### Прогресс
 | Лаба | процент | баллы | максимум |
