@@ -1,5 +1,5 @@
 # Лабы по проге с Фахри Рашидовичем
-[!pic](https://media.tenor.com/M9Q_ScsPYMcAAAAd/cowboy-bebop-smoke.gif)
+[!ProgLabsGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/programmingLabReadme.gif)
 ### Прогресс
 | Лаба | процент | баллы | максимум |
 | ---- | ------- | ----- | -------- | 
