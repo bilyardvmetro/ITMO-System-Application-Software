@@ -1,5 +1,5 @@
 # Лабы по проге с Фахри Рашидовичем
-[!pic](https://media.tenor.com/DI7x6eNuoFwAAAAC/smoke-anime.gif)
+[!pic](https://media.tenor.com/50ICKs2LWDQAAAAC/whatever-happens-cowboy-bebop.gif)
 ### Прогресс
 | Лаба | процент | баллы | максимум |
 | ---- | ------- | ----- | -------- | 
