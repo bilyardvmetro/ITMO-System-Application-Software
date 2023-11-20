@@ -1,5 +1,5 @@
 # Лабы по проге с Фахри Рашидовичем
-[!ProgLabsGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/programmingLabReadme.gif)
+![ProgLabsGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/programmingLabReadme.gif)
 ### Прогресс
 | Лаба | процент | баллы | максимум |
 | ---- | ------- | ----- | -------- | 
