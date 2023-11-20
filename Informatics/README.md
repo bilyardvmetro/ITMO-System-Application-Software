@@ -1,6 +1,6 @@
 # Лабы по инфе
 
-[!pic](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/infLabReadme.gif)
+![InfGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/infLabReadme.gif)
 
 ### Прогресс
 | Лаба | процент | баллы | максимум |
