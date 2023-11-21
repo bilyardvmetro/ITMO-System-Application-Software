@@ -1,7 +1,7 @@
 # ITMO-System-Application-Software
 Полное название программы: Системное и прикладное программное обеспечение (09.03.04 "Программная инженерия")
 ### Тут лежат мои работы из уника
-![pic](https://i.pinimg.com/originals/bc/26/d7/bc26d77fcf9ca42b928789da3f104bae.gif)
+![pic](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/About.gif)
 
 | Предмет / семестр | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 | ----------------- | - | - | - | - | - | - | - | - |
