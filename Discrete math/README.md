@@ -1,2 +1,2 @@
 # Дзшки по дискре
-![gif](https://media.tenor.com/zn6_qXYxgI4AAAAC/DiscreteMathReadme.gif)
+![gif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/DiscreteMathReadme.gif)
