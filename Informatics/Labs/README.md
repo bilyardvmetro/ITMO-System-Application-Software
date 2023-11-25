@@ -2,6 +2,8 @@
 
 ![InfGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/infLabReadme.gif)
 
+---
+
 ### Прогресс
 | Лаба | процент | баллы | максимум |
 | ---- | ------- | ----- | -------- | 

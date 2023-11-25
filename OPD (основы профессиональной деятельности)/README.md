@@ -2,6 +2,8 @@
 
 ![pic](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/OPDReadme.gif)
 
+---
+
 ### Прогресс
 | Лаба | процент | баллы | максимум |
 | ---- | ------- | ----- | -------- | 
