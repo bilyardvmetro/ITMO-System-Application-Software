@@ -1,9 +1,8 @@
 # Лабы по проге
 ![ProgLabsGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/programmingLabReadme.gif)
 
-> Преподаватели:
-> Иманзаде Фахри Рашидович
-> Афанасьев Кирилл (Zerumi coder)
+> Лектор: Письмак Алексей Евгеньевич
+> Практики: Иманзаде Фахри Рашидович; Афанасьев Кирилл Александрович(Zerumi coder)
 
 ---
 

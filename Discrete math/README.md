@@ -1,6 +1,8 @@
 # Дискра
 ![gif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/DiscreteMathReadme.gif)
 
+> Препод: Владимир Поляков (кубодед)
+
 ---
 
 ### Прогресс
@@ -12,7 +14,7 @@
 |  ДЗ 4  | :white_check_mark: |
 |  ДЗ 5  | :white_check_mark: |
 |  ДЗ 6  | :white_check_mark: |
-|  ДЗ 7  |   :construction:   |
-|  ДЗ 8  |    :lock:    |
+|  ДЗ 7  | :white_check_mark: |
+|  ДЗ 8  |   :construction:   |
 |  Курсач ч. 1  |   :construction:   |
 |  Курсач ч. 2  |    :lock:    |
