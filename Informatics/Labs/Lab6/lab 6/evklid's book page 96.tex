@@ -1,0 +1,54 @@
+\documentclass[12pt, onecolumn]{article}
+
+\usepackage{tikz}
+\usepackage[english,russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+%\usepackage{float}
+\usepackage{floatrow}
+\usepackage[left=5mm, top=20mm, right=10mm, bottom=20mm, nofoot]{geometry}
+\usepackage{tempora}
+\usepackage{newtxmath}
+\usepackage{multicol}
+\usepackage{graphicx}
+
+\date{}
+
+\begin{document}
+    \Large{
+        \hspace{6cm} \emph{96} \hspace{2cm} КНИГА III ПРЕДЛ. IV. ТЕОРЕМА
+    }\\
+    \begin{multicols}{2}
+        
+        \begin{tikzpicture}
+            % Окружность
+            \draw[line width=1mm, magenta] (0, 0) circle [radius=4];
+            % Линии
+            \draw[line width=1mm, dotted] (0, 0) -- (253:1.73);
+            \draw[line width=1mm, red] (-3.8, -1.3) -- (3.45, -1.99);
+            \draw[line width=1mm] (2.83, -2.8) -- (-3.96, -0.4);
+
+            % Углы
+            %\filldraw[draw=lime, fill=lime] (1.05, -1.81) arc[radius=0.7, start angle=-289, end angle=-340] -- (-0.48,-1.61) -- cycle;
+            %\filldraw[draw=magenta, fill=magenta] (0.1, 0.00005) arc[radius=1, start angle=-230, end angle=-350] -- (-0.48,-1.61) -- cycle;
+
+            % Точки
+            \filldraw[black] (-3.96, -0.4) circle (3pt) node[anchor=east]{A};
+            \filldraw[black] (-3.8, -1.3) circle (3pt) node[anchor=east]{B};
+            \filldraw[black] (2.83, -2.8) circle (3pt) node[anchor=west]{C};
+            \filldraw[black] (3.45, -1.99) circle (3pt) node[anchor=west]{D};
+            \filldraw[black] (-0.5,-1.6) circle (3pt) node[anchor=north]{E};
+            \filldraw[black] (0, 0) circle (3pt) node[anchor=south]{F};
+        \end{tikzpicture}
+        
+        \vfill\null
+        \columnbreak
+        
+        \includegraphics[width=2cm, height=2cm ]{images/letter.png} сли \textit{в круге две прямые, не проходящие через центр, пересекаются, они не делят друг друга пополам.} \\[1cm]
+        
+        Если одна из прямых проходит через центр, очевидно, она не может рассекать пополам другую прямую, не проходящую через центр.
+        
+        \par Но если одна из прямых ac или bd не проходит через центр, проведём ef из центра к точке их пересечения.
+        
+    \end{multicols}
+\end{document}
