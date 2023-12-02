@@ -6,7 +6,7 @@
 \usepackage[T2A]{fontenc}
 %\usepackage{float}
 \usepackage{floatrow}
-\usepackage[left=5mm, top=20mm, right=10mm, bottom=20mm, nofoot]{geometry}
+\usepackage[left=5mm, top=20mm, right=10mm, bottom=10mm, nofoot]{geometry}
 \usepackage{tempora}
 \usepackage{newtxmath}
 \usepackage{multicol}
@@ -15,6 +15,31 @@
 \date{}
 
 \begin{document}
+
+
+    \newcommand{\BD}{
+        \begin{tikzpicture}
+            \draw[line width=1mm, red] (0, 0) -- (1, 0);
+            \filldraw[red] (0, 0) circle (1pt) node[scale=0.5, anchor=south] {B}
+            \filldraw[red] (1, 0) circle (1pt) node[scale=0.5, anchor=south] {D}
+        \end{tikzpicture}
+    }
+    \newcommand{\AC}{
+        \begin{tikzpicture}
+            \draw[line width=1mm, black] (0, 0) -- (1, 0);
+            \filldraw[black] (0, 0) circle (1pt) node[scale=0.5, anchor=south] {A}
+            \filldraw[black] (1, 0) circle (1pt) node[scale=0.5, anchor=south] {C}
+        \end{tikzpicture}
+    }
+    \newcommand{\EF}{
+        \begin{tikzpicture}
+            \draw[line width=1mm, dotted] (0, 0) -- (1, 0);
+            \filldraw[black] (0, 0) circle (1pt) node[scale=0.5, anchor=south] {E}
+            \filldraw[black] (1, 0) circle (1pt) node[scale=0.5, anchor=south]{F}
+        \end{tikzpicture}   
+    }
+
+    
     \Large{
         \hspace{6cm} \emph{96} \hspace{2cm} КНИГА III ПРЕДЛ. IV. ТЕОРЕМА
     }\\
@@ -44,11 +69,26 @@
         \vfill\null
         \columnbreak
         
-        \includegraphics[width=2cm, height=2cm ]{images/letter.png} сли \textit{в круге две прямые, не проходящие через центр, пересекаются, они не делят друг друга пополам.} \\[1cm]
+        \includegraphics[width=2cm, height=2cm ]{images/letter.png} сли \textit{в круге две прямые, не проходящие через центр, пересекаются, они не делят друг друга пополам.} \\[0.5cm]
         
         Если одна из прямых проходит через центр, очевидно, она не может рассекать пополам другую прямую, не проходящую через центр.
         
-        \par Но если одна из прямых ac или bd не проходит через центр, проведём ef из центра к точке их пересечения.
-        
+        \par Но если одна из прямых \AC или \BD не проходит через центр, проведём \EF из центра к точке их пересечения.
+
+        \begin{center}
+            Если \AC делится пополам, \EF $\perp$ ей (пр. III. \emph{3})
+
+            $\therefore$ here will be angle pic
+            
+            и если \BD делится пополам, \EF $\perp$ \BD (пр. III. \emph{3})
+
+            $\therefore$ here will be angle pic;
+
+            и $\therefore$ here will be angle pic;
+            часть равна целому, что невозможно.
+
+            $\therefore$ \AC и \BD не делят друг друга пополам.
+        \end{center}
+        \begin{flushright}ч.т.д.\end{flushright}
     \end{multicols}
 \end{document}
