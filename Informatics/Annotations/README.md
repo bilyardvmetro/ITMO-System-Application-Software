@@ -14,6 +14,5 @@
 |     5     |  :white_check_mark:  |
 |     6     |  :construction:  |
 |     7     |  :construction:  |
-|     8     |  :construction:  |
 
 :construction: - в процессе | :white_check_mark: - аннотация сдана
