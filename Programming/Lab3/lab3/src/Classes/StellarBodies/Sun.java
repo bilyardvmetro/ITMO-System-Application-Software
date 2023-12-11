@@ -1,22 +1,14 @@
 package Classes.StellarBodies;
 
+import AbstractClasses.StellarBody;
 import Classes.Entities.Planet;
+import Enums.StellarBodyType;
 import Interfaces.IViewable;
 
-public class Sun extends Planet implements IViewable {
-    protected String name;
+public class Sun extends StellarBody implements IViewable {
     public Sun(){
-        setName("Солнце");
+        super("Солнце", StellarBodyType.SUN);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String hasView(){
         return "какой вид имеет " + getName();
     }

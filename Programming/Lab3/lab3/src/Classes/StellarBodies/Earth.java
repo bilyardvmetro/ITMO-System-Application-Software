@@ -4,7 +4,6 @@ import AbstractClasses.StellarBody;
 import Enums.EarthSize;
 import Enums.Location;
 import Enums.StellarBodyType;
-import Interfaces.IViewable;
 
 public class Earth extends StellarBody {
     protected EarthSize size;

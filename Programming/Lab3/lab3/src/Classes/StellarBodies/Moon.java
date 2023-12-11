@@ -1,20 +1,13 @@
 package Classes.StellarBodies;
 
+import AbstractClasses.StellarBody;
 import Classes.Entities.Planet;
+import Enums.StellarBodyType;
 import Interfaces.IViewable;
 
-public class Moon extends Planet implements IViewable {
-    protected String name;
+public class Moon extends StellarBody implements IViewable {
     public Moon(){
-        setName("Луна");
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        super("Луна", StellarBodyType.MOON);
     }
 
     public String hasView(){

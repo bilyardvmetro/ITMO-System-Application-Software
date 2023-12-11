@@ -1,20 +1,14 @@
 package Classes.StellarBodies;
 
+import AbstractClasses.StellarBody;
+import Enums.StellarBodyType;
 import Interfaces.IViewable;
 
-public class StarsAndConstellations implements IViewable {
-    protected String name;
+public class StarsAndConstellations extends StellarBody implements IViewable {
     public StarsAndConstellations(){
-        setName("звёзды и созвездия");
+        super("звёзды и созвездия", StellarBodyType.STARS_AND_CONSTELLATIONS);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     public String hasView(){
         return "какие на нём видны отдельные " + getName();
     }
