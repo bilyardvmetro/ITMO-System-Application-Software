@@ -1,6 +1,5 @@
 package Classes.StellarBodies;
 
-import AbstractClasses.StellarBody;
 import Enums.EarthSize;
 import Enums.Location;
 import Enums.StellarBodyType;

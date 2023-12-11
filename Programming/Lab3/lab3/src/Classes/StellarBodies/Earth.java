@@ -6,7 +6,7 @@ import Enums.Location;
 import Enums.StellarBodyType;
 import Interfaces.IViewable;
 
-public class Earth extends StellarBody implements IViewable {
+public class Earth extends StellarBody {
     protected EarthSize size;
     public Earth() {
         super("Земля", StellarBodyType.EARTH);
@@ -29,9 +29,4 @@ public class Earth extends StellarBody implements IViewable {
             return "";
         }
     }
-
-    public String hasView(){
-        return ""; // затычка
-    }
-
 }

@@ -17,6 +17,10 @@ public abstract class Person {
         return name;
     }
 
+    public static String askProperly(Person person1, Person person2, Person person3){
+        return person1.getName() + " и " + person2.getName() + " обстоятельно расспросили " + person3.getName();
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode() + this.getName().hashCode();
