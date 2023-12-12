@@ -1,4 +1,3 @@
-import AbstractClasses.Person;
 import Classes.Entities.Conversation;
 import Classes.Entities.EarthShell;
 import Classes.Entities.Planet;
