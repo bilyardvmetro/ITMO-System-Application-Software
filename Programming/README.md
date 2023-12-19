@@ -2,6 +2,7 @@
 ![ProgLabsGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/programmingLabReadme.gif)
 
 > Лектор: Письмак Алексей Евгеньевич
+>
 > Практики: Иманзаде Фахри Рашидович; Афанасьев Кирилл Александрович(Zerumi coder)
 
 ---
