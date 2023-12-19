@@ -3,6 +3,7 @@
 ![InfGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/infLabReadme.gif)
 
 > Лектор: Балакшин Павел Валерьевич
+>
 > Практик: Рыбаков Степан Дмитриевич
 
 ---

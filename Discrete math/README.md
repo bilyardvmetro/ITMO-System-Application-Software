@@ -1,7 +1,7 @@
 # Дискра
 ![gif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/DiscreteMathReadme.gif)
 
-> Препод: Владимир Поляков (кубодед)
+> Препод: Владимир Иванович Поляков (кубодед)
 
 ---
 
