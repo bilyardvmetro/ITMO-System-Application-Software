@@ -16,5 +16,5 @@
 |  ДЗ 6  | :white_check_mark: |
 |  ДЗ 7  | :white_check_mark: |
 |  ДЗ 8  | :white_check_mark: |
-|  Курсач ч. 1  |   :construction:   |
-|  Курсач ч. 2  |    :lock:    |
+|  Курсач ч. 1  | :white_check_mark: |
+|  Курсач ч. 2  | :white_check_mark: |
