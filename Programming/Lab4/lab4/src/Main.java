@@ -1,6 +1,7 @@
 import Entities.Alive.*;
 import Entities.Inanimate.*;
 import Enums.Location;
+import Exceptions.BodyTypeMismatchException;
 import Interfaces.SentenceHandler;
 
 public class Main {
@@ -17,7 +18,6 @@ public class Main {
         travellers.addTraveller(snezhinka);
 
         Bridge bridge = new Bridge();
-        House house = new House("Белый дом с зелёной крышей");
         House.Doorbell doorbell = new House.Doorbell();
         House.Door door = new House.Door();
         Hanger.Cap kolpak = new Hanger.Cap("колпак");
@@ -76,9 +76,16 @@ public class Main {
         medunitsa.move(Location.UNNOWN_LOCATION);
         sineglazka.move(Location.UNNOWN_LOCATION);
 
-        neznaika.put_on_item(halat, neznaika.body);
-        neznaika.put_on_item(kolpak, neznaika.head);
-        neznaika.put_on_item(glasses, neznaika.nose);
+        try {
+            neznaika.put_on_item(halat, neznaika.body);
+            neznaika.put_on_item(kolpak, neznaika.head);
+            neznaika.put_on_item(glasses, neznaika.nose);
+        } catch (BodyTypeMismatchException btme){
+            System.out.println(btme.getMessage());
+            System.exit(0);
+        }
+
+        neznaika.grab_item(woodStraw);
         snezhinka.look_on_smb(neznaika);
 
         neznaika.move(Location.HALLWAY);

@@ -4,6 +4,7 @@ import AbstractClasses.Person;
 import Enums.Location;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public final class Travellers {
     public LinkedList<Person> travellers;
@@ -20,8 +21,8 @@ public final class Travellers {
 
     public void getTravellers() {
         class ToStringConverter {
-            private LinkedList<Person> convertable;
-            public ToStringConverter(LinkedList<Person> convertable) {
+            private List<Person> convertable;
+            public ToStringConverter(List<Person> convertable) {
                 this.convertable = convertable;
             }
             public String convert(){

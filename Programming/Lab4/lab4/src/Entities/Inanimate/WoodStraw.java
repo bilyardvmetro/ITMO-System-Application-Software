@@ -11,6 +11,6 @@ public class WoodStraw extends Item {
 
     @Override
     public void grab(Person someone) {
-        System.out.println(someone.getName() + " деревянную трубочку. ");
+        System.out.print(someone.getName() + " взял деревянную трубочку");
     }
 }
