@@ -10,7 +10,7 @@ public class ExitCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.exit();
+    public void execute(String arguments) {
+        commandHandler.exit(arguments);
     }
 }

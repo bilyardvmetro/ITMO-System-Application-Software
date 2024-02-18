@@ -10,7 +10,7 @@ public class HistoryCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.history();
+    public void execute(String arguments) {
+        commandHandler.history(arguments);
     }
 }

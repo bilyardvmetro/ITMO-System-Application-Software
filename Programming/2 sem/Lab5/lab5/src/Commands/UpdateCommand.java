@@ -10,7 +10,7 @@ public class UpdateCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.update();
+    public void execute(String arguments) {
+        commandHandler.update(arguments);
     }
 }

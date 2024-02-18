@@ -10,7 +10,7 @@ public class RemoveByIdCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.removeById();
+    public void execute(String arguments) {
+        commandHandler.removeById(arguments);
     }
 }

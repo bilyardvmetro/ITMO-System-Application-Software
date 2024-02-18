@@ -10,7 +10,7 @@ public class InfoCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.info();
+    public void execute(String arguments) {
+        commandHandler.info(arguments);
     }
 }

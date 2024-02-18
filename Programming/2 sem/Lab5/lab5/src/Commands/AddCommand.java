@@ -10,7 +10,7 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute() {
-        commandHandler.add();
+    public void execute(String arguments) {
+        commandHandler.add(arguments);
     }
 }

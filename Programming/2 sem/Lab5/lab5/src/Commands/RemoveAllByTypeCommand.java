@@ -10,7 +10,7 @@ public class RemoveAllByTypeCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.removeAllByType();
+    public void execute(String arguments) {
+        commandHandler.removeAllByType(arguments);
     }
 }

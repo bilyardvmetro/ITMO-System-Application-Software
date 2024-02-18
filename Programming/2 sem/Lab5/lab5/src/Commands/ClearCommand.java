@@ -10,7 +10,7 @@ public class ClearCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.clear();
+    public void execute(String arguments) {
+        commandHandler.clear(arguments);
     }
 }

@@ -10,7 +10,7 @@ public class FilterStartsWithNameCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.filterStartsWithName();
+    public void execute(String arguments) {
+        commandHandler.filterStartsWithName(arguments);
     }
 }

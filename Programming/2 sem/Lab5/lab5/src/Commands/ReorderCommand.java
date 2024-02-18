@@ -10,7 +10,7 @@ public class ReorderCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.reorder();
+    public void execute(String arguments) {
+        commandHandler.reorder(arguments);
     }
 }

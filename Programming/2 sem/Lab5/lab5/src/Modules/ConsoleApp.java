@@ -42,13 +42,67 @@ public class ConsoleApp {
         this.filterStartsWithName = filterStartsWithName;
     }
 
-    public void add(){
-        add.execute();
+    public void help(String arguments){
+        help.execute(arguments);
     }
 
-    public void help(){
-        help.execute();
+    public void info(String arguments){
+        info.execute(arguments);
     }
 
-    public void exit(){exit.execute();}
+    public void show(String arguments){
+        show.execute(arguments);
+    }
+
+    public void add(String arguments){
+        add.execute(arguments);
+    }
+
+    public void update(String arguments){
+        update.execute(arguments);
+    }
+
+    public void removeById(String arguments){
+        removeById.execute(arguments);
+    }
+
+    public void clear(String arguments){
+        clear.execute(arguments);
+    }
+
+    public void save(String arguments){
+        save.execute(arguments);
+    }
+
+    public void executeScript(String arguments){
+        executeScript.execute(arguments);
+    }
+
+    public void removeGreater(String arguments){
+        removeGreater.execute(arguments);
+    }
+
+    public void reorder(String arguments){
+        reorder.execute(arguments);
+    }
+
+    public void history(String arguments){
+        history.execute(arguments);
+    }
+
+    public void removeAllByType(String arguments){
+        removeAllByType.execute(arguments);
+    }
+
+    public void countGreaterThanEnginePower(String arguments){
+        countGreaterThanEnginePower.execute(arguments);
+    }
+
+    public void filterStartsWithName(String arguments){
+        filterStartsWithName.execute(arguments);
+    }
+
+    public void exit(String arguments){
+        exit.execute(arguments);
+    }
 }

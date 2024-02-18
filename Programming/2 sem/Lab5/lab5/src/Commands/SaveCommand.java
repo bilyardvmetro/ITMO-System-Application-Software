@@ -10,7 +10,7 @@ public class SaveCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.save();
+    public void execute(String arguments) {
+        commandHandler.save(arguments);
     }
 }

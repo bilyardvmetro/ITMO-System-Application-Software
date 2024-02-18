@@ -10,7 +10,7 @@ public class RemoveGreaterCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.removeGreater();
+    public void execute(String arguments) {
+        commandHandler.removeGreater(arguments);
     }
 }

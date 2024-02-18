@@ -3,25 +3,39 @@ package Modules;
 import CollectionObject.Coordinates;
 import CollectionObject.Vehicle;
 import CollectionObject.VehicleType;
+import java.util.Comparator;
 
-import java.util.Date;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 import static CollectionObject.VehicleType.*;
 
 public class CollectionService {
     private Long elementsCount = 0L; // TODO: придумать как генерировать id автоматом по-другому
-    private Scanner InputScanner;
-    public Stack<Vehicle> collection;
+    private Date initializationDate;
+    protected Stack<Vehicle> collection;
+    private boolean isReversed = false;
 
     public CollectionService() {
-        this.InputScanner = new Scanner(System.in);
         this.collection = new Stack<>();
+        this.initializationDate = new Date();
+    }
+
+    private class CompareVehicles implements Comparator<Vehicle>{
+
+        @Override
+        public int compare(Vehicle o1, Vehicle o2) {
+            return o1.getName().length() - o2.getName().length();
+        }
+
+        @Override
+        public Comparator<Vehicle> reversed() {
+            return Comparator.super.reversed();
+        }
     }
 
     public void addElement(){
-        System.out.println(getLastId());
+        // TODO: 18.02.2024 сделать валидации полей и улучшить механизм id
+        Scanner InputScanner = new Scanner(System.in);
         System.out.println("Введите имя");
         String name = InputScanner.nextLine();
 
@@ -64,8 +78,10 @@ public class CollectionService {
                 break;
         }
 
+        elementsCount+=1;
+
         Vehicle newElement = new Vehicle(
-                getLastId(),
+                elementsCount,
                 name,
                 coordinates,
                 creationDate,
@@ -74,16 +90,110 @@ public class CollectionService {
                 distanceTravelled,
                 vehicleType
         );
-        elementsCount++;
-        String s = newElement.toString();
-        System.out.println(s);
+        collection.addElement(newElement);
+        System.out.println("Элемент успешно добавлен");
     }
 
-    // todo: доработать эту функцию
-    public long getLastId(){
-        if (!collection.empty()){
-            return collection.indexOf(collection.lastElement());
-        }
-        return 0;
+    public void info(){
+        System.out.println("Тип коллекции: " + collection.getClass());
+        System.out.println("Дата создания: " + initializationDate);
+        System.out.println("Количество элементов: " + collection.size());
     }
+
+    public void show(){
+        if (collection.isEmpty()){
+            System.out.println("В коллекции пока нету ни одного элемента");
+        } else{
+            for (Vehicle vehicle: collection) {
+                System.out.println(vehicle + "\n");
+            }
+        }
+    }
+
+    public void update(String new_name, long current_id){
+        // TODO: 18.02.2024 добавить изменение всех полей, а не только name 
+        for (Vehicle vehicle:collection) {
+            if (current_id == vehicle.getId()){
+                vehicle.setName(new_name);
+                System.out.println("Имя элемента с id " + current_id + " успешно удалён");
+            } else{
+                System.out.println("Элемента с таким id не существует");
+            }
+        }
+    }
+
+    public void removeById(long id){
+        for (Vehicle vehicle:collection) {
+            if (id == vehicle.getId()){
+                collection.remove(vehicle);
+                System.out.println("Элемент с id " + id + " успешно удалён");
+            } else{
+                System.out.println("Элемента с таким id не существует");
+            }
+        }
+    }
+
+    public void clear(){
+        collection.clear();
+        System.out.println("Все элементы успешно удалены");
+    }
+
+    public void removeGreater(long startId){
+        // TODO: 19.02.2024 добавить ремув по всем полям
+        long endId = collection.size();
+
+        if (startId > endId){
+            System.out.println("Элемента с таким id не существует");
+        }
+
+        while (startId <= endId){
+            collection.pop();
+            System.out.println("Элемент с id " + endId + " успешно удалён");
+            endId--;
+        }
+
+    }
+
+    public void reorder(){
+        CompareVehicles comparator = new CompareVehicles();
+        if (!isReversed){
+            collection.sort(comparator.reversed());
+            isReversed = true;
+            System.out.println("///Коллекция отсортирована по убыванию/// \n");
+        } else {
+            collection.sort(comparator);
+            System.out.println("///Коллекция отсортирована по возрастанию/// \n");
+        }
+        show();
+    }
+
+    public void removeAllByType(VehicleType type){
+        LinkedList<Vehicle> vehiclesToRemove = new LinkedList<>();
+        for (Vehicle vehicle : collection) {
+            if (vehicle.getType().equals(type)){
+                vehiclesToRemove.add(vehicle);
+            }
+        }
+        collection.removeAll(vehiclesToRemove);
+        System.out.println("Транспортные средства с типом " + type + " успешно удалены");
+    }
+
+    public void countGreaterThanEnginePower(double enginePower){
+        int counter = 0;
+        for (Vehicle vehicle : collection) {
+            if (vehicle.getEnginePower() > enginePower){
+                counter++;
+            }
+        }
+        System.out.println("Количество транспортных средств с мощностью двигателя выше заданной: " + counter);
+    }
+
+    public void filterStartsWithName(String name){
+        for (Vehicle vehicle : collection) {
+            if (vehicle.getName().equals(name)){
+                System.out.println(vehicle + "\n");
+            }
+        }
+    }
+
 }

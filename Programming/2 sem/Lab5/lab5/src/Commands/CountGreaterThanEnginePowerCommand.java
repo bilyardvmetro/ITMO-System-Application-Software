@@ -10,7 +10,7 @@ public class CountGreaterThanEnginePowerCommand implements Command {
     }
 
     @Override
-    public void execute() {
-        commandHandler.countGreaterThanEnginePower();
+    public void execute(String arguments) {
+        commandHandler.countGreaterThanEnginePower(arguments);
     }
 }

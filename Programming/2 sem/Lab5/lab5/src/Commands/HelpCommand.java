@@ -9,7 +9,7 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public void execute() {
-        commandHandler.help();
+    public void execute(String arguments) {
+        commandHandler.help(arguments);
     }
 }

@@ -10,7 +10,7 @@ public class ShowCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.show();
+    public void execute(String arguments) {
+        commandHandler.show(arguments);
     }
 }

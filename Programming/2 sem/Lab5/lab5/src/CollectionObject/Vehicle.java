@@ -103,15 +103,15 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", coordinates=" + coordinates +
-                ", creationDate=" + creationDate +
-                ", enginePower=" + enginePower +
-                ", capacity=" + capacity +
-                ", distanceTravelled=" + distanceTravelled +
-                ", type=" + type +
+        return "Транспортное средство{" + "\n" +
+                "id: " + id + "\n" +
+                "Имя: " + name + "\n" +
+                coordinates + "\n" +
+                "Дата создания: " + creationDate + "\n" +
+                "Мощность двигателя: " + enginePower + "\n" +
+                "Объем двигателя: " + capacity + "\n" +
+                "Пробег: " + distanceTravelled + "\n" +
+                "Тип: " + type + "\n" +
                 '}';
     }
 }

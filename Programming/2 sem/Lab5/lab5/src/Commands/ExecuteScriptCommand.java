@@ -10,7 +10,7 @@ public class ExecuteScriptCommand implements Command{
     }
 
     @Override
-    public void execute() {
-        commandHandler.executeScript();
+    public void execute(String arguments) {
+        commandHandler.executeScript(arguments);
     }
 }

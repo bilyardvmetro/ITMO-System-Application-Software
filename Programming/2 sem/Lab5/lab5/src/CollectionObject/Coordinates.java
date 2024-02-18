@@ -42,9 +42,9 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return "Coordinates{" +
+        return "Координаты: (" +
                 "x=" + x +
                 ", y=" + y +
-                '}';
+                ')';
     }
 }
