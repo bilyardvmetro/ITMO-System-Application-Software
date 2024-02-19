@@ -3,6 +3,9 @@ package Modules;
 import CollectionObject.Coordinates;
 import CollectionObject.Vehicle;
 import CollectionObject.VehicleType;
+import Exceptions.EmptyFieldException;
+import Exceptions.NegativeFieldException;
+
 import java.util.Comparator;
 
 import java.util.*;
@@ -10,7 +13,7 @@ import java.util.*;
 import static CollectionObject.VehicleType.*;
 
 public class CollectionService {
-    private Long elementsCount = 0L; // TODO: придумать как генерировать id автоматом по-другому
+    private Long elementsCount = 0L;
     private Date initializationDate;
     protected Stack<Vehicle> collection;
     private boolean isReversed = false;
@@ -33,63 +36,25 @@ public class CollectionService {
         }
     }
 
+    private record VehicleWithoutId (
+            String name, Coordinates coordinates, Date creationDate, double enginePower,
+            float capacity, float distanceTravelled, VehicleType vehicleType){};
+
     public void addElement(){
-        // TODO: 18.02.2024 сделать валидации полей и улучшить механизм id
-        Scanner InputScanner = new Scanner(System.in);
-        System.out.println("Введите имя");
-        String name = InputScanner.nextLine();
-
-        System.out.println("Введите координаты через пробел в формате: x y");
-        String inputCoordinates = InputScanner.nextLine();
-        String[] parsedCoordinates = inputCoordinates.split(" ");
-        Coordinates coordinates = new Coordinates(
-                Float.parseFloat(parsedCoordinates[0]),
-                Double.parseDouble(parsedCoordinates[1])
-        );
-
-        Date creationDate = new Date();
-
-        System.out.println("Введите мощность двигателя");
-        Double enginePower = Double.parseDouble(InputScanner.nextLine());
-
-        System.out.println("Введите объём двигателя");
-        Float capacity = Float.parseFloat(InputScanner.nextLine());
-
-        System.out.println("Введите пробег");
-        float distanceTravelled = Float.parseFloat(InputScanner.nextLine());
-
-        System.out.print("""
-                Введите один из доступных типов транспортного средства:
-                BOAT
-                HOVERBOARD
-                SPACESHIP
-                """);
-        String type = InputScanner.nextLine().toUpperCase();
-        VehicleType vehicleType = null;
-        switch (type){
-            case "BOAT":
-                vehicleType = BOAT;
-                break;
-            case "HOVERBOARD":
-                vehicleType = HOVERBOARD;
-                break;
-            case "SPACESHIP":
-                vehicleType = SPACESHIP;
-                break;
-        }
+        VehicleWithoutId source = createElement();
 
         elementsCount+=1;
-
         Vehicle newElement = new Vehicle(
                 elementsCount,
-                name,
-                coordinates,
-                creationDate,
-                enginePower,
-                capacity,
-                distanceTravelled,
-                vehicleType
+                source.name,
+                source.coordinates,
+                source.creationDate,
+                source.enginePower,
+                source.capacity,
+                source.distanceTravelled,
+                source.vehicleType
         );
+
         collection.addElement(newElement);
         System.out.println("Элемент успешно добавлен");
     }
@@ -110,12 +75,27 @@ public class CollectionService {
         }
     }
 
-    public void update(String new_name, long current_id){
-        // TODO: 18.02.2024 добавить изменение всех полей, а не только name 
+    public void update(long current_id){
         for (Vehicle vehicle:collection) {
             if (current_id == vehicle.getId()){
-                vehicle.setName(new_name);
-                System.out.println("Имя элемента с id " + current_id + " успешно удалён");
+                collection.remove(vehicle);
+
+                VehicleWithoutId source = createElement();
+                Vehicle newElement = new Vehicle(
+                        current_id,
+                        source.name,
+                        source.coordinates,
+                        source.creationDate,
+                        source.enginePower,
+                        source.capacity,
+                        source.distanceTravelled,
+                        source.vehicleType
+                );
+
+                collection.addElement(newElement);
+                System.out.println("Элемент с id " + current_id + " успешно изменён");
+                break;
+
             } else{
                 System.out.println("Элемента с таким id не существует");
             }
@@ -127,6 +107,7 @@ public class CollectionService {
             if (id == vehicle.getId()){
                 collection.remove(vehicle);
                 System.out.println("Элемент с id " + id + " успешно удалён");
+                break;
             } else{
                 System.out.println("Элемента с таким id не существует");
             }
@@ -193,7 +174,140 @@ public class CollectionService {
             if (vehicle.getName().equals(name)){
                 System.out.println(vehicle + "\n");
             }
+            else {
+                System.out.println("Элементов с таким именем не существует");
+            }
         }
     }
 
+    private String askString(Scanner InputScanner) {
+        while(true) {
+            try {
+                var name = InputScanner.nextLine();
+                if (name.isEmpty()){
+                    throw new EmptyFieldException("Поле не может быть пустым. Введите его ещё раз: ");
+                }
+                return name.trim();
+            }catch(EmptyFieldException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private float askX(Scanner InputScanner) {
+        while(true) {
+            try {
+                return Float.parseFloat(InputScanner.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Неверный формат числа. Введите его повторно:");
+            }
+        }
+    }
+
+    private double askY(Scanner InputScanner) {
+        while(true) {
+            try {
+                return Double.parseDouble(InputScanner.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Неверный формат числа. Введите его повторно:");
+            }
+        }
+    }
+
+    private float askFloat(Scanner InputScanner) {
+        while(true) {
+            try {
+                float num = Float.parseFloat(InputScanner.nextLine());
+                if (num > 0){
+                    return num;
+                } else {
+                    throw new NegativeFieldException("Число не может быть отрицательным. Введите его ещё раз:");
+                }
+
+            } catch (NumberFormatException e){
+                System.out.println("Неверный формат числа. Введите его повторно:");
+            } catch (NegativeFieldException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private double askDouble(Scanner InputScanner) {
+        while(true) {
+            try {
+                double num = Double.parseDouble(InputScanner.nextLine());
+                if (num > 0){
+                    return num;
+                } else {
+                    throw new NegativeFieldException("Число не может быть отрицательным. Введите его ещё раз:");
+                }
+            } catch (NumberFormatException e){
+                System.out.println("Неверный формат числа. Введите его повторно:");
+            } catch (NegativeFieldException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private VehicleType askVehicleType(Scanner InputScanner) {
+        while (true){
+            try {
+                String type = InputScanner.nextLine().toUpperCase();
+                VehicleType vehicleType;
+                switch (type){
+                    case "BOAT":
+                        vehicleType = BOAT;
+                        break;
+                    case "HOVERBOARD":
+                        vehicleType = HOVERBOARD;
+                        break;
+                    case "SPACESHIP":
+                        vehicleType = SPACESHIP;
+                        break;
+                    default:
+                        throw new EmptyFieldException("Такого типа транспортного средства не существует. " +
+                                "Заполните тип корректно: ");
+                }
+                return vehicleType;
+            } catch (EmptyFieldException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private VehicleWithoutId createElement(){
+        Scanner InputScanner = new Scanner(System.in);
+
+        System.out.println("Введите имя");
+        String name = askString(InputScanner);
+
+        System.out.println("Введите координату x:");
+        float x = askX(InputScanner);
+
+        System.out.println("Введите координату y:");
+        double y = askY(InputScanner);
+
+        Coordinates coordinates = new Coordinates(x, y);
+
+        Date creationDate = new Date();
+
+        System.out.println("Введите мощность двигателя");
+        double enginePower = askDouble(InputScanner);
+
+        System.out.println("Введите объём двигателя");
+        float capacity = askFloat(InputScanner);
+
+        System.out.println("Введите пробег");
+        float distanceTravelled = askFloat(InputScanner);
+
+        System.out.print("""
+                Введите один из доступных типов транспортного средства:
+                BOAT
+                HOVERBOARD
+                SPACESHIP
+                """);
+        VehicleType vehicleType = askVehicleType(InputScanner);
+
+        return new VehicleWithoutId(name, coordinates, creationDate, enginePower, capacity, distanceTravelled, vehicleType);
+    }
 }

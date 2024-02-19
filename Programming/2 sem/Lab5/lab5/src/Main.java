@@ -22,83 +22,81 @@ public class Main {
             if (parsedCommand.length == 1){
                 command = parsedCommand[0];
             }
-            if (parsedCommand.length == 2) {
+            else if (parsedCommand.length == 2) {
                 command = parsedCommand[0];
                 arguments = parsedCommand[1];
             }
-            if (parsedCommand.length == 3) {
-                command = parsedCommand[0];
-                arguments = parsedCommand[1] + " " + parsedCommand[2];
+            else {
+                System.out.println("Некорректный формат аргументов");
             }
-
+            // TODO: 19.02.2024 сделать хэшмапу с командами 
             if (command.equalsIgnoreCase("help")){
                 consoleApp.help(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("info")){
+            else if (command.equalsIgnoreCase("info")){
                 consoleApp.info(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("show")){
+            else if (command.equalsIgnoreCase("show")){
                 consoleApp.show(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("add")){
+            else if (command.equalsIgnoreCase("add")){
                 consoleApp.add(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("update")){ // меняет имя объекта
+            else if (command.equalsIgnoreCase("update")){
                 consoleApp.update(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("removeById")){
+            else if (command.equalsIgnoreCase("removeById")){
                 consoleApp.removeById(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("clear")){
+            else if (command.equalsIgnoreCase("clear")){
                 consoleApp.clear(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("save")){
+            else if (command.equalsIgnoreCase("save")){
                 consoleApp.save(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("executeScript")){
+            else if (command.equalsIgnoreCase("executeScript")){
                 consoleApp.executeScript(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("exit")){
+            else if (command.equalsIgnoreCase("exit")){
                 consoleApp.exit(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("removeGreater")){
+            else if (command.equalsIgnoreCase("removeGreater")){
                 consoleApp.removeGreater(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("reorder")){
+            else if (command.equalsIgnoreCase("reorder")){
                 consoleApp.reorder(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("history")){
+            else if (command.equalsIgnoreCase("history")){
                 consoleApp.history(arguments);
-                CommandHandler.addCommand(command); // должна ли учитываться сама команда history???
+                CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("removeAllByType")){
+            else if (command.equalsIgnoreCase("removeAllByType")){
                 consoleApp.removeAllByType(arguments);
-                CommandHandler.addCommand(command); // должна ли учитываться сама команда history???
+                CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("filterStartsWithName")){
+            else if (command.equalsIgnoreCase("filterStartsWithName")){
                 consoleApp.filterStartsWithName(arguments);
                 CommandHandler.addCommand(command);
             }
-            if (command.equalsIgnoreCase("countGreaterThanEnginePower")){
+            else if (command.equalsIgnoreCase("countGreaterThanEnginePower")){
                 consoleApp.countGreaterThanEnginePower(arguments);
                 CommandHandler.addCommand(command);
             }
-
-//            else {
-//                System.out.println("Неизвестная команда. Ты по-моему перепутал...");
-//            } todo: починить обработку неизвестной команды
+            else {
+                System.out.println("Неизвестная команда. Ты по-моему перепутал...");
+            }
         }
 
     }
