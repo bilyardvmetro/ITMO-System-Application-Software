@@ -2,11 +2,13 @@
 ![ProgLabsGif](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/programmingLabReadme.gif)
 
 > 1 семестр
+> 
 > Лектор: Письмак Алексей Евгеньевич
 >
 > Практики: Иманзаде Фахри Рашидович; Афанасьев Кирилл Александрович(Zerumi coder)
 >
 > 2 семестр
+> 
 > Лектор: Гаврилов Антон Валерьевич
 >
 > Практик: Письмак Алексей Евгеньевич
