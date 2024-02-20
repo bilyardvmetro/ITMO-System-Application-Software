@@ -6,6 +6,7 @@
 ---
 
 ### Прогресс
+1 сем
 | Работа | статус 			  |
 | ------ | ------------------ |
 |  ДЗ 1  | :white_check_mark: |
@@ -18,3 +19,15 @@
 |  ДЗ 8  | :white_check_mark: |
 |  Курсач ч. 1  | :white_check_mark: |
 |  Курсач ч. 2  | :white_check_mark: |
+
+
+2 сем
+| Работа | статус 			  |
+| ------ | ------------------ |
+|  ДЗ 1  | :construction: |
+|  ДЗ 2  | :construction: |
+|  ДЗ 3  | :construction: | 
+|  ДЗ 4  | :construction: |
+|  ДЗ 5  | :construction: |
+|  ДЗ 6  | :construction: |
+| Курсач | :lock: |
