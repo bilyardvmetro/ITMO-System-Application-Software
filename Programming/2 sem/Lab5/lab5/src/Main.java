@@ -29,7 +29,7 @@ public class Main {
             else {
                 System.out.println("Некорректный формат аргументов");
             }
-            // TODO: 19.02.2024 сделать хэшмапу с командами 
+            // TODO: 21.02.2024 сделать хэшмапу с командами 
             if (command.equalsIgnoreCase("help")){
                 consoleApp.help(arguments);
                 CommandHandler.addCommand(command);

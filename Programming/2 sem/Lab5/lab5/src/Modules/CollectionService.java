@@ -1,12 +1,8 @@
 package Modules;
 
-import CollectionObject.Coordinates;
-import CollectionObject.Vehicle;
-import CollectionObject.VehicleType;
-import Exceptions.EmptyFieldException;
-import Exceptions.NegativeFieldException;
+import CollectionObject.*;
 
-import java.util.Comparator;
+import Exceptions.*;
 
 import java.util.*;
 
@@ -15,11 +11,11 @@ import static CollectionObject.VehicleType.*;
 public class CollectionService {
     private Long elementsCount = 0L;
     private Date initializationDate;
-    protected Stack<Vehicle> collection;
+    protected static Stack<Vehicle> collection;
     private boolean isReversed = false;
 
     public CollectionService() {
-        this.collection = new Stack<>();
+        collection = new Stack<>();
         this.initializationDate = new Date();
     }
 
@@ -38,7 +34,7 @@ public class CollectionService {
 
     private record VehicleWithoutId (
             String name, Coordinates coordinates, Date creationDate, double enginePower,
-            float capacity, float distanceTravelled, VehicleType vehicleType){};
+            float capacity, float distanceTravelled, VehicleType vehicleType){}
 
     public void addElement(){
         VehicleWithoutId source = createElement();

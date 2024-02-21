@@ -2,19 +2,21 @@ package Modules;
 
 
 import CollectionObject.VehicleType;
+import Commands.Command;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 
 public class CommandHandler {
     private CollectionService collectionService;
-    private CSVProvider csvProvider;
-
-    private static LinkedList<String> commandList = new LinkedList<>();
+    private static CSVProvider csvProvider;
+    private static LinkedList<String> commandHistory = new LinkedList<>();
+//    public static HashMap<Integer, Command> commandList = new HashMap<>();
 
     public CommandHandler() {
         this.collectionService = new CollectionService();
-        this.csvProvider = new CSVProvider();
+        csvProvider = new CSVProvider();
     }
 
     public void help(String arguments){
@@ -169,7 +171,7 @@ public class CommandHandler {
             System.out.println("Неверные аргументы команды"); // illegal args exception
         } else {
             System.out.println("Последние 7 команд, введённые пользователем: ");
-            for (String command : commandList) {
+            for (String command : commandHistory) {
                 System.out.println(command);
             }
         }
@@ -216,9 +218,9 @@ public class CommandHandler {
 
 
     public static void addCommand(String command){
-        if (commandList.size() == 7){
-            commandList.removeFirst();
+        if (commandHistory.size() == 7){
+            commandHistory.removeFirst();
         }
-        commandList.addLast(command);
+        commandHistory.addLast(command);
     }
 }
