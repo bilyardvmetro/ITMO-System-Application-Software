@@ -3,7 +3,7 @@
 ### Тут лежат мои работы из уника
 ![pic](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/About.gif)
 
----
+
 > Работ по матану, линалу и английскому здесь нету, тк всё сильно варьируется от практика и лектора
 ---
 # Extra info
