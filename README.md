@@ -12,8 +12,12 @@
 https://www.youtube.com/@artemdabstep_diy/videos - Сеня Альхимович (АРтём дабстеп)
 https://github.com/senya-2011 - его гх
 >лучший образовательный канал по версии журнала playboy
+
+
 https://github.com/CodeAxeAttacks - Даня Батманов
 >легенда второго курса. Лучший муж, сын, преподаватель майнкрафта
+
+
 https://github.com/r2r1 - Гриша
 >добряк такой чисто
 
