@@ -24,7 +24,7 @@
 2 сем
 | Работа | статус 			  |
 | ------ | ------------------ |
-|  ДЗ 1  | :construction: |
+|  ДЗ 1  | :white_check_mark: |
 |  ДЗ 2  | :construction: |
 |  ДЗ 3  | :construction: | 
 |  ДЗ 4  | :construction: |
