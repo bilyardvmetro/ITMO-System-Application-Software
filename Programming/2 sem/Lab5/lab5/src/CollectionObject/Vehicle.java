@@ -1,5 +1,7 @@
 package CollectionObject;
 
+import Modules.CollectionService;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -22,6 +24,13 @@ public class Vehicle {
         this.capacity = capacity;
         this.distanceTravelled = distanceTravelled;
         this.type = type;
+    }
+
+    public Vehicle() {
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

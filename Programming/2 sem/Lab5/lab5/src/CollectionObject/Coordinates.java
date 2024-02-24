@@ -11,6 +11,9 @@ public class Coordinates {
         this.y = y;
     }
 
+    public Coordinates() {
+    }
+
     public Float getX() {
         return x;
     }

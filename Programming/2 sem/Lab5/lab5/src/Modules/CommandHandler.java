@@ -12,7 +12,12 @@ public class CommandHandler {
     private CollectionService collectionService;
     private static CSVProvider csvProvider;
     private static LinkedList<String> commandHistory = new LinkedList<>();
-//    public static HashMap<Integer, Command> commandList = new HashMap<>();
+
+    /* хэшмапа команд. Ключ - имя команды; Значение - класс-оболочка команды
+    *  мб стоит перекинуть в ConsoleApp
+     */
+
+    public static HashMap<String, Command> commandList = new HashMap<>();
 
     public CommandHandler() {
         this.collectionService = new CollectionService();

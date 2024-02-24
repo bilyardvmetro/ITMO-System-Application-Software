@@ -9,7 +9,7 @@ import java.util.*;
 import static CollectionObject.VehicleType.*;
 
 public class CollectionService {
-    private Long elementsCount = 0L;
+    protected static Long elementsCount = 0L;
     private Date initializationDate;
     protected static Stack<Vehicle> collection;
     private boolean isReversed = false;
@@ -32,7 +32,7 @@ public class CollectionService {
         }
     }
 
-    private record VehicleWithoutId (
+    protected record VehicleWithoutId (
             String name, Coordinates coordinates, Date creationDate, double enginePower,
             float capacity, float distanceTravelled, VehicleType vehicleType){}
 

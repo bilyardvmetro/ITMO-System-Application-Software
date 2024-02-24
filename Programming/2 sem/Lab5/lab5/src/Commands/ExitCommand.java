@@ -7,6 +7,7 @@ public class ExitCommand implements Command{
 
     public ExitCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("exit", this);
     }
 
     @Override

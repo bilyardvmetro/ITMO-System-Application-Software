@@ -7,6 +7,7 @@ public class SaveCommand implements Command{
 
     public SaveCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("save", this);
     }
 
     @Override

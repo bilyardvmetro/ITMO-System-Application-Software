@@ -7,6 +7,7 @@ public class ClearCommand implements Command{
 
     public ClearCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("clear", this);
     }
 
     @Override

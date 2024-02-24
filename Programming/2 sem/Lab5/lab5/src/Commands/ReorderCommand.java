@@ -7,6 +7,7 @@ public class ReorderCommand implements Command{
 
     public ReorderCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("reorder", this);
     }
 
     @Override

@@ -6,6 +6,7 @@ public class HelpCommand implements Command {
 
     public HelpCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("help", this);
     }
 
     @Override

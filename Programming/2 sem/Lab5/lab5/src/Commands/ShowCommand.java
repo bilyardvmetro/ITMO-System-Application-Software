@@ -7,6 +7,7 @@ public class ShowCommand implements Command{
 
     public ShowCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("show", this);
     }
 
     @Override

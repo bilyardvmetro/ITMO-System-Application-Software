@@ -7,6 +7,7 @@ public class CountGreaterThanEnginePowerCommand implements Command {
 
     public CountGreaterThanEnginePowerCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("countGreaterThanEnginePower", this);
     }
 
     @Override

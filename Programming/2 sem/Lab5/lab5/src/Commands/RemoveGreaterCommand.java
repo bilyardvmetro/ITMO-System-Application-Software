@@ -7,6 +7,7 @@ public class RemoveGreaterCommand implements Command{
 
     public RemoveGreaterCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("removeGreater", this);
     }
 
     @Override

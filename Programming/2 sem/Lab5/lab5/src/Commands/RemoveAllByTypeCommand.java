@@ -7,6 +7,7 @@ public class RemoveAllByTypeCommand implements Command{
 
     public RemoveAllByTypeCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("removeAllByType", this);
     }
 
     @Override

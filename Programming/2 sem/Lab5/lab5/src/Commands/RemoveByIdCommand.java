@@ -7,6 +7,7 @@ public class RemoveByIdCommand implements Command{
 
     public RemoveByIdCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("removeById", this);
     }
 
     @Override

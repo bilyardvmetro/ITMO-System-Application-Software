@@ -7,6 +7,7 @@ public class ExecuteScriptCommand implements Command{
 
     public ExecuteScriptCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("executeScript", this);
     }
 
     @Override

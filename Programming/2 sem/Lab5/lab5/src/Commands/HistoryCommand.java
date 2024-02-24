@@ -7,6 +7,7 @@ public class HistoryCommand implements Command{
 
     public HistoryCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("history", this);
     }
 
     @Override

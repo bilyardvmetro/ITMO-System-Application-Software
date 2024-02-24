@@ -7,6 +7,7 @@ public class UpdateCommand implements Command{
 
     public UpdateCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("update", this);
     }
 
     @Override

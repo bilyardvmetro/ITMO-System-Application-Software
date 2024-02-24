@@ -1,5 +1,6 @@
 import Commands.*;
 
+import Modules.CSVProvider;
 import Modules.ConsoleApp;
 import Modules.CommandHandler;
 
@@ -8,10 +9,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ConsoleApp consoleApp = createConsoleApp();
+//        CSVProvider csvProvider = new CSVProvider();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Это крутое консольное приложение запущенно специально для пацанов");
         consoleApp.help("");
+//        csvProvider.load(args[0]);
 
         while (true){
             System.out.print("> ");
@@ -29,81 +32,18 @@ public class Main {
             else {
                 System.out.println("Некорректный формат аргументов");
             }
-            // TODO: 21.02.2024 сделать хэшмапу с командами 
-            if (command.equalsIgnoreCase("help")){
-                consoleApp.help(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("info")){
-                consoleApp.info(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("show")){
-                consoleApp.show(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("add")){
-                consoleApp.add(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("update")){
-                consoleApp.update(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("removeById")){
-                consoleApp.removeById(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("clear")){
-                consoleApp.clear(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("save")){
-                consoleApp.save(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("executeScript")){
-                consoleApp.executeScript(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("exit")){
-                consoleApp.exit(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("removeGreater")){
-                consoleApp.removeGreater(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("reorder")){
-                consoleApp.reorder(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("history")){
-                consoleApp.history(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("removeAllByType")){
-                consoleApp.removeAllByType(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("filterStartsWithName")){
-                consoleApp.filterStartsWithName(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else if (command.equalsIgnoreCase("countGreaterThanEnginePower")){
-                consoleApp.countGreaterThanEnginePower(arguments);
-                CommandHandler.addCommand(command);
-            }
-            else {
+
+            if (CommandHandler.commandList.containsKey(command)){
+                CommandHandler.commandList.get(command).execute(arguments);
+            } else {
                 System.out.println("Неизвестная команда. Ты по-моему перепутал...");
             }
         }
-
     }
 
     private static ConsoleApp createConsoleApp() {
         CommandHandler commandHandler = new CommandHandler();
-        ConsoleApp consoleApp = new ConsoleApp(
+        return new ConsoleApp(
                 new HelpCommand(commandHandler),
                 new InfoCommand(commandHandler),
                 new ShowCommand(commandHandler),
@@ -121,6 +61,6 @@ public class Main {
                 new CountGreaterThanEnginePowerCommand(commandHandler),
                 new FilterStartsWithNameCommand(commandHandler)
         );
-        return consoleApp;
     }
+
 }

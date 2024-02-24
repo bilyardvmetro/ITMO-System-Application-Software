@@ -7,6 +7,7 @@ public class InfoCommand implements Command{
 
     public InfoCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("info", this);
     }
 
     @Override

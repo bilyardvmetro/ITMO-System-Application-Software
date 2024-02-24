@@ -7,6 +7,7 @@ public class FilterStartsWithNameCommand implements Command{
 
     public FilterStartsWithNameCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("filterStartsWithName", this);
     }
 
     @Override

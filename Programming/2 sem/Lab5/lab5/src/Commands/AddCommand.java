@@ -7,6 +7,7 @@ public class AddCommand implements Command {
 
     public AddCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+        CommandHandler.commandList.put("add", this);
     }
 
     @Override
