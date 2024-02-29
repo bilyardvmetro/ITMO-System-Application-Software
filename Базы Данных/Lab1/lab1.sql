@@ -1,11 +1,11 @@
-	CREATE TABLE ImaginationTypes (Id INT PRIMARY KEY, Name VARCHAR(20));
-	CREATE TABLE Post (Id INT PRIMARY KEY, Name VARCHAR(30));
-	CREATE TABLE People (Id INT PRIMARY KEY, Name VARCHAR(20), Sex VARCHAR(1), ImaginationID INT REFERENCES imaginationtypes(Id));
-	CREATE TABLE Actions (Id INT PRIMARY KEY, Title VARCHAR(20), PersonID INT REFERENCES people(Id), IsImaginary BOOLEAN, Characteristic TEXT, BeginTime TIMESTAMP, EndTime TIMESTAMP);
-	CREATE TABLE ResearchTypes (Id INT PRIMARY KEY, Title VARCHAR(20));
-	CREATE TABLE Laboratories (Id SERIAL PRIMARY KEY, Name VARCHAR(50), ResearchTypeID INT REFERENCES researchtypes(id));
-	CREATE TABLE ActionsInLabs (ActionID INT REFERENCES actions(id), LabID INT REFERENCES laboratories(id));
-	CREATE TABLE Workers (Id INT PRIMARY KEY, PersonID INT REFERENCES people(Id), EmploymentBegin TIMESTAMP, EmploymentEnd TIMESTAMP, PostID INT REFERENCES post(Id);
+CREATE TABLE ImaginationTypes (Id INT PRIMARY KEY, Name VARCHAR(20));
+CREATE TABLE Post (Id INT PRIMARY KEY, Name VARCHAR(30));
+CREATE TABLE People (Id INT PRIMARY KEY, Name VARCHAR(20), Sex VARCHAR(1), ImaginationID INT REFERENCES imaginationtypes(Id));
+CREATE TABLE Actions (Id INT PRIMARY KEY, Title VARCHAR(20), PersonID INT REFERENCES people(Id), IsImaginary BOOLEAN, Characteristic TEXT, BeginTime TIMESTAMP, EndTime TIMESTAMP);
+CREATE TABLE ResearchTypes (Id INT PRIMARY KEY, Title VARCHAR(20));
+CREATE TABLE Laboratories (Id SERIAL PRIMARY KEY, Name VARCHAR(50), ResearchTypeID INT REFERENCES researchtypes(id));
+CREATE TABLE ActionsInLabs (ActionID INT REFERENCES actions(id), LabID INT REFERENCES laboratories(id));
+CREATE TABLE Workers (Id INT PRIMARY KEY, PersonID INT REFERENCES people(Id), EmploymentBegin TIMESTAMP, EmploymentEnd TIMESTAMP, PostID INT REFERENCES post(Id);
 CREATE TABLE WorkersInLabs (WorkerID INT REFERENCES People(id), LabID INT REFERENCES laboratories(id));
 
 INSERT INTO imaginationtypes(name) VALUES ('богатое');
