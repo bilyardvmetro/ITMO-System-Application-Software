@@ -9,35 +9,40 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ConsoleApp consoleApp = createConsoleApp();
-//        CSVProvider csvProvider = new CSVProvider();
+        CSVProvider csvProvider = new CSVProvider();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Это крутое консольное приложение запущенно специально для пацанов");
         consoleApp.help("");
-//        csvProvider.load(args[0]);
+        csvProvider.load(args[0]);
+//        csvProvider.load("collection.csv"); // для проверки из консоли
+        System.out.print("> ");
 
         while (true){
-            System.out.print("> ");
-            String commandLine = scanner.nextLine();
-            String [] parsedCommand = commandLine.split(" ");
-            String command = "";
-            String arguments = "";
-            if (parsedCommand.length == 1){
-                command = parsedCommand[0];
-            }
-            else if (parsedCommand.length == 2) {
-                command = parsedCommand[0];
-                arguments = parsedCommand[1];
-            }
-            else {
-                System.out.println("Некорректный формат аргументов");
-            }
+            do {
+                String commandLine = scanner.nextLine();
+                String [] parsedCommand = commandLine.split(" ");
+                String command = "";
+                String arguments = "";
+                if (parsedCommand.length == 1){
+                    command = parsedCommand[0];
+                }
+                else if (parsedCommand.length == 2) {
+                    command = parsedCommand[0];
+                    arguments = parsedCommand[1];
+                }
+                else {
+                    System.out.println("Некорректный формат аргументов");
+                }
 
-            if (CommandHandler.commandList.containsKey(command)){
-                CommandHandler.commandList.get(command).execute(arguments);
-            } else {
-                System.out.println("Неизвестная команда. Ты по-моему перепутал...");
-            }
+                if (CommandHandler.commandList.containsKey(command)){
+                    CommandHandler.commandList.get(command).execute(arguments);
+                    CommandHandler.addCommand(command);
+                } else {
+                    System.out.println("Неизвестная команда. Ты по-моему перепутал...");
+                }
+                System.out.print("> ");
+            } while (scanner.hasNextLine());
         }
     }
 

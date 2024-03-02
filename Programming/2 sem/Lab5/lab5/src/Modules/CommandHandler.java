@@ -6,6 +6,7 @@ import Commands.Command;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 
 public class CommandHandler {
@@ -142,7 +143,16 @@ public class CommandHandler {
         if (!arguments.isBlank()){
             System.out.println("Неверные аргументы команды"); // illegal args exception
         } else {
-            System.exit(0);
+            System.out.println(
+            """
+            Если вы выйдете, изменения не сохранятся. Вы уверены, что хотите выйти?
+            y = "Да"      любая клавиша = "Нет"
+            """);
+            Scanner scanner = new Scanner(System.in);
+            var answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("y")){
+                System.exit(0);
+            }
         }
     }
 
