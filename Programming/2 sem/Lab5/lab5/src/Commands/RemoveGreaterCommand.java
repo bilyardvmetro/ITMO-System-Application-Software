@@ -1,13 +1,14 @@
 package Commands;
 
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class RemoveGreaterCommand implements Command{
     private CommandHandler commandHandler;
 
     public RemoveGreaterCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("removeGreater", this);
+        ConsoleApp.commandList.put("removeGreater", this);
     }
 
     @Override

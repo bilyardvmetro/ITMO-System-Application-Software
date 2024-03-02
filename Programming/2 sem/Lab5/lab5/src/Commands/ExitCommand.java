@@ -1,13 +1,14 @@
 package Commands;
 
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class ExitCommand implements Command{
     private CommandHandler commandHandler;
 
     public ExitCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("exit", this);
+        ConsoleApp.commandList.put("exit", this);
     }
 
     @Override

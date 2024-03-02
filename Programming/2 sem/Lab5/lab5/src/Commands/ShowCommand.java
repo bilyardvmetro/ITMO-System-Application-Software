@@ -1,13 +1,14 @@
 package Commands;
 
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class ShowCommand implements Command{
     private CommandHandler commandHandler;
 
     public ShowCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("show", this);
+        ConsoleApp.commandList.put("show", this);
     }
 
     @Override

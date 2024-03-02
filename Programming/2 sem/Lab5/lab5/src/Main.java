@@ -35,8 +35,8 @@ public class Main {
                     System.out.println("Некорректный формат аргументов");
                 }
 
-                if (CommandHandler.commandList.containsKey(command)){
-                    CommandHandler.commandList.get(command).execute(arguments);
+                if (ConsoleApp.commandList.containsKey(command)){
+                    ConsoleApp.commandList.get(command).execute(arguments);
                     CommandHandler.addCommand(command);
                 } else {
                     System.out.println("Неизвестная команда. Ты по-моему перепутал...");

@@ -2,7 +2,11 @@ package Modules;
 
 import Commands.Command;
 
+import java.util.HashMap;
+
 public class ConsoleApp {
+    // хэшмапа команд. Ключ - имя команды; Значение - класс-оболочка команды
+    public static HashMap<String, Command> commandList = new HashMap<>();
     private Command help;
     private Command info;
     private Command show;

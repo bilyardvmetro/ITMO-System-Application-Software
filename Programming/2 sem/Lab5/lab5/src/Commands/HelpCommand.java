@@ -1,12 +1,13 @@
 package Commands;
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class HelpCommand implements Command {
     CommandHandler commandHandler;
 
     public HelpCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("help", this);
+        ConsoleApp.commandList.put("help", this);
     }
 
     @Override

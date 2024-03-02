@@ -2,9 +2,7 @@ package Modules;
 
 
 import CollectionObject.VehicleType;
-import Commands.Command;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -13,12 +11,6 @@ public class CommandHandler {
     private CollectionService collectionService;
     private static CSVProvider csvProvider;
     private static LinkedList<String> commandHistory = new LinkedList<>();
-
-    /* хэшмапа команд. Ключ - имя команды; Значение - класс-оболочка команды
-    *  мб стоит перекинуть в ConsoleApp
-     */
-
-    public static HashMap<String, Command> commandList = new HashMap<>();
 
     public CommandHandler() {
         this.collectionService = new CollectionService();

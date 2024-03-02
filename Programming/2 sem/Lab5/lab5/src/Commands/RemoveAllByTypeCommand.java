@@ -1,13 +1,14 @@
 package Commands;
 
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class RemoveAllByTypeCommand implements Command{
     private CommandHandler commandHandler;
 
     public RemoveAllByTypeCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("removeAllByType", this);
+        ConsoleApp.commandList.put("removeAllByType", this);
     }
 
     @Override

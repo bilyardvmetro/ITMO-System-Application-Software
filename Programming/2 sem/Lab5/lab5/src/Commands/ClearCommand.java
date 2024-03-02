@@ -1,13 +1,14 @@
 package Commands;
 
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class ClearCommand implements Command{
     private CommandHandler commandHandler;
 
     public ClearCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("clear", this);
+        ConsoleApp.commandList.put("clear", this);
     }
 
     @Override

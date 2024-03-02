@@ -1,13 +1,14 @@
 package Commands;
 
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class UpdateCommand implements Command{
     private CommandHandler commandHandler;
 
     public UpdateCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("update", this);
+        ConsoleApp.commandList.put("update", this);
     }
 
     @Override

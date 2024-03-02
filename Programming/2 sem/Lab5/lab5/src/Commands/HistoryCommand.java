@@ -1,13 +1,14 @@
 package Commands;
 
 import Modules.CommandHandler;
+import Modules.ConsoleApp;
 
 public class HistoryCommand implements Command{
     private CommandHandler commandHandler;
 
     public HistoryCommand(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
-        CommandHandler.commandList.put("history", this);
+        ConsoleApp.commandList.put("history", this);
     }
 
     @Override
