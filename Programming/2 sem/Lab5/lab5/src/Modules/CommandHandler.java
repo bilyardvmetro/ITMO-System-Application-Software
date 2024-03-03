@@ -2,15 +2,21 @@ package Modules;
 
 
 import CollectionObject.VehicleType;
+import Exceptions.ScriptRecursionException;
 
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 
 public class CommandHandler {
     private CollectionService collectionService;
     private static CSVProvider csvProvider;
     private static LinkedList<String> commandHistory = new LinkedList<>();
+    private static Set<Path> scriptsNames = new TreeSet<>();
 
     public CommandHandler() {
         this.collectionService = new CollectionService();
@@ -118,7 +124,7 @@ public class CommandHandler {
         if (!arguments.isBlank()){
             System.out.println("Неверные аргументы команды"); // illegal args exception
         } else {
-            csvProvider.save(collectionService.collection);
+            csvProvider.save(CollectionService.collection);
         }
     }
 
@@ -126,7 +132,67 @@ public class CommandHandler {
         if (path.isBlank()){
             System.out.println("Неверные аргументы команды"); // illegal args exception
         } else {
-            // TODO: 19.02.2024 реализовать executeScript
+            try {
+                Path pathToScript = Paths.get(path);
+                Scanner scriptScanner = new Scanner(pathToScript);
+                Path scriptFile = pathToScript.getFileName();
+
+                if (!scriptScanner.hasNext()) throw new NoSuchElementException();
+                scriptsNames.add(scriptFile);
+                do {
+                    var command = "";
+                    var arguments = "";
+                    String[] input = (scriptScanner.nextLine() + " ").trim().split(" ", 2);
+                    if (input.length == 2){
+                        arguments = input[1].trim();
+                    }
+                    command = input[0].trim();
+                    while (scriptScanner.hasNextLine() && command.isEmpty()){
+                        input = (scriptScanner.nextLine() + " ").trim().split(" ", 2);
+                        if (input.length == 2){
+                            arguments = input[1].trim();
+                        }
+                        command = input[0].trim();
+                    }
+
+                    if (ConsoleApp.commandList.containsKey(command)){
+
+                        if (command.equalsIgnoreCase("executeScript")){
+
+                            Path scriptNameFromArgument = Paths.get(arguments).getFileName();
+
+                            if (scriptsNames.contains(scriptNameFromArgument)) {
+                                throw new ScriptRecursionException("Один и тот же скрипт не может выполнятся рекурсивно");
+                            }
+                            ConsoleApp.commandList.get("executeScript").execute(arguments);
+
+                        } else {
+                            ConsoleApp.commandList.get(command).execute(arguments);
+                            System.out.println("Команда " + command + " выполнена успешно");
+                        }
+                    } else {
+                        System.out.println("Неизвестная команда. Ты по-моему перепутал...");
+                    }
+
+                } while (scriptScanner.hasNextLine());
+                scriptsNames.remove(scriptFile);
+                System.out.println("Скрипт " + scriptFile + " успешно выполнен");
+
+            } catch (FileNotFoundException e){
+                System.out.println("Файл " + path + " не найден");
+            } catch (NoSuchElementException e){
+                System.out.println("Файл " + path + " пуст");
+            } catch (IllegalStateException e){
+                System.out.println("Непредвиденная ошибка");
+            } catch (SecurityException e){
+                System.out.println("Недостаточно прав для чтения файла " + path);
+            } catch (ScriptRecursionException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Ошибка ввода/вывода");
+            } catch (InvalidPathException e){
+                System.out.println("Проверьте путь к файлу. В нём не должно быть лишних символов");
+            }
         }
 
     }

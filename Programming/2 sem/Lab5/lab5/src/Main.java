@@ -21,7 +21,7 @@ public class Main {
         while (true){
             do {
                 String commandLine = scanner.nextLine();
-                String [] parsedCommand = commandLine.split(" ");
+                String [] parsedCommand = commandLine.split(" ", 2);
                 String command = "";
                 String arguments = "";
                 if (parsedCommand.length == 1){

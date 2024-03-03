@@ -93,6 +93,7 @@ public class CollectionService {
                 break;
 
             } else{
+                // TODO: 02.03.2024 переделать, чтобы оно не принтилось при каждой итерации
                 System.out.println("Элемента с таким id не существует");
             }
         }
@@ -105,6 +106,7 @@ public class CollectionService {
                 System.out.println("Элемент с id " + id + " успешно удалён");
                 break;
             } else{
+                // TODO: 02.03.2024 переделать, чтобы оно не принтилось при каждой итерации
                 System.out.println("Элемента с таким id не существует");
             }
         }
@@ -116,7 +118,6 @@ public class CollectionService {
     }
 
     public void removeGreater(long startId){
-        // TODO: 19.02.2024 добавить ремув по всем полям
         long endId = collection.size();
 
         if (startId > endId){
@@ -171,6 +172,7 @@ public class CollectionService {
                 System.out.println(vehicle + "\n");
             }
             else {
+                // TODO: 02.03.2024 переделать, чтобы оно не принтилось при каждой итерации 
                 System.out.println("Элементов с таким именем не существует");
             }
         }

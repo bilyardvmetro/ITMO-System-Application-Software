@@ -144,6 +144,7 @@ public class CSVProvider implements DataProvider{
     }
 
     private void saveToCSV(Stack<Vehicle> stack, BufferedOutputStream bos) throws IOException {
+        // TODO: 03.03.2024 почему-то не сохраняет апдейтнутый элемент не в старый файл
         for (Vehicle vehicle: stack){
             byte[] id = ( vehicle.getId() +  ",").getBytes(StandardCharsets.UTF_8);
             byte[] name = ( vehicle.getName() +  ",").getBytes(StandardCharsets.UTF_8);
