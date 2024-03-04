@@ -134,7 +134,10 @@ public class CommandHandler {
         } else {
             try {
                 Path pathToScript = Paths.get(path);
-                Scanner scriptScanner = new Scanner(pathToScript);
+
+                PromptScan.setUserScanner(new Scanner(pathToScript));
+                Scanner scriptScanner = PromptScan.getUserScanner();
+
                 Path scriptFile = pathToScript.getFileName();
 
                 if (!scriptScanner.hasNext()) throw new NoSuchElementException();
@@ -155,9 +158,9 @@ public class CommandHandler {
                         command = input[0].trim();
                     }
 
-                    if (ConsoleApp.commandList.containsKey(command)){
+                    if (ConsoleApp.commandList.containsKey(command)) {
 
-                        if (command.equalsIgnoreCase("executeScript")){
+                        if (command.equalsIgnoreCase("executeScript")) {
 
                             Path scriptNameFromArgument = Paths.get(arguments).getFileName();
 
@@ -166,16 +169,28 @@ public class CommandHandler {
                             }
                             ConsoleApp.commandList.get("executeScript").execute(arguments);
 
-                        } else {
+                        }
+//                        if (command.equalsIgnoreCase("add")){
+//                            CollectionService.InputScanner = scriptScanner;
+//                            ConsoleApp.commandList.get("add").execute(arguments);
+//                            CollectionService.InputScanner = new Scanner(System.in);
+//                        } else if (command.equalsIgnoreCase("update")) {
+//                            CollectionService.InputScanner = scriptScanner;
+//                            ConsoleApp.commandList.get("update").execute(arguments);
+//                            CollectionService.InputScanner = new Scanner(System.in);
+//                        }
+                        else {
                             ConsoleApp.commandList.get(command).execute(arguments);
                             System.out.println("Команда " + command + " выполнена успешно");
                         }
+
                     } else {
                         System.out.println("Неизвестная команда. Ты по-моему перепутал...");
                     }
 
                 } while (scriptScanner.hasNextLine());
                 scriptsNames.remove(scriptFile);
+                PromptScan.setUserScanner(new Scanner(System.in));
                 System.out.println("Скрипт " + scriptFile + " успешно выполнен");
 
             } catch (FileNotFoundException e){

@@ -14,6 +14,8 @@ public class CollectionService {
     protected static Stack<Vehicle> collection;
     private boolean isReversed = false;
 
+    protected static Scanner InputScanner;
+
     public CollectionService() {
         collection = new Stack<>();
         this.initializationDate = new Date();
@@ -189,7 +191,7 @@ public class CollectionService {
         while(true) {
             try {
                 var name = InputScanner.nextLine();
-                if (name.isEmpty()){
+                if (name.isBlank()){
                     throw new EmptyFieldException("Поле не может быть пустым. Введите его ещё раз: ");
                 }
                 return name.trim();
@@ -281,7 +283,7 @@ public class CollectionService {
     }
 
     private VehicleWithoutId createElement(){
-        Scanner InputScanner = new Scanner(System.in);
+        InputScanner = PromptScan.getUserScanner();
 
         System.out.println("Введите имя");
         String name = askString(InputScanner);

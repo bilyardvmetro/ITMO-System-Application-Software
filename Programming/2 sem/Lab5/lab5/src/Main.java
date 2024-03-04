@@ -3,44 +3,52 @@ import Commands.*;
 import Modules.CSVProvider;
 import Modules.ConsoleApp;
 import Modules.CommandHandler;
+import Modules.PromptScan;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         ConsoleApp consoleApp = createConsoleApp();
-        CSVProvider csvProvider = new CSVProvider(Path.of(args[0]));
+        try {
+            var pathToCollection = args[0]; //"collection.csv"
+            CSVProvider csvProvider = new CSVProvider(Path.of(pathToCollection));
+            csvProvider.load();
+        } catch (ArrayIndexOutOfBoundsException ignored){}
 
-        Scanner scanner = new Scanner(System.in);
+
+        PromptScan.setUserScanner(new Scanner(System.in));
+        var scanner = PromptScan.getUserScanner();
+
         System.out.println("Это крутое консольное приложение запущенно специально для пацанов");
         consoleApp.help("");
-        csvProvider.load();
-//        csvProvider.load("collection.csv"); // для проверки из консоли
         System.out.print("> ");
 
-        while (true){
-            try{
-                do {
+        while (true) {
+            try {
+                while (scanner.hasNext()) {
                     var command = "";
                     var arguments = "";
                     String[] input = (scanner.nextLine() + " ").trim().split(" ", 2);
-                    if (input.length == 2){
+                    if (input.length == 2) {
                         arguments = input[1].trim();
                     }
                     command = input[0].trim();
 
-                    if (ConsoleApp.commandList.containsKey(command)){
+                    if (ConsoleApp.commandList.containsKey(command)) {
                         ConsoleApp.commandList.get(command).execute(arguments);
                         CommandHandler.addCommand(command);
                     } else {
                         System.out.println("Неизвестная команда. Ты по-моему перепутал...");
                     }
                     System.out.print("> ");
-                } while (scanner.hasNext());
-            } catch (NoSuchElementException e){
+                }
+            } catch (NoSuchElementException e) {
                 System.out.println("Остановка программы через консоль");
+                System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
                 System.exit(1);
             }
 

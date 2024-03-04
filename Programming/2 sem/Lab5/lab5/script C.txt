@@ -1,7 +1,0 @@
-
-show
-save
-executeScript E:\ITMO-System-Application-Software\Programming\2 sem\Lab5\lab5\script D.txt
-executeScript E:\ITMO-System-Application-Software\Programming\2 sem\Lab5\lab5\script C.txt
-
-

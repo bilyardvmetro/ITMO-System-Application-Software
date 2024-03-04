@@ -3,7 +3,6 @@ import CollectionObject.Coordinates;
 import CollectionObject.Vehicle;
 import CollectionObject.VehicleType;
 import Exceptions.EmptyFieldException;
-import Exceptions.IllegalSeparatorException;
 import Exceptions.IllegalVehicleTypeException;
 import Exceptions.NegativeFieldException;
 import com.opencsv.CSVParser;
@@ -25,8 +24,6 @@ import static CollectionObject.VehicleType.*;
 
 
 public class CSVProvider implements DataProvider{
-
-    private String separator = "";
     protected static Path COLLECTION_PATH;
     private long maxId = 0L;
     private Stack<Vehicle> stack = CollectionService.collection;
@@ -74,14 +71,9 @@ public class CSVProvider implements DataProvider{
     public void load() {
         File collectionFile = new File(String.valueOf(COLLECTION_PATH));
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите один из предложенных разделителей файла коллекции\n" + ";    ,    |");
-        boolean sepCheck = askSep(scanner);
-
-        if (sepCheck){
             try {
                 BufferedReader fileReader = new BufferedReader(new FileReader(collectionFile));
-                CSVParser parser = new CSVParserBuilder().withSeparator(separator.charAt(0)).build();
+                CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
                 CSVReader csvReader = new CSVReaderBuilder(fileReader).withCSVParser(parser).withSkipLines(1).build();
 
                 List<String[]> lines = csvReader.readAll();
@@ -136,7 +128,6 @@ public class CSVProvider implements DataProvider{
                     System.out.println(e.getMessage());
                     System.exit(1);
                 }
-
             }
             catch (IOException e) {
                 System.out.println("Ошибка ввода/вывода. Проверьте путь или имя файла");
@@ -145,11 +136,6 @@ public class CSVProvider implements DataProvider{
                 System.out.println("Невалидный файл коллекции. Проверьте разделители");
                 System.exit(1);
             }
-
-        } else{
-            System.out.println("Такой разделитель не поддерживается приложением");
-            System.exit(1);
-        }
     }
 
     private void saveToCSV(Stack<Vehicle> stack, BufferedOutputStream bos) throws IOException {
@@ -175,23 +161,6 @@ public class CSVProvider implements DataProvider{
             bos.write(type);
 
             bos.write("\n".getBytes(StandardCharsets.UTF_8));
-        }
-    }
-
-    private boolean askSep(Scanner scanner) {
-        while (true){
-            try {
-                String sep = scanner.nextLine();
-                if (sep.equalsIgnoreCase(";") || sep.equalsIgnoreCase(",") || sep.equalsIgnoreCase("|")){
-                    separator = sep;
-                    return true;
-                } else {
-                    throw new IllegalSeparatorException("Выберите корректный разделитель");
-                }
-            } catch (IllegalSeparatorException e){
-                System.out.println(e.getMessage());
-            }
-
         }
     }
 
