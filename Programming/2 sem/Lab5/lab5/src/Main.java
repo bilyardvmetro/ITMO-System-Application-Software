@@ -5,6 +5,7 @@ import Modules.ConsoleApp;
 import Modules.CommandHandler;
 
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -20,23 +21,29 @@ public class Main {
         System.out.print("> ");
 
         while (true){
-            do {
-                var command = "";
-                var arguments = "";
-                String[] input = (scanner.nextLine() + " ").trim().split(" ", 2);
-                if (input.length == 2){
-                    arguments = input[1].trim();
-                }
-                command = input[0].trim();
+            try{
+                do {
+                    var command = "";
+                    var arguments = "";
+                    String[] input = (scanner.nextLine() + " ").trim().split(" ", 2);
+                    if (input.length == 2){
+                        arguments = input[1].trim();
+                    }
+                    command = input[0].trim();
 
-                if (ConsoleApp.commandList.containsKey(command)){
-                    ConsoleApp.commandList.get(command).execute(arguments);
-                    CommandHandler.addCommand(command);
-                } else {
-                    System.out.println("Неизвестная команда. Ты по-моему перепутал...");
-                }
-                System.out.print("> ");
-            } while (scanner.hasNextLine());
+                    if (ConsoleApp.commandList.containsKey(command)){
+                        ConsoleApp.commandList.get(command).execute(arguments);
+                        CommandHandler.addCommand(command);
+                    } else {
+                        System.out.println("Неизвестная команда. Ты по-моему перепутал...");
+                    }
+                    System.out.print("> ");
+                } while (scanner.hasNext());
+            } catch (NoSuchElementException e){
+                System.out.println("Остановка программы через консоль");
+                System.exit(1);
+            }
+
         }
     }
 
