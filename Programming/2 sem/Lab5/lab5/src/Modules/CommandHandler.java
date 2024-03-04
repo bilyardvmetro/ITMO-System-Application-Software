@@ -20,7 +20,7 @@ public class CommandHandler {
 
     public CommandHandler() {
         this.collectionService = new CollectionService();
-        csvProvider = new CSVProvider();
+        csvProvider = new CSVProvider(CSVProvider.COLLECTION_PATH);
     }
 
     public void help(String arguments){

@@ -15,6 +15,7 @@ import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -26,12 +27,19 @@ import static CollectionObject.VehicleType.*;
 public class CSVProvider implements DataProvider{
 
     private String separator = "";
+    protected static Path COLLECTION_PATH;
     private long maxId = 0L;
     private Stack<Vehicle> stack = CollectionService.collection;
 
+    public CSVProvider(Path collectionPath) {
+        COLLECTION_PATH = collectionPath;
+    }
+
     @Override
     public void save(Stack<Vehicle> collection) {
-        File collectionFile = new File("collection.csv");
+        File collectionFile = new File(String.valueOf(COLLECTION_PATH));
+
+        // TODO: 03.03.2024 почему-то не сохраняет апдейтнутый элемент не в старый файл
 
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(collectionFile));
@@ -51,6 +59,7 @@ public class CSVProvider implements DataProvider{
             bos.write(header);
             saveToCSV(collection, bos);
             bos.flush();
+            bos.close();
 
             System.out.println("Коллекция успешно сохранена");
 
@@ -62,8 +71,8 @@ public class CSVProvider implements DataProvider{
     }
 
     @Override
-    public void load(String arguments) {
-        File collectionFile = new File(arguments);
+    public void load() {
+        File collectionFile = new File(String.valueOf(COLLECTION_PATH));
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите один из предложенных разделителей файла коллекции\n" + ";    ,    |");
@@ -144,7 +153,6 @@ public class CSVProvider implements DataProvider{
     }
 
     private void saveToCSV(Stack<Vehicle> stack, BufferedOutputStream bos) throws IOException {
-        // TODO: 03.03.2024 почему-то не сохраняет апдейтнутый элемент не в старый файл
         for (Vehicle vehicle: stack){
             byte[] id = ( vehicle.getId() +  ",").getBytes(StandardCharsets.UTF_8);
             byte[] name = ( vehicle.getName() +  ",").getBytes(StandardCharsets.UTF_8);

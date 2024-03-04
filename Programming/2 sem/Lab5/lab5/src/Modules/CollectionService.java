@@ -72,6 +72,9 @@ public class CollectionService {
     }
 
     public void update(long current_id){
+        if (!collection.contains(collection.get((int) current_id))){
+            System.out.println("Элемента с таким id не существует");
+        }
         for (Vehicle vehicle:collection) {
             if (current_id == vehicle.getId()){
                 collection.remove(vehicle);
@@ -92,22 +95,19 @@ public class CollectionService {
                 System.out.println("Элемент с id " + current_id + " успешно изменён");
                 break;
 
-            } else{
-                // TODO: 02.03.2024 переделать, чтобы оно не принтилось при каждой итерации
-                System.out.println("Элемента с таким id не существует");
             }
         }
     }
 
     public void removeById(long id){
+        if (!collection.contains(collection.get((int) id))){
+            System.out.println("Элемента с таким id не существует");
+        }
         for (Vehicle vehicle:collection) {
             if (id == vehicle.getId()){
                 collection.remove(vehicle);
                 System.out.println("Элемент с id " + id + " успешно удалён");
                 break;
-            } else{
-                // TODO: 02.03.2024 переделать, чтобы оно не принтилось при каждой итерации
-                System.out.println("Элемента с таким id не существует");
             }
         }
     }
@@ -167,14 +167,21 @@ public class CollectionService {
     }
 
     public void filterStartsWithName(String name){
-        for (Vehicle vehicle : collection) {
-            if (vehicle.getName().equals(name)){
-                System.out.println(vehicle + "\n");
+        boolean hasItem = false;
+        for (Vehicle el : collection) {
+            if (el.getName().equals(name)) {
+                hasItem = true;
+                break;
             }
-            else {
-                // TODO: 02.03.2024 переделать, чтобы оно не принтилось при каждой итерации 
-                System.out.println("Элементов с таким именем не существует");
+        }
+        if (hasItem){
+            for (Vehicle vehicle : collection) {
+                if (vehicle.getName().equals(name)){
+                    System.out.println(vehicle + "\n");
+                }
             }
+        } else {
+            System.out.println("Элементов с таким именем не существует");
         }
     }
 

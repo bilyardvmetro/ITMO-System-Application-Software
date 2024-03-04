@@ -8,5 +8,5 @@ public interface DataProvider {
 
     void save(Stack<Vehicle> collection);
 
-    void load(String arguments);
+    void load();
 }
