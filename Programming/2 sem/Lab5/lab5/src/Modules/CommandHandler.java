@@ -170,15 +170,6 @@ public class CommandHandler {
                             ConsoleApp.commandList.get("executeScript").execute(arguments);
 
                         }
-//                        if (command.equalsIgnoreCase("add")){
-//                            CollectionService.InputScanner = scriptScanner;
-//                            ConsoleApp.commandList.get("add").execute(arguments);
-//                            CollectionService.InputScanner = new Scanner(System.in);
-//                        } else if (command.equalsIgnoreCase("update")) {
-//                            CollectionService.InputScanner = scriptScanner;
-//                            ConsoleApp.commandList.get("update").execute(arguments);
-//                            CollectionService.InputScanner = new Scanner(System.in);
-//                        }
                         else {
                             ConsoleApp.commandList.get(command).execute(arguments);
                             System.out.println("Команда " + command + " выполнена успешно");
