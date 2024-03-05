@@ -36,8 +36,6 @@ public class CSVProvider implements DataProvider{
     public void save(Stack<Vehicle> collection) {
         File collectionFile = new File(String.valueOf(COLLECTION_PATH));
 
-        // TODO: 03.03.2024 почему-то не сохраняет апдейтнутый элемент не в старый файл
-
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(collectionFile));
 
