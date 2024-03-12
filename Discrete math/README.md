@@ -25,7 +25,7 @@
 | Работа | статус 			  |
 | ------ | ------------------ |
 |  ДЗ 1  | :white_check_mark: |
-|  ДЗ 2  | :construction: |
+|  ДЗ 2  | :white_check_mark: |
 |  ДЗ 3  | :white_check_mark: | 
 |  ДЗ 4  | :construction: |
 |  ДЗ 5  | :construction: |
