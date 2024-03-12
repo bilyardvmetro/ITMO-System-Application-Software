@@ -26,7 +26,7 @@
 | ------ | ------------------ |
 |  ДЗ 1  | :white_check_mark: |
 |  ДЗ 2  | :construction: |
-|  ДЗ 3  | :construction: | 
+|  ДЗ 3  | :white_check_mark: | 
 |  ДЗ 4  | :construction: |
 |  ДЗ 5  | :construction: |
 |  ДЗ 6  | :construction: |
