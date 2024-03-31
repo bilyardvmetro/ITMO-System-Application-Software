@@ -1,5 +1,6 @@
 package Commands;
-import CollectionObject.Vehicle;
+
+import CollectionObject.VehicleModel;
 import Modules.CommandHandler;
 import Modules.ConsoleApp;
 import Network.Response;
@@ -13,7 +14,7 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public Response execute(String arguments, Vehicle objectArg) {
+    public Response execute(String arguments, VehicleModel objectArg) {
         return commandHandler.help(arguments, objectArg);
     }
 }

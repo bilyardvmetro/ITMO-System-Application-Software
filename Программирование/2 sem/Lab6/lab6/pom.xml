@@ -8,6 +8,9 @@
     <artifactId>lab6</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <build>
+        <defaultGoal>package</defaultGoal>
+    </build>
 
     <modules>
         <module>client</module>
@@ -22,3 +25,4 @@
     </properties>
 
 </project>
+

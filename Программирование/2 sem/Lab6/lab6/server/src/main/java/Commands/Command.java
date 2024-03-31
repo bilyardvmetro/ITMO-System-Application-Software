@@ -1,8 +1,8 @@
 package Commands;
 
-import CollectionObject.Vehicle;
+import CollectionObject.VehicleModel;
 import Network.Response;
 
 public interface Command {
-    Response execute(String strArgument, Vehicle objArgument);
+    Response execute(String strArgument, VehicleModel objArgument);
 }

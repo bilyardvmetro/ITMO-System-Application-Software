@@ -7,18 +7,18 @@ import java.util.Stack;
 
 public class Response implements Serializable {
     private String message;
-    private Stack<Vehicle> collection;
+    private String collectionToStr;
 
-    public Response(String message, Stack<Vehicle> collection) {
+    public Response(String message, String collection) {
         this.message = message;
-        this.collection = collection;
+        this.collectionToStr = collection;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public Stack<Vehicle> getCollection() {
-        return collection;
+    public String getCollection() {
+        return collectionToStr;
     }
 }

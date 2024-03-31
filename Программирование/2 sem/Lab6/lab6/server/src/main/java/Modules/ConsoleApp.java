@@ -1,6 +1,6 @@
 package Modules;
 
-import CollectionObject.Vehicle;
+import CollectionObject.VehicleModel;
 import Commands.Command;
 import Network.Response;
 
@@ -16,9 +16,6 @@ public class ConsoleApp {
     private Command update;
     private Command removeById;
     private Command clear;
-    private Command save;
-    private Command executeScript;
-    private Command exit;
     private Command removeGreater;
     private Command reorder;
     private Command history;
@@ -27,9 +24,8 @@ public class ConsoleApp {
     private Command filterStartsWithName;
 
     public ConsoleApp(Command help, Command info, Command show, Command add, Command update, Command removeById,
-                      Command clear, Command save, Command executeScript, Command exit, Command removeGreater,
-                      Command reorder, Command history, Command removeAllByType, Command countGreaterThanEnginePower,
-                      Command filterStartsWithName) {
+                      Command clear, Command removeGreater, Command reorder, Command history, Command removeAllByType,
+                      Command countGreaterThanEnginePower, Command filterStartsWithName) {
         this.help = help;
         this.info = info;
         this.show = show;
@@ -37,9 +33,6 @@ public class ConsoleApp {
         this.update = update;
         this.removeById = removeById;
         this.clear = clear;
-        this.save = save;
-        this.executeScript = executeScript;
-        this.exit = exit;
         this.removeGreater = removeGreater;
         this.reorder = reorder;
         this.history = history;
@@ -48,67 +41,55 @@ public class ConsoleApp {
         this.filterStartsWithName = filterStartsWithName;
     }
 
-    public Response help(String arguments, Vehicle objectArg){
+    public Response help(String arguments, VehicleModel objectArg){
         return help.execute(arguments, objectArg);
     }
 
-    public Response info(String arguments, Vehicle objectArg){
+    public Response info(String arguments, VehicleModel objectArg){
         return info.execute(arguments, objectArg);
     }
 
-    public Response show(String arguments, Vehicle objectArg){
+    public Response show(String arguments, VehicleModel objectArg){
         return show.execute(arguments, objectArg);
     }
 
-    public Response add(String arguments, Vehicle objectArg){
+    public Response add(String arguments, VehicleModel objectArg){
         return add.execute(arguments, objectArg);
     }
 
-    public Response update(String arguments, Vehicle objectArg){
+    public Response update(String arguments, VehicleModel objectArg){
         return update.execute(arguments, objectArg);
     }
 
-    public Response removeById(String arguments, Vehicle objectArg){
+    public Response removeById(String arguments, VehicleModel objectArg){
         return removeById.execute(arguments, objectArg);
     }
 
-    public Response clear(String arguments, Vehicle objectArg){
+    public Response clear(String arguments, VehicleModel objectArg){
         return clear.execute(arguments, objectArg);
     }
 
-    public Response save(String arguments, Vehicle objectArg){
-        return save.execute(arguments, objectArg);
-    }
-
-    public Response executeScript(String arguments, Vehicle objectArg){
-        return executeScript.execute(arguments, objectArg);
-    }
-
-    public Response removeGreater(String arguments, Vehicle objectArg){
+    public Response removeGreater(String arguments, VehicleModel objectArg){
         return removeGreater.execute(arguments, objectArg);
     }
 
-    public Response reorder(String arguments, Vehicle objectArg){
+    public Response reorder(String arguments, VehicleModel objectArg){
         return reorder.execute(arguments, objectArg);
     }
 
-    public Response history(String arguments, Vehicle objectArg){
+    public Response history(String arguments, VehicleModel objectArg){
         return history.execute(arguments, objectArg);
     }
 
-    public Response removeAllByType(String arguments, Vehicle objectArg){
+    public Response removeAllByType(String arguments, VehicleModel objectArg){
         return removeAllByType.execute(arguments, objectArg);
     }
 
-    public Response countGreaterThanEnginePower(String arguments, Vehicle objectArg){
+    public Response countGreaterThanEnginePower(String arguments, VehicleModel objectArg){
         return countGreaterThanEnginePower.execute(arguments, objectArg);
     }
 
-    public Response filterStartsWithName(String arguments, Vehicle objectArg){
+    public Response filterStartsWithName(String arguments, VehicleModel objectArg){
         return filterStartsWithName.execute(arguments, objectArg);
-    }
-
-    public Response exit(String arguments, Vehicle objectArg){
-        return exit.execute(arguments, objectArg);
     }
 }
