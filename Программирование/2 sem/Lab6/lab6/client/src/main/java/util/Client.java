@@ -75,18 +75,15 @@ public class Client {
 
     private void processUserPrompt(String command, String arguments) throws IOException, ClassNotFoundException {
         Request request = null;
-        if (
-            command.equalsIgnoreCase("add") ||
-            command.equalsIgnoreCase("update")
-        ){
+        if (command.equalsIgnoreCase("add") || command.equalsIgnoreCase("update")){
             VehicleModel objArgument = VehicleAsker.createElement();
             request = new Request(command, arguments, objArgument);
         }
-        if (command.equalsIgnoreCase("exit")){
+        else if (command.equalsIgnoreCase("exit")){
             System.out.println("Работа клиентского приложения завершена");
             System.exit(0);
         }
-        if (command.equalsIgnoreCase("executeScript")){
+        else if (command.equalsIgnoreCase("executeScript")){
             executeScript(arguments);
         }
         else {
@@ -96,27 +93,27 @@ public class Client {
     }
 
     private void sendAndReceive(Request request) throws IOException, ClassNotFoundException {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(bytes);
-        out.writeObject(request);
-        out.close();
+        try(ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(bytes)) {
 
-        ByteBuffer dataToSend = ByteBuffer.wrap(bytes.toByteArray());
-        channel.write(dataToSend);
-        out.flush();
+            out.writeObject(request);
+            ByteBuffer dataToSend = ByteBuffer.wrap(bytes.toByteArray());
+            System.out.println("\n" + channel.write(dataToSend) + " отправлено серверу");
+            out.flush();
+        }
         System.out.println("запрос успешно отправлен");
 
         ByteBuffer dataToReceive = ByteBuffer.allocate(2048);
-        channel.read(dataToReceive);
+        System.out.println("\n" + channel.read(dataToReceive) + " байт пришло от сервера");
 
-        ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(dataToReceive.array()));
-        Response response = (Response) in.readObject();
-        in.close();
+        try(ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(dataToReceive.array()))){
+            Response response = (Response) in.readObject();
 
-        System.out.println(response.getMessage());
-        String collection = response.getCollection();
-        if (!collection.isEmpty()){
-            System.out.println(collection);
+            System.out.println(response.getMessage());
+            String collection = response.getCollection();
+            if (!collection.isEmpty()){
+                System.out.println(collection);
+            }
         }
     }
 
@@ -186,6 +183,7 @@ public class Client {
                 System.out.println(e.getMessage());
             } catch (IOException e) {
                 System.out.println("Ошибка ввода/вывода");
+                e.printStackTrace();
             } catch (InvalidPathException e){
                 System.out.println("Проверьте путь к файлу. В нём не должно быть лишних символов");
             }
