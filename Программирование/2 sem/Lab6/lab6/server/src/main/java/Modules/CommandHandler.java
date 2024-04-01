@@ -212,7 +212,7 @@ public class CommandHandler {
         }
     }
 
-    public Response countGreaterThanEnginePower(String strArgument, VehicleModel objArgument){ //args required
+    public Response countGreaterThanEnginePower(String strArgument, VehicleModel objArgument){
         if (strArgument.isBlank() && objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
@@ -221,7 +221,7 @@ public class CommandHandler {
                 double enginePower = Double.parseDouble(strArgument);
                 if (enginePower > 0) {
                     var count = collectionService.countGreaterThanEnginePower(enginePower);
-                    return new Response("Количество ТС с мощностью больше " + enginePower + count, "" );
+                    return new Response("Количество ТС с мощностью больше " + enginePower + " " + count, "" );
 
                 } else {
                     return new Response("Мощность двигателя не может быть отрицательной", "" );

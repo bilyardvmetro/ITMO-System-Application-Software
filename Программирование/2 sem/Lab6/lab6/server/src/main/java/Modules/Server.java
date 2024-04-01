@@ -23,9 +23,6 @@ public class Server {
     private InetSocketAddress address;
     private Selector selector;
     private ConsoleApp consoleApp;
-    private ByteBuffer clientData = ByteBuffer.allocate(2048);
-    private ObjectInputStream clientDataIn;
-    private ObjectOutputStream clientDataOut;
     private Response response;
 
     public Server(InetSocketAddress address) {
@@ -59,18 +56,21 @@ public class Server {
                             if (key.isAcceptable()){
                                 ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
                                 SocketChannel clientChannel = serverSocketChannel.accept();
-                                System.out.println("Установлено соединение с клиентом");
+                                System.out.println("Установлено соединение с клиентом " + clientChannel.socket().toString());
                                 clientChannel.configureBlocking(false);
                                 clientChannel.register(selector,SelectionKey.OP_READ);
                             }
 
                             if (key.isReadable()){
                                 SocketChannel clientChannel = (SocketChannel) key.channel();
-//                                clientChannel.configureBlocking(false);
+                                clientChannel.configureBlocking(false);
+
+                                ByteBuffer clientData = ByteBuffer.allocate(2048);
 
                                 clientChannel.read(clientData);
-                                clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()));
+                                ObjectInputStream clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()));
                                 Request request = (Request) clientDataIn.readObject();
+
                                 var commandName = request.getCommandName();
                                 var commandStrArg = request.getCommandStrArg();
                                 var commandObjArg = (VehicleModel) request.getCommandObjArg();
@@ -87,18 +87,22 @@ public class Server {
 
                             if (key.isWritable()){
                                 SocketChannel clientChannel = (SocketChannel) key.channel();
+                                clientChannel.configureBlocking(false);
 
                                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                clientDataOut = new ObjectOutputStream(bytes);
+                                ObjectOutputStream clientDataOut = new ObjectOutputStream(bytes);
                                 clientDataOut.writeObject(response);
+                                clientDataOut.close();
 
-                                clientData = ByteBuffer.wrap(bytes.toByteArray());
+                                ByteBuffer clientData = ByteBuffer.wrap(bytes.toByteArray());
                                 clientChannel.write(clientData);
+                                clientData.clear();
+
                                 clientChannel.register(selector, SelectionKey.OP_READ);
                             }
                         }
                     } catch (SocketException e){
-                        System.out.println("клиент отключился");
+                        System.out.println("Клиент " + key.channel().toString() + " отключился");
                         CommandHandler.save();
                         key.cancel();
                     }
@@ -112,8 +116,10 @@ public class Server {
             System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace())); // убрать
             System.exit(1);
         } catch (IOException e) {
+            System.out.println("ошибка ввода/вывода");
             e.printStackTrace(); // переделать
         } catch (ClassNotFoundException e) {
+            System.out.println("несоответствующие классы");
             e.printStackTrace(); // переделать
         }
     }

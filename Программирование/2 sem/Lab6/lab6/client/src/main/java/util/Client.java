@@ -5,14 +5,12 @@ import Exceptions.ScriptRecursionException;
 import Network.Request;
 import Network.Response;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -21,10 +19,9 @@ import java.util.*;
 
 public class Client {
     private Set<Path> scriptsNames = new TreeSet<>();
-    private ObjectOutputStream serverWriter;
-    private ObjectInputStream serverReader;
     private InetAddress host;
     private int port;
+    private SocketChannel channel;
 
     public Client(InetAddress host, int port) {
         this.host = host;
@@ -34,14 +31,11 @@ public class Client {
     public void run(){
         try {
             SocketAddress address = new InetSocketAddress(host, port);
-            SocketChannel channel = SocketChannel.open();
+            channel = SocketChannel.open();
             channel.connect(address);
 
             PromptScan.setUserScanner(new Scanner(System.in));
             var scanner = PromptScan.getUserScanner();
-
-            serverWriter = new ObjectOutputStream(channel.socket().getOutputStream());
-            serverReader = new ObjectInputStream(channel.socket().getInputStream());
 
             System.out.println("Это крутое консольное приложение запущенно специально для пацанов");
 
@@ -59,6 +53,7 @@ public class Client {
                         command = input[0].trim();
 
                         processUserPrompt(command, arguments);
+                        System.out.print("> ");
                     }
 
                 } catch (NoSuchElementException e) {
@@ -101,12 +96,24 @@ public class Client {
     }
 
     private void sendAndReceive(Request request) throws IOException, ClassNotFoundException {
-        serverWriter.writeObject(request);
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(bytes);
+        out.writeObject(request);
+        out.close();
+
+        ByteBuffer dataToSend = ByteBuffer.wrap(bytes.toByteArray());
+        channel.write(dataToSend);
+        out.flush();
         System.out.println("запрос успешно отправлен");
 
-        Response response = (Response) serverReader.readObject();
-        System.out.println(response.getMessage());
+        ByteBuffer dataToReceive = ByteBuffer.allocate(2048);
+        channel.read(dataToReceive);
 
+        ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(dataToReceive.array()));
+        Response response = (Response) in.readObject();
+        in.close();
+
+        System.out.println(response.getMessage());
         String collection = response.getCollection();
         if (!collection.isEmpty()){
             System.out.println(collection);
