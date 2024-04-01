@@ -1,3 +1,4 @@
+
 package Modules;
 
 import CollectionObject.Vehicle;
@@ -67,8 +68,8 @@ public class CollectionService {
         if (!collection.contains(collection.get((int) current_id))){
             throw new NonExistingElementException("Элемента с таким id не существует");
         }
-        // TODO: 31.03.2024 проверить работает ли лямбда корректно
-        collection.forEach(vehicle -> {
+
+        for (Vehicle vehicle:collection) {
             if (current_id == vehicle.getId()){
                 collection.remove(vehicle);
 
@@ -84,29 +85,9 @@ public class CollectionService {
                 );
 
                 collection.add(newElement);
+                break;
             }
-        });
-
-//        for (Vehicle vehicle:collection) {
-//            if (current_id == vehicle.getId()){
-//                collection.remove(vehicle);
-//
-//                Vehicle newElement = new Vehicle(
-//                        current_id,
-//                        element.getName(),
-//                        element.getCoordinates(),
-//                        new Date(),
-//                        element.getEnginePower(),
-//                        element.getCapacity(),
-//                        element.getDistanceTravelled(),
-//                        element.getType()
-//                );
-//
-//                collection.add(newElement);
-//                break;
-//            }
-//        }
-
+        }
         return sortByCoords(collection);
     }
 

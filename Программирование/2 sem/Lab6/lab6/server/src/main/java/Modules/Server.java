@@ -24,6 +24,7 @@ public class Server {
     private Selector selector;
     private ConsoleApp consoleApp;
     private Response response;
+    private Request request;
 
     public Server(InetSocketAddress address) {
         this.address = address;
@@ -67,9 +68,10 @@ public class Server {
 
                                 ByteBuffer clientData = ByteBuffer.allocate(2048);
 
-                                clientChannel.read(clientData);
-                                ObjectInputStream clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()));
-                                Request request = (Request) clientDataIn.readObject();
+                                System.out.println("\n" + clientChannel.read(clientData) + " байт пришло от клиента");
+                                try(ObjectInputStream clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()))){
+                                    request = (Request) clientDataIn.readObject();
+                                };
 
                                 var commandName = request.getCommandName();
                                 var commandStrArg = request.getCommandStrArg();
@@ -89,19 +91,20 @@ public class Server {
                                 SocketChannel clientChannel = (SocketChannel) key.channel();
                                 clientChannel.configureBlocking(false);
 
-                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                ObjectOutputStream clientDataOut = new ObjectOutputStream(bytes);
-                                clientDataOut.writeObject(response);
-                                clientDataOut.close();
+                                try(ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                                    ObjectOutputStream clientDataOut = new ObjectOutputStream(bytes)){
 
-                                ByteBuffer clientData = ByteBuffer.wrap(bytes.toByteArray());
-                                clientChannel.write(clientData);
-                                clientData.clear();
+                                    clientDataOut.writeObject(response);
+                                    ByteBuffer clientData = ByteBuffer.wrap(bytes.toByteArray());
+                                    System.out.println("\n" + clientChannel.write(clientData) + " байт отправлено клиенту");
+                                    clientData.clear();
+                                }
 
                                 clientChannel.register(selector, SelectionKey.OP_READ);
                             }
                         }
                     } catch (SocketException e){
+                        e.printStackTrace();
                         System.out.println("Клиент " + key.channel().toString() + " отключился");
                         CommandHandler.save();
                         key.cancel();
