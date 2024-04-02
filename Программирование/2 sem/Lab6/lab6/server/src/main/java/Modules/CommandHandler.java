@@ -20,7 +20,7 @@ public class CommandHandler {
     }
 
     public Response help(String strArgument, VehicleModel objArgument){
-        if (!strArgument.isBlank() && objArgument != null){
+        if (!strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -51,7 +51,7 @@ public class CommandHandler {
     }
 
     public Response info(String strArgument, VehicleModel objArgument){
-        if (!strArgument.isBlank() && objArgument != null){
+        if (!strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -61,7 +61,7 @@ public class CommandHandler {
     }
 
     public Response show(String strArgument, VehicleModel objArgument){
-        if (!strArgument.isBlank() && objArgument != null){
+        if (!strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -110,7 +110,7 @@ public class CommandHandler {
     }
 
     public Response removeById(String strArgument, VehicleModel objArgument){
-        if (strArgument.isBlank() && objArgument != null){
+        if (strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -133,7 +133,7 @@ public class CommandHandler {
     }
 
     public Response clear(String strArgument, VehicleModel objArgument){
-        if (!strArgument.isBlank() && objArgument != null){
+        if (!strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -147,7 +147,7 @@ public class CommandHandler {
     }
 
     public Response removeGreater(String strArgument, VehicleModel objArgument){
-        if (strArgument.isBlank() && objArgument != null){
+        if (strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -171,7 +171,7 @@ public class CommandHandler {
     }
 
     public Response reorder(String strArgument, VehicleModel objArgument){
-        if (!strArgument.isBlank() && objArgument != null){
+        if (!strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -183,7 +183,7 @@ public class CommandHandler {
     public Response history(String strArgument, VehicleModel objArgument){
         StringBuilder historyList = new StringBuilder();
 
-        if (!strArgument.isBlank() && objArgument != null){
+        if (!strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -195,7 +195,7 @@ public class CommandHandler {
     }
 
     public Response removeAllByType(String strArgument, VehicleModel objArgument){
-        if (strArgument.isBlank() && objArgument != null){
+        if (strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -213,7 +213,7 @@ public class CommandHandler {
     }
 
     public Response countGreaterThanEnginePower(String strArgument, VehicleModel objArgument){
-        if (strArgument.isBlank() && objArgument != null){
+        if (strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {
@@ -221,7 +221,7 @@ public class CommandHandler {
                 double enginePower = Double.parseDouble(strArgument);
                 if (enginePower > 0) {
                     var count = collectionService.countGreaterThanEnginePower(enginePower);
-                    return new Response("Количество ТС с мощностью больше " + enginePower + " " + count, "" );
+                    return new Response("Количество ТС с мощностью больше " + enginePower + ":   " + count, "" );
 
                 } else {
                     return new Response("Мощность двигателя не может быть отрицательной", "" );
@@ -234,7 +234,7 @@ public class CommandHandler {
     }
 
     public Response filterStartsWithName(String strArgument, VehicleModel objArgument){
-        if (strArgument.isBlank() && objArgument != null){
+        if (strArgument.isBlank() || objArgument != null){
             return new Response("Неверные аргументы команды", "" );
 
         } else {

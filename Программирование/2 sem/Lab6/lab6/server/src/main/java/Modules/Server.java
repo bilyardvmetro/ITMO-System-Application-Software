@@ -15,7 +15,6 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -116,13 +115,13 @@ public class Server {
         } catch (NoSuchElementException e) {
             System.out.println("Остановка сервера через консоль");
             CommandHandler.save();
-            System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace())); // убрать
+//            System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace())); // убрать
             System.exit(1);
         } catch (IOException e) {
-            System.out.println("ошибка ввода/вывода");
+            System.out.println("Ошибка ввода/вывода");
             e.printStackTrace(); // переделать
         } catch (ClassNotFoundException e) {
-            System.out.println("несоответствующие классы");
+            System.out.println("Несоответствующие классы");
             e.printStackTrace(); // переделать
         }
     }
