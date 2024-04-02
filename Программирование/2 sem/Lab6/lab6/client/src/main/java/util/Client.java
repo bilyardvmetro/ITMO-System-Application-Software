@@ -74,10 +74,11 @@ public class Client {
     }
 
     private void processUserPrompt(String command, String arguments) throws IOException, ClassNotFoundException {
-        Request request = null;
+        Request request;
         if (command.equalsIgnoreCase("add") || command.equalsIgnoreCase("update")){
             VehicleModel objArgument = VehicleAsker.createElement();
             request = new Request(command, arguments, objArgument);
+            sendAndReceive(request);
         }
         else if (command.equalsIgnoreCase("exit")){
             System.out.println("Работа клиентского приложения завершена");
@@ -88,8 +89,8 @@ public class Client {
         }
         else {
             request = new Request(command, arguments);
+            sendAndReceive(request);
         }
-        sendAndReceive(request);
     }
 
     private void sendAndReceive(Request request) throws IOException, ClassNotFoundException {
@@ -98,13 +99,15 @@ public class Client {
 
             out.writeObject(request);
             ByteBuffer dataToSend = ByteBuffer.wrap(bytes.toByteArray());
-            System.out.println("\n" + channel.write(dataToSend) + " отправлено серверу");
+            channel.write(dataToSend);
+//            System.out.println("\n" + channel.write(dataToSend) + " отправлено серверу");
             out.flush();
         }
         System.out.println("запрос успешно отправлен");
 
-        ByteBuffer dataToReceive = ByteBuffer.allocate(2048);
-        System.out.println("\n" + channel.read(dataToReceive) + " байт пришло от сервера");
+        ByteBuffer dataToReceive = ByteBuffer.allocate(4096);
+        channel.read(dataToReceive);
+//        System.out.println("\n" + channel.read(dataToReceive) + " байт пришло от сервера");
 
         try(ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(dataToReceive.array()))){
             Response response = (Response) in.readObject();
@@ -114,6 +117,10 @@ public class Client {
             if (!collection.isEmpty()){
                 System.out.println(collection);
             }
+
+        } catch (EOFException e){
+//            e.printStackTrace();
+            System.out.println("Ответ от сервера превысил величину буфера");
         }
     }
 
@@ -152,13 +159,17 @@ public class Client {
                     }
 
                     if (command.equalsIgnoreCase("executeScript")) {
+                        try {
+                            Path scriptNameFromArgument = Paths.get(arguments).getFileName();
 
-                        Path scriptNameFromArgument = Paths.get(arguments).getFileName();
+                            if (scriptsNames.contains(scriptNameFromArgument)) {
+                                throw new ScriptRecursionException("Один и тот же скрипт не может выполнятся рекурсивно");
+                            }
+                            executeScript(arguments);
 
-                        if (scriptsNames.contains(scriptNameFromArgument)) {
-                            throw new ScriptRecursionException("Один и тот же скрипт не может выполнятся рекурсивно");
+                        } catch (ScriptRecursionException e) {
+                            System.out.println(e.getMessage());
                         }
-                        executeScript(arguments);
 
                     }
                     else {
@@ -179,8 +190,6 @@ public class Client {
                 System.out.println("Непредвиденная ошибка");
             } catch (SecurityException e){
                 System.out.println("Недостаточно прав для чтения файла " + path);
-            } catch (ScriptRecursionException e) {
-                System.out.println(e.getMessage());
             } catch (IOException e) {
                 System.out.println("Ошибка ввода/вывода");
                 e.printStackTrace();
