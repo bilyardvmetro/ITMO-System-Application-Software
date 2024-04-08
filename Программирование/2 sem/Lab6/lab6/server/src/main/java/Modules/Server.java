@@ -92,10 +92,14 @@ public class Server {
 
                                 try(ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                                     ObjectOutputStream clientDataOut = new ObjectOutputStream(bytes)){
-
                                     clientDataOut.writeObject(response);
+
                                     ByteBuffer clientData = ByteBuffer.wrap(bytes.toByteArray());
-                                    System.out.println("\n" + clientChannel.write(clientData) + " байт отправлено клиенту");
+                                    ByteBuffer dataLength = ByteBuffer.allocate(32).putInt(clientData.limit());
+                                    dataLength.flip();
+
+                                    clientChannel.write(dataLength); // пишем длину ответа клиенту
+                                    clientChannel.write(clientData); // шлём клиенту ответ
                                     clientData.clear();
                                 }
 
@@ -103,7 +107,6 @@ public class Server {
                             }
                         }
                     } catch (SocketException e){
-                        e.printStackTrace();
                         System.out.println("Клиент " + key.channel().toString() + " отключился");
                         CommandHandler.save();
                         key.cancel();
@@ -119,10 +122,8 @@ public class Server {
             System.exit(1);
         } catch (IOException e) {
             System.out.println("Ошибка ввода/вывода");
-            e.printStackTrace(); // переделать
         } catch (ClassNotFoundException e) {
             System.out.println("Несоответствующие классы");
-            e.printStackTrace(); // переделать
         }
     }
 

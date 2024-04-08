@@ -1,8 +1,8 @@
 id,Название,Координата x,Координата y,Дата создания,Мощность двигателя,Объем двигателя,Пробег,Тип
-1,50 cent,432.0,-3123.0,Sun Mar 03 17:27:32 MSK 2024,4.0,3.0,90.0,BOAT
-4,zetalord1488,45.0,-90.0,Sat Mar 02 23:28:47 MSK 2024,32423.0,455.0,8.8381235E10,SPACESHIP
-5,hello from script,6.0,6.0,Mon Apr 01 14:34:25 MSK 2024,6.0,6.0,6.0,SPACESHIP
-6,hello from script,6.0,6.0,Mon Apr 01 14:39:52 MSK 2024,6.0,6.0,6.0,SPACESHIP
-7,hello from script,6.0,6.0,Mon Apr 01 14:43:53 MSK 2024,6.0,6.0,6.0,SPACESHIP
-2,zetalord1488,3.0,-21.0,Sun Mar 03 17:24:49 MSK 2024,3.0,5.0,7.0,HOVERBOARD
-3,50 cent,3.0,3.0,Mon Apr 01 14:30:15 MSK 2024,3.0,3.0,3.0,HOVERBOARD
+1,carti,32.0,4.0,Mon Apr 08 13:11:27 MSK 2024,2313.0,3.32432423E16,5.7347577E22,HOVERBOARD
+2,hello from script,6.0,6.0,Mon Apr 08 13:11:49 MSK 2024,6.0,6.0,6.0,SPACESHIP
+3,hello from script,6.0,6.0,Mon Apr 08 13:12:15 MSK 2024,6.0,6.0,6.0,SPACESHIP
+4,hello from script,6.0,6.0,Mon Apr 08 13:12:16 MSK 2024,6.0,6.0,6.0,SPACESHIP
+5,hello from script,6.0,6.0,Mon Apr 08 13:12:17 MSK 2024,6.0,6.0,6.0,SPACESHIP
+6,hello from script,6.0,6.0,Mon Apr 08 13:12:18 MSK 2024,6.0,6.0,6.0,SPACESHIP
+7,hello from script,6.0,6.0,Mon Apr 08 13:12:19 MSK 2024,6.0,6.0,6.0,SPACESHIP

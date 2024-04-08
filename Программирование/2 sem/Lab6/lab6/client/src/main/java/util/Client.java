@@ -94,20 +94,23 @@ public class Client {
     }
 
     private void sendAndReceive(Request request) throws IOException, ClassNotFoundException {
+
         try(ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(bytes)) {
 
             out.writeObject(request);
             ByteBuffer dataToSend = ByteBuffer.wrap(bytes.toByteArray());
-            channel.write(dataToSend);
-//            System.out.println("\n" + channel.write(dataToSend) + " отправлено серверу");
+            channel.write(dataToSend); // отправляем серверу запрос
             out.flush();
         }
-        System.out.println("запрос успешно отправлен");
 
-        ByteBuffer dataToReceive = ByteBuffer.allocate(4096);
-        channel.read(dataToReceive);
-//        System.out.println("\n" + channel.read(dataToReceive) + " байт пришло от сервера");
+        ByteBuffer dataToReceiveLength = ByteBuffer.allocate(32);
+        channel.read(dataToReceiveLength); // читаем длину ответа от сервера
+        dataToReceiveLength.flip();
+        int responseLength = dataToReceiveLength.getInt(); // достаём её из буфера
+
+        ByteBuffer dataToReceive = ByteBuffer.allocate(responseLength); // создаем буфер нужной нам длины
+        channel.read(dataToReceive); // получаем ответ от сервера
 
         try(ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(dataToReceive.array()))){
             Response response = (Response) in.readObject();
@@ -118,9 +121,6 @@ public class Client {
                 System.out.println(collection);
             }
 
-        } catch (EOFException e){
-//            e.printStackTrace();
-            System.out.println("Ответ от сервера превысил величину буфера");
         }
     }
 
