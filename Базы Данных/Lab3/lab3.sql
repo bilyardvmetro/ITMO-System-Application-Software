@@ -52,15 +52,21 @@ INSERT INTO WorkersInLabs (WorkerID, labid) VALUES (2, 1);
 INSERT INTO WorkersInLabs (WorkerID, labid) VALUES (3, 2);
 
 
+
 CREATE OR REPLACE FUNCTION corpsman_add_trigger()
 RETURNS TRIGGER AS
 $$
 BEGIN
-	IF (NEW.PostID = 2) THEN
+	IF (NEW.PostID IN (
+	SELECT Id
+	FROM Post
+	WHERE name = 'санитар'
+	)) THEN
 		UPDATE Actions SET title = 'Преследование', characteristic = 'Санитар преследует лаборантов', IsImaginary = TRUE
 		WHERE personID = NEW.PersonID;
 		
 		INSERT INTO ActionsInLabs (actionid, labid) VALUES(NEW.id, 2);
+		
 		UPDATE Actions SET title = 'Побег', characteristic = 'Лаборант убегает от санитара'
 		WHERE PersonID IN (
 			SELECT Id
