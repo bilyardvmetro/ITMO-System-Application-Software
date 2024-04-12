@@ -35,3 +35,21 @@ null
 2024-04-12 21:54:08.809 [main] INFO  Modules.Server - Итератор по ключам селектора успешно получен
 2024-04-12 21:54:08.810 [main] INFO  Modules.Server - Обработка ключа началась
 2024-04-12 21:54:08.810 [main] INFO  Modules.Server - Клиент java.nio.channels.SocketChannel[connected local=/127.0.0.1:8000 remote=/127.0.0.1:63786] отключился
+2024-04-12 22:32:00.667 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 22:32:00.708 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 22:32:00.709 [main] ERROR Modules.Server - Ошибка ввода/вывода[Ljava.lang.StackTraceElement;@4985cbcb
+2024-04-12 22:32:53.022 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 22:32:53.063 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 22:32:53.063 [main] ERROR Modules.Server - Ошибка ввода/вывода
+2024-04-12 22:34:48.992 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 22:34:49.035 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 22:34:49.036 [main] ERROR Modules.Server - Ошибка ввода/вывода
+2024-04-12 22:35:52.144 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 22:35:52.182 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 22:35:52.182 [main] ERROR Modules.Server - Ошибка ввода/вывода
+2024-04-12 22:37:55.402 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 22:37:55.434 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 22:37:55.435 [main] ERROR Modules.Server - Ошибка ввода/вывода
+2024-04-12 22:42:50.975 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 22:42:51.131 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 22:44:38.060 [main] ERROR Modules.Server - Ошибка ввода/вывода

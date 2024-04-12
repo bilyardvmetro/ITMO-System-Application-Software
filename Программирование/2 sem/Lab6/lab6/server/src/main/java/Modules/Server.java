@@ -12,10 +12,7 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -78,6 +75,8 @@ public class Server {
                                 logger.info(clientChannel.read(clientData) + " байт пришло от клиента");
                                 try(ObjectInputStream clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()))){
                                     request = (Request) clientDataIn.readObject();
+                                } catch (StreamCorruptedException e){
+                                    key.cancel();
                                 };
 
                                 var commandName = request.getCommandName();
@@ -117,7 +116,7 @@ public class Server {
                                 clientChannel.register(selector, SelectionKey.OP_READ);
                             }
                         }
-                    } catch (SocketException e){
+                    } catch (SocketException | CancelledKeyException e){
                         logger.info("Клиент " + key.channel().toString() + " отключился");
                         CommandHandler.save();
                         key.cancel();
@@ -129,10 +128,9 @@ public class Server {
         } catch (NoSuchElementException e) {
             logger.error("Остановка сервера через консоль");
             CommandHandler.save();
-//            System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace())); // убрать
             System.exit(1);
         } catch (IOException e) {
-            logger.error("Ошибка ввода/вывода" + e.getStackTrace());
+            logger.error("Ошибка ввода/вывода");
         } catch (ClassNotFoundException e) {
             logger.error("Несоответствующие классы" + e.getStackTrace());
         }

@@ -6,10 +6,7 @@ import Network.Request;
 import Network.Response;
 
 import java.io.*;
-import java.net.ConnectException;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.nio.file.InvalidPathException;
@@ -58,10 +55,12 @@ public class Client {
 
                 } catch (NoSuchElementException e) {
                     System.out.println("Остановка клиента через консоль");
-                    System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
                     System.exit(1);
                 } catch (ClassNotFoundException e) {
                     System.out.println("Объект поступивший в ответ от сервера не найден");
+                } catch (SocketException e){
+                    System.out.println("Сервер был остановлен во время обработки вашего запроса. Пожалуйста, повторите попытку позже");
+                    System.exit(1);
                 }
             }
 
@@ -69,7 +68,6 @@ public class Client {
             System.out.println("Сервер недоступен в данный момент. Пожалуйста, повторите попытку позже");
         } catch (IOException e) {
             System.out.println("Ошибка ввода/вывода");
-            e.printStackTrace();
         }
     }
 
@@ -192,7 +190,6 @@ public class Client {
                 System.out.println("Недостаточно прав для чтения файла " + path);
             } catch (IOException e) {
                 System.out.println("Ошибка ввода/вывода");
-                e.printStackTrace();
             } catch (InvalidPathException e){
                 System.out.println("Проверьте путь к файлу. В нём не должно быть лишних символов");
             }
