@@ -1,0 +1,37 @@
+2024-04-12 21:52:56.601 [main] ERROR Modules.Server - йоу
+2024-04-12 21:52:56.605 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 21:52:56.654 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 21:52:56.655 [main] INFO  Modules.Server - Канал сервера готов к работе
+2024-04-12 21:53:15.117 [main] INFO  Modules.Server - Коллекция загружена
+2024-04-12 21:53:15.160 [main] INFO  Modules.Server - Селектор открыт
+2024-04-12 21:53:15.160 [main] INFO  Modules.Server - Канал сервера готов к работе
+2024-04-12 21:53:19.080 [main] INFO  Modules.Server - Итератор по ключам селектора успешно получен
+2024-04-12 21:53:19.081 [main] INFO  Modules.Server - Обработка ключа началась
+2024-04-12 21:53:19.083 [main] INFO  Modules.Server - Установлено соединение с клиентом Socket[addr=/127.0.0.1,port=63786,localport=8000]
+2024-04-12 21:53:24.744 [main] INFO  Modules.Server - Итератор по ключам селектора успешно получен
+2024-04-12 21:53:24.744 [main] INFO  Modules.Server - Обработка ключа началась
+2024-04-12 21:53:24.744 [main] INFO  Modules.Server - 144 байт пришло от клиента
+2024-04-12 21:53:24.751 [main] INFO  Modules.Server - Запрос:
+help
+
+null
+Успешно обработан
+2024-04-12 21:53:24.752 [main] INFO  Modules.Server - Итератор по ключам селектора успешно получен
+2024-04-12 21:53:24.752 [main] INFO  Modules.Server - Обработка ключа началась
+2024-04-12 21:53:24.756 [main] INFO  Modules.Server - Длинна ответа (java.nio.HeapByteBuffer[pos=4 lim=4 cap=32]) отправлена клиенту
+2024-04-12 21:53:24.756 [main] INFO  Modules.Server - Ответ отправлен клиенту
+2024-04-12 21:53:55.950 [main] INFO  Modules.Server - Итератор по ключам селектора успешно получен
+2024-04-12 21:53:55.951 [main] INFO  Modules.Server - Обработка ключа началась
+2024-04-12 21:53:55.951 [main] INFO  Modules.Server - 144 байт пришло от клиента
+2024-04-12 21:53:55.963 [main] INFO  Modules.Server - Запрос:
+show
+
+null
+Успешно обработан
+2024-04-12 21:53:55.963 [main] INFO  Modules.Server - Итератор по ключам селектора успешно получен
+2024-04-12 21:53:55.963 [main] INFO  Modules.Server - Обработка ключа началась
+2024-04-12 21:53:55.964 [main] INFO  Modules.Server - Длинна ответа (java.nio.HeapByteBuffer[pos=4 lim=4 cap=32]) отправлена клиенту
+2024-04-12 21:53:55.964 [main] INFO  Modules.Server - Ответ отправлен клиенту
+2024-04-12 21:54:08.809 [main] INFO  Modules.Server - Итератор по ключам селектора успешно получен
+2024-04-12 21:54:08.810 [main] INFO  Modules.Server - Обработка ключа началась
+2024-04-12 21:54:08.810 [main] INFO  Modules.Server - Клиент java.nio.channels.SocketChannel[connected local=/127.0.0.1:8000 remote=/127.0.0.1:63786] отключился

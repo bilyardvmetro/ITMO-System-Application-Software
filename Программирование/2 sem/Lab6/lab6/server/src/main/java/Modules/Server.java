@@ -4,6 +4,8 @@ import CollectionObject.VehicleModel;
 import Commands.*;
 import Network.Request;
 import Network.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import java.io.*;
@@ -24,10 +26,12 @@ public class Server {
     private ConsoleApp consoleApp;
     private Response response;
     private Request request;
+    private Logger logger;
 
     public Server(InetSocketAddress address) {
         this.address = address;
-        consoleApp = createConsoleApp();
+        this.consoleApp = createConsoleApp();
+        logger = LogManager.getLogger(Server.class);
     }
 
     public void run(String[] args){
@@ -36,27 +40,31 @@ public class Server {
             var pathToCollection = args[0]; //"collection.csv"
             CSVProvider csvProvider = new CSVProvider(Path.of(pathToCollection));
             csvProvider.load();
-            System.out.println("Коллекция загружена");
+            logger.info("Коллекция загружена");
 
             selector = Selector.open();
+            logger.info("Селектор открыт");
             ServerSocketChannel serverChannel = ServerSocketChannel.open();
             serverChannel.bind(address);
             serverChannel.configureBlocking(false);
+            logger.info("Канал сервера готов к работе");
             serverChannel.register(selector, SelectionKey.OP_ACCEPT);
 
             while (true) {
                 selector.select();
                 Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
+                logger.info("Итератор по ключам селектора успешно получен");
 
                 while (keys.hasNext()){
                     SelectionKey key = keys.next();
+                    logger.info("Обработка ключа началась");
 
                     try {
                         if (key.isValid()){
                             if (key.isAcceptable()){
                                 ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
                                 SocketChannel clientChannel = serverSocketChannel.accept();
-                                System.out.println("Установлено соединение с клиентом " + clientChannel.socket().toString());
+                                logger.info("Установлено соединение с клиентом " + clientChannel.socket().toString());
                                 clientChannel.configureBlocking(false);
                                 clientChannel.register(selector,SelectionKey.OP_READ);
                             }
@@ -67,7 +75,7 @@ public class Server {
 
                                 ByteBuffer clientData = ByteBuffer.allocate(2048);
 
-                                System.out.println("\n" + clientChannel.read(clientData) + " байт пришло от клиента");
+                                logger.info(clientChannel.read(clientData) + " байт пришло от клиента");
                                 try(ObjectInputStream clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()))){
                                     request = (Request) clientDataIn.readObject();
                                 };
@@ -83,6 +91,7 @@ public class Server {
                                     response = new Response("Команда не найдена. Используйте help для справки", "");
                                 }
 
+                                logger.info("Запрос:\n" + commandName + "\n" + commandStrArg + "\n" + commandObjArg + "\nУспешно обработан");
                                 clientChannel.register(selector, SelectionKey.OP_WRITE);
                             }
 
@@ -99,7 +108,9 @@ public class Server {
                                     dataLength.flip();
 
                                     clientChannel.write(dataLength); // пишем длину ответа клиенту
+                                    logger.info("Длинна ответа (" + dataLength + ") отправлена клиенту");
                                     clientChannel.write(clientData); // шлём клиенту ответ
+                                    logger.info("Ответ отправлен клиенту");
                                     clientData.clear();
                                 }
 
@@ -107,7 +118,7 @@ public class Server {
                             }
                         }
                     } catch (SocketException e){
-                        System.out.println("Клиент " + key.channel().toString() + " отключился");
+                        logger.info("Клиент " + key.channel().toString() + " отключился");
                         CommandHandler.save();
                         key.cancel();
                     }
@@ -116,14 +127,14 @@ public class Server {
             }
         } catch (ArrayIndexOutOfBoundsException ignored){
         } catch (NoSuchElementException e) {
-            System.out.println("Остановка сервера через консоль");
+            logger.error("Остановка сервера через консоль");
             CommandHandler.save();
 //            System.out.println(e.getMessage() + "\n" + Arrays.toString(e.getStackTrace())); // убрать
             System.exit(1);
         } catch (IOException e) {
-            System.out.println("Ошибка ввода/вывода");
+            logger.error("Ошибка ввода/вывода" + e.getStackTrace());
         } catch (ClassNotFoundException e) {
-            System.out.println("Несоответствующие классы");
+            logger.error("Несоответствующие классы" + e.getStackTrace());
         }
     }
 
