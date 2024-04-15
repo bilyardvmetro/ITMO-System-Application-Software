@@ -56,6 +56,7 @@ int1:	DI
 	ASL
 	ASL
 	ADD X
+	NEG
 	SUB #8
 	HLT 	;для отладки. Проверить результат
 	OUT 0x2
