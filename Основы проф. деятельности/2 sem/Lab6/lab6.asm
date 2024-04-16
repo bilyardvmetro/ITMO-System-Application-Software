@@ -16,8 +16,7 @@ X: 	WORD 0
 min: 	WORD 0xFFE5 ;-27
 max: 	WORD 0x0018 ;24
 
-START: 	DI 	;запрет на прерывания неиспользуемых кву
-	CLA
+START: 	CLA 	;запрет на прерывания неиспользуемых кву
 	OUT 0x1
 	OUT 0x7
 	OUT 0xB
@@ -31,7 +30,6 @@ START: 	DI 	;запрет на прерывания неиспользуемых
 	OUT 0x3
 	LD #0xA
 	OUT 0x5
-	EI
 
 MAIN:	DI 	;главная программа
 	LD X
@@ -50,23 +48,19 @@ check:	CMP min ;проверка на одз
 ldMin:	LD min
 return:	RET
 
-int1:	DI
-	LD X
+int1:	LD X
 	HLT 	;для отладки. Проверить аккум
 	ASL
 	ASL
 	ADD X
 	NEG
 	SUB #8
-	HLT 	;для отладки. Проверить результат
 	OUT 0x2
-	EI
+	HLT 	;для отладки. Проверить результат
 	IRET
 
-int2:	DI
-	IN 0x4
+int2:	IN 0x4
 	HLT	;для отладки. Проверить, что лежало в ву2
 	ST X
-	HLT	;для отладки. Проверить, что все сохранилось в X
-	EI
+	HLT
 	IRET
