@@ -13,10 +13,12 @@ FROM Н_ЛЮДИ
 JOIN Н_СЕССИЯ ON Н_ЛЮДИ.ИД = Н_СЕССИЯ.ЧЛВК_ИД
 WHERE (Н_ЛЮДИ.ОТЧЕСТВО = 'Александрович' AND Н_СЕССИЯ.ЧЛВК_ИД = 106059);
 
-CREATE INDEX ON "Н_ЛЮДИ" USING HASH("ИД");
-CREATE INDEX ON "Н_СЕССИЯ" USING HASH("ЧЛВК_ИД");
-CREATE INDEX ON "Н_ЛЮДИ" USING BTREE("ОТЧЕСТВО");
-CREATE INDEX ON "Н_СЕССИЯ" USING BTREE ("ЧЛВК_ИД");
+/*503 9*/
+
+CREATE INDEX p_id_idx ON "Н_ЛЮДИ" USING HASH("ИД");
+CREATE INDEX s_p_id_idx ON "Н_СЕССИЯ" USING HASH("ЧЛВК_ИД");
+CREATE INDEX p_l_idx ON "Н_ЛЮДИ" USING BTREE("ОТЧЕСТВО");
+CREATE INDEX s_p_id_idx ON "Н_СЕССИЯ" USING BTREE ("ЧЛВК_ИД");
 
 EXPLAIN ANALYZE SELECT Н_ЛЮДИ.ОТЧЕСТВО, Н_СЕССИЯ.УЧГОД
 FROM Н_ЛЮДИ
@@ -40,15 +42,17 @@ RIGHT JOIN Н_ВЕДОМОСТИ ON Н_ВЕДОМОСТИ.ЧЛВК_ИД = Н_Л�
 RIGHT JOIN Н_СЕССИЯ ON Н_СЕССИЯ.ЧЛВК_ИД = Н_ЛЮДИ.ИД
 WHERE (Н_ЛЮДИ.ФАМИЛИЯ > 'Соколов' AND Н_ВЕДОМОСТИ.ИД = 1457443 AND Н_СЕССИЯ.ДАТА > '2004-01-17');
 
-CREATE INDEX ON "Н_ЛЮДИ" USING HASH("ИД");
-CREATE INDEX ON "Н_ВЕДОМОСТИ" USING HASH("ЧЛВК_ИД");
-CREATE INDEX ON "Н_СЕССИЯ" USING HASH("ЧЛВК_ИД");
-CREATE INDEX ON "Н_ЛЮДИ" USING BTREE("ФАМИЛИЯ");
-CREATE INDEX ON "Н_СЕССИЯ" USING BTREE ("ДАТА");
-CREATE INDEX ON "Н_ВЕДОМОСТИ" USING BTREE ("ИД");
+CREATE INDEX p_id_idx ON "Н_ЛЮДИ" USING HASH("ИД");
+CREATE INDEX v_p_id_idx ON "Н_ВЕДОМОСТИ" USING HASH("ЧЛВК_ИД");
+CREATE INDEX s_p_id_idx ON "Н_СЕССИЯ" USING HASH("ЧЛВК_ИД");
+CREATE INDEX p_s_idx ON "Н_ЛЮДИ" USING BTREE("ФАМИЛИЯ");
+CREATE INDEX s_d_idx ON "Н_СЕССИЯ" USING BTREE ("ДАТА");
+CREATE INDEX v_id_idx ON "Н_ВЕДОМОСТИ" USING BTREE ("ИД");
 
 EXPLAIN ANALYZE SELECT Н_ЛЮДИ.ФАМИЛИЯ, Н_ВЕДОМОСТИ.ДАТА, Н_СЕССИЯ.УЧГОД
 FROM Н_ЛЮДИ
 RIGHT JOIN Н_ВЕДОМОСТИ ON Н_ВЕДОМОСТИ.ЧЛВК_ИД = Н_ЛЮДИ.ИД
 RIGHT JOIN Н_СЕССИЯ ON Н_СЕССИЯ.ЧЛВК_ИД = Н_ЛЮДИ.ИД
 WHERE (Н_ЛЮДИ.ФАМИЛИЯ > 'Соколов' AND Н_ВЕДОМОСТИ.ИД = 1457443 AND Н_СЕССИЯ.ДАТА > '2004-01-17');
+
+/*1009 1 2981*/
