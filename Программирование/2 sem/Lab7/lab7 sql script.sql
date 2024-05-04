@@ -1,6 +1,6 @@
 CREATE TABLE users (
 id SERIAL PRIMARY KEY,
-username VARCHAR(90),
+username VARCHAR(90) UNIQUE,
 hashedPassword VARCHAR(90)
 );
 

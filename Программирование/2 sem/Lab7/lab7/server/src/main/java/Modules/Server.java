@@ -2,10 +2,9 @@ package Modules;
 
 import CollectionObject.VehicleModel;
 import Commands.*;
-import Exceptions.IncorrectPasswordException;
-import Exceptions.UserNotFoundException;
 import Network.Request;
 import Network.Response;
+import Network.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +13,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ForkJoinPool;
@@ -34,7 +34,7 @@ public class Server {
         this.forkJoinPool = ForkJoinPool.commonPool();
     }
 
-    public void run(){
+    public void run() {
 
         try {
             DBProvider.load();
@@ -53,24 +53,24 @@ public class Server {
                 selector.select();
                 Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
 
-                while (keys.hasNext()){
+                while (keys.hasNext()) {
                     SelectionKey key = keys.next();
                     logger.info("Обработка ключа началась");
 
                     try {
-                        if (key.isValid()){
+                        if (key.isValid()) {
 
-                            if (key.isAcceptable()){
+                            if (key.isAcceptable()) {
                                 ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
                                 SocketChannel clientChannel = serverSocketChannel.accept();
 
                                 logger.info("Установлено соединение с клиентом " + clientChannel.socket().toString());
 
                                 clientChannel.configureBlocking(false);
-                                clientChannel.register(selector,SelectionKey.OP_READ);
+                                clientChannel.register(selector, SelectionKey.OP_READ);
                             }
 
-                            if (key.isReadable()){
+                            if (key.isReadable()) {
                                 SocketChannel clientChannel = (SocketChannel) key.channel();
                                 clientChannel.configureBlocking(false);
 
@@ -99,7 +99,7 @@ public class Server {
                                 clientChannel.register(selector, SelectionKey.OP_WRITE);
                             }
 
-                            if (key.isWritable()){
+                            if (key.isWritable()) {
                                 SocketChannel clientChannel = (SocketChannel) key.channel();
                                 clientChannel.configureBlocking(false);
 
@@ -122,7 +122,7 @@ public class Server {
                                 clientChannel.register(selector, SelectionKey.OP_READ);
                             }
                         }
-                    } catch (CancelledKeyException e){
+                    } catch (CancelledKeyException e) {
                         logger.info("Клиент " + key.channel().toString() + " отключился");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -131,7 +131,7 @@ public class Server {
                     keys.remove();
                 }
             }
-        } catch (ArrayIndexOutOfBoundsException ignored){
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         } catch (NoSuchElementException e) {
             logger.error("Остановка сервера через консоль");
             System.exit(1);
@@ -144,45 +144,51 @@ public class Server {
         ByteBuffer clientData = ByteBuffer.allocate(2048);
 
         logger.info(clientChannel.read(clientData) + " байт пришло от клиента");
-        try(ObjectInputStream clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()))){
+        try (ObjectInputStream clientDataIn = new ObjectInputStream(new ByteArrayInputStream(clientData.array()))) {
             request = (Request) clientDataIn.readObject();
-        } catch (StreamCorruptedException e){
+        } catch (StreamCorruptedException e) {
             key.cancel();
         }
     }
 
     private synchronized void processRequest() {
-        if (request.getCommandName() == null){
+        if (request.getCommandName() == null) {
             var user = request.getUser();
 
-            if (!request.userRegisterRequired()){
-
-                if (DBProvider.checkUserExistence(user.getUsername())){
-                    if (DBProvider.checkUserPassword(user)){
+            if (!request.userRegisterRequired()) {
+                if (DBProvider.checkUserExistence(user.getUsername())) {
+                    if (DBProvider.checkUserPassword(user)) {
                         response = new Response("Дарова, " + user.getUsername() + "\n", true);
                         logger.info("Пользователь " + user.getUsername() + " успешно аутентифицирован");
+
                     } else {
                         response = new Response("Пароль введён неверно", false);
                         logger.info("Пользователь " + user.getUsername() + " неверно ввёл пароль");
                     }
+
                 } else {
                     response = new Response("Пользователя " + user.getUsername() + " не существует", false);
                     logger.info("Пользователя " + user.getUsername() + " не существует");
                 }
 
             } else {
-                DBProvider.addUser(user);
-                response = new Response("Добро пожаловать в клуб, " + user.getUsername() + "\n", true);
-                logger.info("Пользователь " + user.getUsername() + " успешно зарегистрирован");
+                if (DBProvider.checkUserExistence(user.getUsername())){
+                    response = new Response("Такой логин уже занят", false);
+                } else {
+                    DBProvider.addUser(user);
+                    response = new Response("Добро пожаловать в клуб, " + user.getUsername() + "\n", true);
+                    logger.info("Пользователь " + user.getUsername() + " успешно зарегистрирован");
+                }
             }
 
         } else {
             var commandName = request.getCommandName();
             var commandStrArg = request.getCommandStrArg();
             var commandObjArg = (VehicleModel) request.getCommandObjArg();
+            var user = request.getUser();
 
             if (ConsoleApp.commandList.containsKey(commandName)) {
-                response = ConsoleApp.commandList.get(commandName).execute(commandStrArg, commandObjArg);
+                response = ConsoleApp.commandList.get(commandName).execute(user, commandStrArg, commandObjArg);
                 CommandHandler.addCommand(commandName);
             } else {
                 response = new Response("Команда не найдена. Используйте help для справки", "");
@@ -193,8 +199,8 @@ public class Server {
     }
 
     private synchronized void sendResponse(SocketChannel clientChannel) throws IOException {
-        try(ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            ObjectOutputStream clientDataOut = new ObjectOutputStream(bytes)){
+        try (ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+             ObjectOutputStream clientDataOut = new ObjectOutputStream(bytes)) {
             clientDataOut.writeObject(response);
 
             ByteBuffer clientData = ByteBuffer.wrap(bytes.toByteArray());

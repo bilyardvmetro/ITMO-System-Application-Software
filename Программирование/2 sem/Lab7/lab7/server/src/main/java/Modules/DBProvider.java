@@ -84,6 +84,7 @@ public class DBProvider{
     }
 
     public static void load() {
+        CollectionService.elementsCount = loadElCount();
 
         String query = "SELECT vehicles.id, vehicles.name, vehicles.x, vehicles.y, vehicles.creationdate, vehicles.enginepower," +
                 "vehicles.capacity, vehicles.distancetravelled, vehicles.vehicletype, users.username FROM vehicles JOIN users ON users.id = vehicles.creatorid";
@@ -93,7 +94,6 @@ public class DBProvider{
 
             while (res.next()){
                 try {
-                    CollectionService.elementsCount = res.getLong(1);
                     var element = new Vehicle(
                             res.getLong(1),
                             res.getString(2),
@@ -146,10 +146,10 @@ public class DBProvider{
         }
     }
 
-    public static boolean updateVehicle(long id, VehicleModel vehicleModel){
+    public static boolean updateVehicle(User user, long id, VehicleModel vehicleModel){
 
         String query = "UPDATE vehicles SET name = ?, x = ?, y = ?, enginepower = ?, capacity = ?," +
-                " distancetravelled = ?, vehicletype = ? WHERE id = ?";
+                " distancetravelled = ?, vehicletype = ? WHERE (id = ? AND creatorid IN (SELECT id FROM users WHERE username = ?))";
 
         try (PreparedStatement p = connection.prepareStatement(query)){
             p.setString(1, vehicleModel.getName());
@@ -160,6 +160,7 @@ public class DBProvider{
             p.setFloat(6, vehicleModel.getDistanceTravelled());
             p.setString(7, vehicleModel.getType().getType());
             p.setInt(8, (int) id);
+            p.setString(9, user.getUsername());
 
             p.executeUpdate();
             return true;
@@ -185,12 +186,13 @@ public class DBProvider{
         }
     }
 
-    public static boolean removeVehiclesGreaterThanId(long id){
+    public static boolean removeVehiclesGreaterThanId(User user, long id){
 
-        String query = "DELETE FROM vehicles WHERE id > ?";
+        String query = "DELETE FROM vehicles WHERE (id > ? AND creatorid IN (SELECT id FROM users WHERE username = ?))";
 
         try (PreparedStatement p = connection.prepareStatement(query)){
             p.setLong(1, id);
+            p.setString(2, user.getUsername());
             p.executeUpdate();
             return true;
 
@@ -200,12 +202,13 @@ public class DBProvider{
         }
     }
 
-    public static boolean removeVehiclesByType(VehicleType type){
+    public static boolean removeVehiclesByType(User user, VehicleType type){
 
-        String query = "DELETE FROM vehicles WHERE vehicletype = ?";
+        String query = "DELETE FROM vehicles WHERE (vehicletype = ? AND creatorid IN (SELECT id FROM users WHERE username = ?))";
 
         try (PreparedStatement p = connection.prepareStatement(query)){
             p.setString(1, type.getType());
+            p.setString(2, user.getUsername());
             p.executeUpdate();
             return true;
 
@@ -215,17 +218,34 @@ public class DBProvider{
         }
     }
 
-    public static boolean clearVehicles(){
+    public static boolean clearVehicles(User user){
 
-        String query = "TRUNCATE vehicles";
+        String query = "DELETE FROM vehicles WHERE creatorid IN (SELECT id FROM users WHERE username = ?)";
 
         try (PreparedStatement p = connection.prepareStatement(query)){
+            p.setString(1, user.getUsername());
             p.executeUpdate();
             return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public static long loadElCount(){
+        String query = " select last_value from vehicles_id_seq";
+
+        try (PreparedStatement p = connection.prepareStatement(query)){
+            ResultSet res = p.executeQuery();
+
+            if (res.next()){
+                return res.getLong(1);
+            }
+            return -1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 

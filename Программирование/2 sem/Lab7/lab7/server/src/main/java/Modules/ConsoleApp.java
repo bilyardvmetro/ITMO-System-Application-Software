@@ -3,6 +3,7 @@ package Modules;
 import CollectionObject.VehicleModel;
 import Commands.Command;
 import Network.Response;
+import Network.User;
 
 import java.util.HashMap;
 
@@ -41,55 +42,55 @@ public class ConsoleApp {
         this.filterStartsWithName = filterStartsWithName;
     }
 
-    public Response help(String arguments, VehicleModel objectArg){
-        return help.execute(arguments, objectArg);
+    public Response help(User user, String arguments, VehicleModel objectArg) {
+        return help.execute(user, arguments, objectArg);
     }
 
-    public Response info(String arguments, VehicleModel objectArg){
-        return info.execute(arguments, objectArg);
+    public Response info(User user, String arguments, VehicleModel objectArg) {
+        return info.execute(user, arguments, objectArg);
     }
 
-    public Response show(String arguments, VehicleModel objectArg){
-        return show.execute(arguments, objectArg);
+    public Response show(User user, String arguments, VehicleModel objectArg) {
+        return show.execute(user, arguments, objectArg);
     }
 
-    public Response add(String arguments, VehicleModel objectArg){
-        return add.execute(arguments, objectArg);
+    public Response add(User user, String arguments, VehicleModel objectArg) {
+        return add.execute(user, arguments, objectArg);
     }
 
-    public Response update(String arguments, VehicleModel objectArg){
-        return update.execute(arguments, objectArg);
+    public Response update(User user, String arguments, VehicleModel objectArg) {
+        return update.execute(user, arguments, objectArg);
     }
 
-    public Response removeById(String arguments, VehicleModel objectArg){
-        return removeById.execute(arguments, objectArg);
+    public Response removeById(User user, String arguments, VehicleModel objectArg) {
+        return removeById.execute(user, arguments, objectArg);
     }
 
-    public Response clear(String arguments, VehicleModel objectArg){
-        return clear.execute(arguments, objectArg);
+    public Response clear(User user, String arguments, VehicleModel objectArg) {
+        return clear.execute(user, arguments, objectArg);
     }
 
-    public Response removeGreater(String arguments, VehicleModel objectArg){
-        return removeGreater.execute(arguments, objectArg);
+    public Response removeGreater(User user, String arguments, VehicleModel objectArg) {
+        return removeGreater.execute(user, arguments, objectArg);
     }
 
-    public Response reorder(String arguments, VehicleModel objectArg){
-        return reorder.execute(arguments, objectArg);
+    public Response reorder(User user, String arguments, VehicleModel objectArg) {
+        return reorder.execute(user, arguments, objectArg);
     }
 
-    public Response history(String arguments, VehicleModel objectArg){
-        return history.execute(arguments, objectArg);
+    public Response history(User user, String arguments, VehicleModel objectArg) {
+        return history.execute(user, arguments, objectArg);
     }
 
-    public Response removeAllByType(String arguments, VehicleModel objectArg){
-        return removeAllByType.execute(arguments, objectArg);
+    public Response removeAllByType(User user, String arguments, VehicleModel objectArg) {
+        return removeAllByType.execute(user, arguments, objectArg);
     }
 
-    public Response countGreaterThanEnginePower(String arguments, VehicleModel objectArg){
-        return countGreaterThanEnginePower.execute(arguments, objectArg);
+    public Response countGreaterThanEnginePower(User user, String arguments, VehicleModel objectArg) {
+        return countGreaterThanEnginePower.execute(user, arguments, objectArg);
     }
 
-    public Response filterStartsWithName(String arguments, VehicleModel objectArg){
-        return filterStartsWithName.execute(arguments, objectArg);
+    public Response filterStartsWithName(User user, String arguments, VehicleModel objectArg) {
+        return filterStartsWithName.execute(user, arguments, objectArg);
     }
 }

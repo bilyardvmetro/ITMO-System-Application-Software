@@ -73,6 +73,7 @@ public class Client {
         } catch (ConnectException e){
             System.out.println("Сервер недоступен в данный момент. Пожалуйста, повторите попытку позже");
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("Ошибка ввода/вывода");
         }
     }
@@ -103,14 +104,14 @@ public class Client {
 
                     if (response.getMessage().equals("Пользователя " + user.getUsername() + " не существует")){
                         System.out.println("Если вы хотите зарегистрироваться, нажмите 'y'");
+                        var ans = scanner.nextLine().trim();
 
-                        if (scanner.nextLine().trim().equalsIgnoreCase("y")){
-                            registerUser();
+                        if (ans.equalsIgnoreCase("y")){
+                            while (!registerUser()){
+                                registerUser();
+                            }
                             break;
                         }
-//                        if (scanner.nextLine().trim().equalsIgnoreCase("exit")){
-//                            System.exit(0);
-//                        }
                     }
                 }
             }
@@ -126,7 +127,7 @@ public class Client {
         }
     }
 
-    private void registerUser() throws IOException, ClassNotFoundException, NoSuchAlgorithmException {
+    private boolean registerUser() throws IOException, ClassNotFoundException, NoSuchAlgorithmException {
         try {
             var scanner = PromptScan.getUserScanner();
 
@@ -145,9 +146,13 @@ public class Client {
             Response response = sendAndReceive(userAuthenticationRequest);
 
             printResponse(response);
+
+            return response.isUserAuthenticated();
+
         } catch (NoSuchElementException e) {
             System.out.println("Остановка клиента через консоль");
             System.exit(1);
+            return false;
         }
     }
 

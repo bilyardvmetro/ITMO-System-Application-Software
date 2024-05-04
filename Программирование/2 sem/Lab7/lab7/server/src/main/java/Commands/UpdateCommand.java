@@ -4,6 +4,7 @@ import CollectionObject.VehicleModel;
 import Modules.CommandHandler;
 import Modules.ConsoleApp;
 import Network.Response;
+import Network.User;
 
 public class UpdateCommand implements Command{
     private CommandHandler commandHandler;
@@ -14,7 +15,7 @@ public class UpdateCommand implements Command{
     }
 
     @Override
-    public Response execute(String arguments, VehicleModel objectArg) {
-        return commandHandler.update(arguments, objectArg);
+    public Response execute(User user, String arguments, VehicleModel objectArg) {
+        return commandHandler.update(user,arguments, objectArg);
     }
 }
