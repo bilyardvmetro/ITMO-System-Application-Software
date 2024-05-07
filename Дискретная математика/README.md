@@ -28,6 +28,6 @@
 |  ДЗ 2  | :white_check_mark: |
 |  ДЗ 3  | :white_check_mark: | 
 |  ДЗ 4  | :construction: |
-|  ДЗ 5  | :construction: |
-|  ДЗ 6  | :construction: |
+|  ДЗ 5  | :white_check_mark: |
+|  ДЗ 6  | :white_check_mark: |
 | Курсач | :lock: |
