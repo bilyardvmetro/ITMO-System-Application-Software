@@ -27,7 +27,7 @@
 |  ДЗ 1  | :white_check_mark: |
 |  ДЗ 2  | :white_check_mark: |
 |  ДЗ 3  | :white_check_mark: | 
-|  ДЗ 4  | :construction: |
+|  ДЗ 4  | :white_check_mark: |
 |  ДЗ 5  | :white_check_mark: |
 |  ДЗ 6  | :white_check_mark: |
-| Курсач | :lock: |
+| Курсач | :construction: |
