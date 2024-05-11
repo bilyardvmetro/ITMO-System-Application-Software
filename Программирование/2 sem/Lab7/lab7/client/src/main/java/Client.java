@@ -192,15 +192,23 @@ public class Client {
             out.flush();
         }
 
-        ByteBuffer dataToReceiveLength = ByteBuffer.allocate(32);
+        ByteBuffer dataToReceiveLength = ByteBuffer.allocate(8);
         channel.read(dataToReceiveLength); // читаем длину ответа от сервера
         dataToReceiveLength.flip();
         int responseLength = dataToReceiveLength.getInt(); // достаём её из буфера
 
-        ByteBuffer dataToReceive = ByteBuffer.allocate(responseLength); // создаем буфер нужной нам длины
-        channel.read(dataToReceive); // получаем ответ от сервера
+        ByteBuffer responseBytes = ByteBuffer.allocate(responseLength); // создаем буфер нужной нам длины
+        ByteBuffer packetFromServer = ByteBuffer.allocate(256);
 
-        try(ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(dataToReceive.array()))){
+        while (true){
+            channel.read(packetFromServer);
+            if (packetFromServer.position() == 2 && packetFromServer.get(0) == 28 && packetFromServer.get(1) == 28) break;
+            packetFromServer.flip();
+            responseBytes.put(packetFromServer);
+            packetFromServer.clear();
+        }
+
+        try(ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(responseBytes.array()))){
             return (Response) in.readObject();
         }
     }

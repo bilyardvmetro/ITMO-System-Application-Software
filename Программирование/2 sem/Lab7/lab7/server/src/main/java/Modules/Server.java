@@ -14,6 +14,7 @@ import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ForkJoinPool;
@@ -203,15 +204,28 @@ public class Server {
              ObjectOutputStream clientDataOut = new ObjectOutputStream(bytes)) {
             clientDataOut.writeObject(response);
 
-            ByteBuffer clientData = ByteBuffer.wrap(bytes.toByteArray());
-            ByteBuffer dataLength = ByteBuffer.allocate(32).putInt(clientData.limit());
-            dataLength.flip();
+            var byteResponse = bytes.toByteArray();
 
-            clientChannel.write(dataLength); // пишем длину ответа клиенту
-            logger.info("Длинна ответа (" + dataLength + ") отправлена клиенту");
-            clientChannel.write(clientData); // шлём клиенту ответ
-            logger.info("Ответ отправлен клиенту");
-            clientData.clear();
+            ByteBuffer dataLength = ByteBuffer.allocate(8).putInt(byteResponse.length);
+            dataLength.flip();
+            clientChannel.write(dataLength);
+            logger.info("Отправлен пакет с длинной сообщения");
+
+            while(byteResponse.length > 256){
+                ByteBuffer packet = ByteBuffer.wrap(Arrays.copyOfRange(byteResponse, 0, 256));
+                clientChannel.write(packet);
+                byteResponse = Arrays.copyOfRange(byteResponse, 256, byteResponse.length);
+                logger.info("Отправлен пакет байтов длины: " + packet.position());
+            }
+            ByteBuffer packet = ByteBuffer.wrap(byteResponse);
+            clientChannel.write(packet);
+            Thread.sleep(500);
+            logger.info("Отправлен последний пакет байтов длины: " + packet.position());
+            ByteBuffer stopPacket = ByteBuffer.wrap(new byte[]{28, 28});
+            clientChannel.write(stopPacket);
+            logger.info("Отправлен стоп пакет\n");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
