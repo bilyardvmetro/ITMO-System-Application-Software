@@ -21,7 +21,7 @@ public class CommandHandler {
         this.collectionService = new CollectionService();
     }
 
-    public synchronized Response help(User user, String strArgument, VehicleModel objArgument) {
+    public Response help(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() || objArgument != null) {
             return new Response("Неверные аргументы команды", "");
 
@@ -51,7 +51,7 @@ public class CommandHandler {
         }
     }
 
-    public synchronized Response info(User user, String strArgument, VehicleModel objArgument) {
+    public Response info(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() || objArgument != null) {
             return new Response("Неверные аргументы команды", "");
 
@@ -205,7 +205,7 @@ public class CommandHandler {
         }
     }
 
-    public synchronized Response history(User user, String strArgument, VehicleModel objArgument) {
+    public Response history(User user, String strArgument, VehicleModel objArgument) {
         StringBuilder historyList = new StringBuilder();
 
         if (!strArgument.isBlank() || objArgument != null) {

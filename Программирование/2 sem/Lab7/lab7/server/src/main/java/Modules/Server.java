@@ -4,7 +4,6 @@ import CollectionObject.VehicleModel;
 import Commands.*;
 import Network.Request;
 import Network.Response;
-import Network.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,7 +12,6 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -24,7 +22,7 @@ public class Server {
     private Selector selector;
     private ConsoleApp consoleApp;
     private ForkJoinPool forkJoinPool;
-    private Response response;
+    private volatile Response response;
     private Request request;
     protected static Logger logger;
 
@@ -219,7 +217,7 @@ public class Server {
             }
             ByteBuffer packet = ByteBuffer.wrap(byteResponse);
             clientChannel.write(packet);
-            Thread.sleep(500);
+            Thread.sleep(300);
             logger.info("Отправлен последний пакет байтов длины: " + packet.position());
             ByteBuffer stopPacket = ByteBuffer.wrap(new byte[]{28, 28});
             clientChannel.write(stopPacket);
