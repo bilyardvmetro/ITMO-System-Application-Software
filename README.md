@@ -67,7 +67,7 @@ https://github.com/JustAGod1/bevm
 | Лин. алгебра | :white_check_mark: (85)| :construction: | - | - | - | - | - | - |
 | Англ язык | :white_check_mark: (69)| :construction: | - | - | - | - | - | - |
 | История (ИРК) | :white_check_mark: (91.75)| - | - | - | - | - | - | - |
-| Физ-ра | :white_check_mark: | :construction: | - | - | - | - | - | - |
+| Физ-ра | :white_check_mark: | :white_check_mark: | - | - | - | - | - | - |
 | Базы данных | - | :construction: | - | - | - | - | - | - |
 | Безопасность жизнедеятельности | - | :construction: | - | - | - | - | - | - |
 | Коммуникации и командообразование | - | :construction: | - | - | - | - | - | - |
