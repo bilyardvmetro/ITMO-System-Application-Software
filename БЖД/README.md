@@ -29,6 +29,6 @@
 |  фин. мошенничество           | :white_check_mark: |    5/6    |
 |  отношения                    | :white_check_mark: |    6/6    |
 |  ос. потребление              | :white_check_mark: |    4/6    |
-|  управление лич. финансами    | :white_check_mark: |    ?/6    |
+|  управление лич. финансами    | :white_check_mark: |    0/6    |
 |  страх и его преодоленние     | :white_check_mark: |    6/6    |
 |  безопасность в путешествиях  | :white_check_mark: |    5/6    |
