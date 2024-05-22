@@ -5,6 +5,9 @@ import CollectionObject.VehicleType;
 import Network.Request;
 import Network.User;
 import Utils.Client;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,30 +16,50 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Stack;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MainPageController {
 
-    private Client client = ApplicationClient.getClient();
+    private final Client client = ApplicationClient.getClient();
 
-    private User user = client.getUser();
+    private final User user = client.getUser();
+
+    private CountGreaterThanEnginePowerWindowController CGTEPController;
+
+    private FilterStartsWithNameWindowController FSWNController;
+
+    private AddWindowController addWindowController;
+
+    private UpdateWindowController updateWindowController;
+
+    private RemoveByIdWindowController removeByIdWindowController;
+
+    private RemoveByTypeWindowController removeByTypeWindowController;
+
+    private RemoveGreaterWindowController removeGreaterWindowController;
 
     public static Stack<Vehicle> vehicles;
 
+    private static Stack<Vehicle> vehiclesCopy;
+
     {
+        vehiclesCopy = new Stack<>();
         try {
-            vehicles = client.sendAndReceive(new Request(user, "show", "")).getCollection();
+            vehicles = client.sendAndReceive(new Request(user, "ping", "")).getCollection();
+            vehiclesCopy.addAll(vehicles);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -183,19 +206,343 @@ public class MainPageController {
     @FXML
     private TableColumn<Vehicle, Double> yColumn;
 
+
     @FXML
     void initialize() {
         Image image = new Image("avatar.jpg");
         avatar.setImage(image);
         usernameBar.setText(user.getUsername());
-        initializeTables(collection);
+        initializeTable(collection);
+
+        Timeline pingServerTimeline = getTimeline();
+        pingServerTimeline.play();
 
         addButton.setOnAction(actionEvent -> {
-            showWindow("AddWindow.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(AddWindowController.class.getResource("AddWindow.fxml"));
+
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = fxmlLoader.getRoot();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("AddWindow.fxml".replace(".fxml", ""));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            addWindowController = fxmlLoader.getController();
+            addWindowController.setParent(this);
         });
+
+        updateButton.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(UpdateWindowController.class.getResource("UpdateWindow.fxml"));
+
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = fxmlLoader.getRoot();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("UpdateWindow.fxml".replace(".fxml", ""));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            updateWindowController = fxmlLoader.getController();
+            updateWindowController.setParent(this);
+        });
+
+        removeByIdButton.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(RemoveByIdWindowController.class.getResource("RemoveByIdWindow.fxml"));
+
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = fxmlLoader.getRoot();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("RemoveByIdWindow.fxml".replace(".fxml", ""));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            removeByIdWindowController = fxmlLoader.getController();
+            removeByIdWindowController.setParent(this);
+        });
+
+        removeAllByTypeButton.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(RemoveByTypeWindowController.class.getResource("RemoveByTypeWindow.fxml"));
+
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = fxmlLoader.getRoot();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("RemoveByTypeWindow.fxml".replace(".fxml", ""));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            removeByTypeWindowController = fxmlLoader.getController();
+            removeByTypeWindowController.setParent(this);
+        });
+
+        removeGreaterButton.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(RemoveGreaterWindowController.class.getResource("RemoveGreaterWindow.fxml"));
+
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = fxmlLoader.getRoot();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("RemoveGreaterWindow.fxml".replace(".fxml", ""));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            removeGreaterWindowController = fxmlLoader.getController();
+            removeGreaterWindowController.setParent(this);
+        });
+
+        countGreaterThanEPButton.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(CountGreaterThanEnginePowerWindowController.class.getResource("CountGreaterThanEnginePowerWindow.fxml"));
+
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = fxmlLoader.getRoot();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("CountGreaterThanEnginePowerWindow.fxml".replace(".fxml", ""));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            CGTEPController = fxmlLoader.getController();
+            CGTEPController.setParent(this);
+        });
+
+        nameFilterButton.setOnAction(actionEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(FilterStartsWithNameWindowController.class.getResource("FilterStartsWithNameWindow.fxml"));
+
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = fxmlLoader.getRoot();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("FilterStartsWithNameWindow.fxml".replace(".fxml", ""));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            FSWNController = fxmlLoader.getController();
+            FSWNController.setParent(this);
+        });
+
+        exitButton.setOnAction(actionEvent -> System.exit(0));
+
+        helpButton.setOnAction(actionEvent -> processUserCommand("help"));
+
+        reorderButton.setOnAction(actionEvent -> processUserCommand("reorder"));
+
+//        scriptButton.setOnAction(actionEvent -> );
+
+        showButton.setOnAction(actionEvent -> processUserCommand("show"));
+
+        historyButton.setOnAction(actionEvent -> processUserCommand("history"));
+
+        infoButton.setOnAction(actionEvent -> processUserCommand("info"));
+
+        clearButton.setOnAction(actionEvent -> processUserCommand("clear"));
+
+        idColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getId))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        nameColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getName))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        xColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(vehicle -> vehicle.getCoordinates().getX()))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        yColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(vehicle -> vehicle.getCoordinates().getY()))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        dateColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getCreationDate))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        EPColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getEnginePower))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        capacityColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getCapacity))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        DTColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getDistanceTravelled))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        typeColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getType))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
+        creatorColumn.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            ObjectTable.setItems(collection.stream()
+                    .sorted(Comparator.comparing(Vehicle::getCreator))
+                    .collect(Collectors.toCollection(() -> FXCollections.observableList(collection)))
+            );
+            ObjectTable.refresh();
+        });
+
     }
 
-    private void initializeTables(ObservableList<Vehicle> collection){
+    private Timeline getTimeline() {
+        Timeline pingServerTimeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            try {
+                vehicles = client.sendAndReceive(new Request(user, "ping", "")).getCollection();
+                RefreshObjectsTable(vehicles);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }));
+
+        pingServerTimeline.setCycleCount(Animation.INDEFINITE);
+        return pingServerTimeline;
+    }
+
+    public void RefreshObjectsTable(Stack<Vehicle> vehicles) {
+        if (!vehicles.equals(vehiclesCopy)) {
+            GraphicsContext graphicsContext = ObjectCanvas.getGraphicsContext2D();
+            graphicsContext.clearRect(0, 0, ObjectCanvas.getWidth(), ObjectCanvas.getHeight());
+
+            drawVehicles(vehicles);
+            vehiclesCopy = vehicles;
+        }
+
+        collection = FXCollections.observableList(vehicles);
+        ObjectTable.setItems(collection);
+        ObjectTable.refresh();
+    }
+
+    private void processUserCommand(String command) {
+        try {
+            var response = client.sendAndReceive(new Request(user, command, ""));
+            printResponse(response.getMessage());
+
+            if (response.getCollection() != null) {
+                vehicles = response.getCollection();
+                RefreshObjectsTable(vehicles);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void printResponse(String message) {
+        responseArea.setText(message);
+    }
+
+    private void drawVehicles(Stack<Vehicle> vehicles) {
+        GraphicsContext graphicsContext = ObjectCanvas.getGraphicsContext2D();
+        var x = 0;
+        var y = 0;
+
+        for (Vehicle element : vehicles) {
+            if (x >= 1200) {
+                x = 0;
+                y += 74;
+            }
+
+            if (element.getCreator().equals(user.getUsername())) {
+                graphicsContext.setFill(Color.FORESTGREEN);
+            } else graphicsContext.setFill(Color.DARKRED);
+
+            graphicsContext.fillOval(x, y, 30, 30);
+            x += 40;
+        }
+
+    }
+
+    private void initializeTable(ObservableList<Vehicle> collection) {
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
         nameColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getName()));
         xColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCoordinates().getX()));
@@ -208,24 +555,6 @@ public class MainPageController {
         creatorColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCreator()));
 
         ObjectTable.setItems(collection);
-    }
-
-    private void showWindow(String view) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(LoginRegisterPageController.class.getResource(view));
-
-        try {
-            fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = fxmlLoader.getRoot();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setTitle(view.replace(".fxml", ""));
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
     }
 
 }

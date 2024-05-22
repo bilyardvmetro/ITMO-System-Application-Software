@@ -24,7 +24,7 @@ public class CommandHandler {
 
     public Response help(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             String message =
@@ -48,53 +48,53 @@ public class CommandHandler {
                             filterStartsWithName <name> - вывести все элементы, имя которых начинается с заданной подстроки
                             ================================================================================================
                             """;
-            return new Response(message, new Stack<>());
+            return new Response(message, null);
         }
     }
 
     public Response info(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             var message = collectionService.info();
-            return new Response(message, new Stack<>());
+            return new Response(message, null);
         }
     }
 
-    public synchronized Response show(User user, String strArgument, VehicleModel objArgument) {
+    public Response show(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             var collection = collectionService.show();
 
             if (collection.isEmpty()) {
-                return new Response("В коллекции пока нету ни одного элемента", new Stack<>());
+                return new Response("В коллекции пока нету ни одного элемента", null);
             } else {
                 return new Response("Коллекция успешно распечатана", collection);
             }
         }
     }
 
-    public synchronized Response add(User user, String strArgument, VehicleModel objArgument) {
+    public Response add(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() && objArgument == null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             Stack<Vehicle> collection;
             try {
                 collection = collectionService.add(objArgument);
             } catch (DBProviderException e) {
-                return new Response(e.getMessage(), new Stack<>());
+                return new Response(e.getMessage(), null);
             }
             return new Response("Элемент успешно добавлен", collection);
         }
     }
 
-    public synchronized Response update(User user, String strArgument, VehicleModel objArgument) {
+    public Response update(User user, String strArgument, VehicleModel objArgument) {
         if (strArgument.isBlank() && objArgument == null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             try {
@@ -110,26 +110,26 @@ public class CommandHandler {
                             var collection = collectionService.update(user, current_id, objArgument);
                             return new Response("элемент c id " + current_id + " успешно обновлён", collection);
                         }
-                        return new Response("Вы не можете изменить этот объект", new Stack<>());
+                        return new Response("Вы не можете изменить этот объект", null);
 
                     }
-                    return new Response("Элемента с таким id не существует", new Stack<>());
+                    return new Response("Элемента с таким id не существует", null);
 
                 } else {
-                    return new Response("id не может быть отрицательным", new Stack<>());
+                    return new Response("id не может быть отрицательным", null);
                 }
 
             } catch (NumberFormatException e) {
-                return new Response("Неверный формат аргументов", new Stack<>());
+                return new Response("Неверный формат аргументов", null);
             } catch (DBProviderException e) {
-                return new Response(e.getMessage(), new Stack<>());
+                return new Response(e.getMessage(), null);
             }
         }
     }
 
-    public synchronized Response removeById(User user, String strArgument, VehicleModel objArgument) {
+    public Response removeById(User user, String strArgument, VehicleModel objArgument) {
         if (strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             try {
@@ -143,38 +143,38 @@ public class CommandHandler {
                             var collection = collectionService.removeById(user, id);
                             return new Response("Элемент с id " + id + " успешно удалён", collection);
                         }
-                        return new Response("Вы не можете удалить этот объект", new Stack<>());
+                        return new Response("Вы не можете удалить этот объект", null);
                     }
-                    return new Response("Элемента с таким id не существует", new Stack<>());
+                    return new Response("Элемента с таким id не существует", null);
                 }
-                return new Response("id не может быть отрицательным", new Stack<>());
+                return new Response("id не может быть отрицательным", null);
 
             } catch (NumberFormatException e) {
-                return new Response("Неверный формат аргументов", new Stack<>());
+                return new Response("Неверный формат аргументов", null);
             } catch (DBProviderException e) {
-                return new Response(e.getMessage(), new Stack<>());
+                return new Response(e.getMessage(), null);
             }
         }
     }
 
-    public synchronized Response clear(User user, String strArgument, VehicleModel objArgument) {
+    public Response clear(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             Stack<Vehicle> collection;
             try {
                 collection = collectionService.clear(user);
             } catch (DBProviderException e) {
-                return new Response(e.getMessage(), new Stack<>());
+                return new Response(e.getMessage(), null);
             }
             return new Response("коллекция успешно очищена", collection);
         }
     }
 
-    public synchronized Response removeGreater(User user, String strArgument, VehicleModel objArgument) {
+    public Response removeGreater(User user, String strArgument, VehicleModel objArgument) {
         if (strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             try {
@@ -185,20 +185,20 @@ public class CommandHandler {
                     return new Response("элементы успешно удалены", collection);
 
                 } else {
-                    return new Response("id не может быть отрицательным", new Stack<>());
+                    return new Response("id не может быть отрицательным", null);
                 }
 
             } catch (NumberFormatException e) {
-                return new Response("Неверный формат аргументов", new Stack<>());
+                return new Response("Неверный формат аргументов", null);
             } catch (NonExistingElementException | DBProviderException e) {
-                return new Response(e.getMessage(), new Stack<>());
+                return new Response(e.getMessage(), null);
             }
         }
     }
 
-    public synchronized Response reorder(User user, String strArgument, VehicleModel objArgument) {
+    public Response reorder(User user, String strArgument, VehicleModel objArgument) {
         if (!strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             var collection = collectionService.reorder();
@@ -210,19 +210,19 @@ public class CommandHandler {
         StringBuilder historyList = new StringBuilder();
 
         if (!strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             for (String command : commandHistory) {
                 historyList.append(command).append("\n");
             }
         }
-        return new Response("Последние 7 команд, введённые пользователем: \n" + historyList, new Stack<>());
+        return new Response("Последние 7 команд, введённые пользователем: \n" + historyList, null);
     }
 
-    public synchronized Response removeAllByType(User user, String strArgument, VehicleModel objArgument) {
+    public Response removeAllByType(User user, String strArgument, VehicleModel objArgument) {
         if (strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             try {
@@ -231,37 +231,37 @@ public class CommandHandler {
                 return new Response("Транспортные средства с типом " + type + " успешно удалены", collection);
 
             } catch (IllegalArgumentException e) {
-                return new Response("Такого типа транспортных средств не существует", new Stack<>());
+                return new Response("Такого типа транспортных средств не существует", null);
             } catch (NonExistingElementException | DBProviderException e) {
-                return new Response(e.getMessage(), new Stack<>());
+                return new Response(e.getMessage(), null);
             }
         }
     }
 
-    public synchronized Response countGreaterThanEnginePower(User user, String strArgument, VehicleModel objArgument) {
+    public Response countGreaterThanEnginePower(User user, String strArgument, VehicleModel objArgument) {
         if (strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             try {
                 double enginePower = Double.parseDouble(strArgument);
                 if (enginePower > 0) {
                     var count = collectionService.countGreaterThanEnginePower(enginePower);
-                    return new Response("Количество ТС с мощностью больше " + enginePower + ":   " + count, new Stack<>());
+                    return new Response("Количество ТС с мощностью больше " + enginePower + ":   " + count, null);
 
                 } else {
-                    return new Response("Мощность двигателя не может быть отрицательной", new Stack<>());
+                    return new Response("Мощность двигателя не может быть отрицательной", null);
                 }
 
             } catch (NumberFormatException e) {
-                return new Response("Неверный формат аргументов", new Stack<>());
+                return new Response("Неверный формат аргументов", null);
             }
         }
     }
 
-    public synchronized Response filterStartsWithName(User user, String strArgument, VehicleModel objArgument) {
+    public Response filterStartsWithName(User user, String strArgument, VehicleModel objArgument) {
         if (strArgument.isBlank() || objArgument != null) {
-            return new Response("Неверные аргументы команды", new Stack<>());
+            return new Response("Неверные аргументы команды", null);
 
         } else {
             try {
@@ -269,7 +269,7 @@ public class CommandHandler {
                 return new Response("Коллекция отсортирована по именам ТС", collection);
 
             } catch (NonExistingElementException e) {
-                return new Response(e.getMessage(), new Stack<>());
+                return new Response(e.getMessage(), null);
             }
 
         }

@@ -125,7 +125,7 @@ public class Client {
     }
 
 
-    private boolean executeScript(String path) throws ClassNotFoundException, IOException, NoSuchElementException, InvalidPathException, SecurityException {
+    public boolean executeScript(String path) throws ClassNotFoundException, IOException, NoSuchElementException, InvalidPathException, SecurityException {
         Path pathToScript = Paths.get(path);
 
         PromptScan.setUserScanner(new Scanner(pathToScript));

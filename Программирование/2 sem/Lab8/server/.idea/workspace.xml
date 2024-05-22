@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="103481de-56cb-4759-929d-497b6970cc2f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/LoginRegisterPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../КиК/Поленов РТ КиК_24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../КиК/Поленов РТ КиК_24.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/java/Utils/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/Utils/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/AddWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/AddWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/ApplicationStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/ApplicationStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/LoginRegisterPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/LoginRegisterPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/MainPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,21 +74,13 @@
       <workItem from="1716022030509" duration="75000" />
       <workItem from="1716150047458" duration="14200000" />
       <workItem from="1716237739662" duration="2776000" />
+      <workItem from="1716283814685" duration="6380000" />
+      <workItem from="1716369819167" duration="3666000" />
+      <workItem from="1716399780590" duration="5506000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Modules/Server.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

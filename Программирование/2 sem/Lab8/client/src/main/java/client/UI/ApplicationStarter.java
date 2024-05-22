@@ -15,6 +15,7 @@ public class ApplicationStarter extends Application {
 
         stage.setTitle("bilyardvmetro Lab8");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

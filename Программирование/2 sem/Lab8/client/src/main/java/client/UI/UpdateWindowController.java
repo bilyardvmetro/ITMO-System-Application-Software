@@ -11,38 +11,29 @@ import Utils.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class AddWindowController {
-
-    ObservableList<VehicleType> types = FXCollections.observableArrayList(VehicleType.BOAT, VehicleType.HOVERBOARD, VehicleType.SPACESHIP);
-
+public class UpdateWindowController {
     Client client = ApplicationClient.getClient();
 
     User user = client.getUser();
 
     private MainPageController mainPageController;
 
-    static Locale locale;
+    ObservableList<VehicleType> types = FXCollections.observableArrayList(VehicleType.BOAT, VehicleType.HOVERBOARD, VehicleType.SPACESHIP);
 
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
-
-    @FXML
-    private AnchorPane addPane;
-
-    @FXML
-    private Button addSubmitButton;
 
     @FXML
     private TextField capacityForm;
@@ -54,10 +45,16 @@ public class AddWindowController {
     private TextField enginePowerForm;
 
     @FXML
+    private Label messageLabel;
+
+    @FXML
     private TextField nameForm;
 
     @FXML
     private ChoiceBox<VehicleType> typeChoiceBox;
+
+    @FXML
+    private Button updateSubmitButton;
 
     @FXML
     private TextField xForm;
@@ -66,13 +63,10 @@ public class AddWindowController {
     private TextField yForm;
 
     @FXML
-    private Label messageLabel;
-
-    @FXML
     void initialize() {
         typeChoiceBox.setItems(types);
 
-        addSubmitButton.setOnAction(actionEvent -> {
+        updateSubmitButton.setOnAction(actionEvent -> {
             try {
                 var name = nameForm.getText();
                 if (name.isBlank()) throw new EmptyFieldException("Name cannot be empty");
@@ -92,7 +86,7 @@ public class AddWindowController {
 
                 var type = typeChoiceBox.getValue();
 
-                var response = client.sendAndReceive(new Request(user, "add", "", new VehicleModel(name, coordinates, enginePower, capacity, distanceTravelled, type, user)));
+                var response = client.sendAndReceive(new Request(user, "update", "", new VehicleModel(name, coordinates, enginePower, capacity, distanceTravelled, type, user)));
                 mainPageController.printResponse(response.getMessage());
                 mainPageController.RefreshObjectsTable(response.getCollection());
 
@@ -108,7 +102,7 @@ public class AddWindowController {
         });
     }
 
-    public void setParent (MainPageController mainPageController){
+    public void setParent(MainPageController mainPageController) {
         this.mainPageController = mainPageController;
     }
 }

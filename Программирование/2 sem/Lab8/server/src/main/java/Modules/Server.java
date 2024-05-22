@@ -195,6 +195,9 @@ public class Server {
             if (ConsoleApp.commandList.containsKey(commandName)) {
                 response = ConsoleApp.commandList.get(commandName).execute(user, commandStrArg, commandObjArg);
                 CommandHandler.addCommand(commandName);
+
+            } else if (commandName.equals("ping")) {
+                response = new Response("", CollectionService.collection);
             } else {
                 response = new Response("Команда не найдена. Используйте help для справки", new Stack<>());
             }

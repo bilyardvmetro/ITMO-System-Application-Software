@@ -78,7 +78,8 @@ public class LoginRegisterPageController {
         try {
             client.connect();
         } catch (ConnectException e) {
-            throw new RuntimeException(e);
+            loginErrorField.setText("Сервер недоступен в данный момент. Пожалуйста, повторите попытку позже");
+            registerErrorField.setText("Сервер недоступен в данный момент. Пожалуйста, повторите попытку позже");
         }
 
         loginButton.setOnAction(actionEvent -> {
@@ -130,7 +131,7 @@ public class LoginRegisterPageController {
         Stage stage = new Stage();
         stage.setTitle("bilyardvmetro Lab8");
         stage.setScene(scene);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.show();
     }
 
