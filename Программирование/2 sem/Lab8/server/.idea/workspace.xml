@@ -6,17 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="103481de-56cb-4759-929d-497b6970cc2f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../../../КиК/Поленов РТ КиК_24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../КиК/Поленов РТ КиК_24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/CollectionObject/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/CollectionObject/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/java/Utils/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/Utils/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/java/Utils/VehicleAsker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/Utils/VehicleAsker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByIdWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByIdWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByTypeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByTypeWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/UpdateWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/UpdateWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/MainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByIdWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByIdWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByTypeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByTypeWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/UpdateWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/UpdateWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CollectionObject/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CollectionObject/Vehicle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +73,7 @@
       <workItem from="1716369819167" duration="3666000" />
       <workItem from="1716399780590" duration="5506000" />
       <workItem from="1716469767212" duration="9636000" />
-      <workItem from="1716493559442" duration="1472000" />
+      <workItem from="1716493559442" duration="3749000" />
     </task>
     <servers />
   </component>

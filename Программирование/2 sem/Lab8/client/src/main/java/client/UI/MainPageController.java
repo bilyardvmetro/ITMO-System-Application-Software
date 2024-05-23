@@ -12,15 +12,11 @@ import javafx.animation.Timeline;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -30,12 +26,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.InvalidPathException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -214,6 +214,8 @@ public class MainPageController {
     @FXML
     private TableColumn<Vehicle, Double> yColumn;
 
+    private Window mainWindow;
+
 
     @FXML
     void initialize() {
@@ -349,7 +351,34 @@ public class MainPageController {
 
         reorderButton.setOnAction(actionEvent -> processUserCommand("reorder"));
 
-//        scriptButton.setOnAction(actionEvent -> );
+        scriptButton.setOnAction(actionEvent -> {
+            var fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("script files", "*.txt"));
+            File scriptFile = fileChooser.showOpenDialog(mainWindow);
+
+            pingServerTimeline.stop();
+            try {
+
+                client.executeScript(scriptFile.toString());
+
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (FileNotFoundException e){
+                responseArea.setText("Файл " + scriptFile + " не найден");
+            } catch (NoSuchElementException e){
+                responseArea.setText("Файл " + scriptFile + " пуст");
+            } catch (IllegalStateException e){
+                responseArea.setText("Непредвиденная ошибка");
+            } catch (SecurityException e){
+                responseArea.setText("Недостаточно прав для чтения файла " + scriptFile);
+            } catch (InvalidPathException e){
+                responseArea.setText("Проверьте путь к файлу. В нём не должно быть лишних символов");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            pingServerTimeline.play();
+
+        });
 
         showButton.setOnAction(actionEvent -> processUserCommand("show"));
 

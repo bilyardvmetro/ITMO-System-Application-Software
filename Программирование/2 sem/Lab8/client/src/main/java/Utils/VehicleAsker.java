@@ -16,32 +16,16 @@ public class VehicleAsker {
     public static VehicleModel createElement(User user){
         Scanner InputScanner = PromptScan.getUserScanner();
 
-        System.out.println("Введите имя");
         String name = askString(InputScanner);
 
-        System.out.println("Введите координату x:");
         float x = askX(InputScanner);
-
-        System.out.println("Введите координату y:");
         double y = askY(InputScanner);
-
         Coordinates coordinates = new Coordinates(x, y);
 
-        System.out.println("Введите мощность двигателя");
         double enginePower = askDouble(InputScanner);
-
-        System.out.println("Введите объём двигателя");
         float capacity = askFloat(InputScanner);
-
-        System.out.println("Введите пробег");
         float distanceTravelled = askFloat(InputScanner);
 
-        System.out.print("""
-                Введите один из доступных типов транспортного средства:
-                BOAT
-                HOVERBOARD
-                SPACESHIP
-                """);
         VehicleType vehicleType = askVehicleType(InputScanner);
 
         return new VehicleModel(name, coordinates, enginePower, capacity, distanceTravelled, vehicleType, user);
