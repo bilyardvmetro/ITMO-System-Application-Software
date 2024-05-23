@@ -104,22 +104,13 @@ public class VehicleAsker {
         while (true){
             try {
                 String type = InputScanner.nextLine().toUpperCase();
-                VehicleType vehicleType;
-                switch (type){
-                    case "BOAT":
-                        vehicleType = BOAT;
-                        break;
-                    case "HOVERBOARD":
-                        vehicleType = HOVERBOARD;
-                        break;
-                    case "SPACESHIP":
-                        vehicleType = SPACESHIP;
-                        break;
-                    default:
-                        throw new EmptyFieldException("Такого типа транспортного средства не существует. " +
-                                "Заполните тип корректно: ");
-                }
-                return vehicleType;
+                return switch (type) {
+                    case "BOAT" -> BOAT;
+                    case "HOVERBOARD" -> HOVERBOARD;
+                    case "SPACESHIP" -> SPACESHIP;
+                    default -> throw new EmptyFieldException("Такого типа транспортного средства не существует. " +
+                            "Заполните тип корректно: ");
+                };
             } catch (EmptyFieldException e){
                 System.out.println(e.getMessage());
             }
