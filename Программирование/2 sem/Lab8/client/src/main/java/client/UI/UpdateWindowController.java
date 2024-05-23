@@ -1,6 +1,7 @@
 package client.UI;
 
 import CollectionObject.Coordinates;
+import CollectionObject.Vehicle;
 import CollectionObject.VehicleModel;
 import CollectionObject.VehicleType;
 import Exceptions.EmptyFieldException;
@@ -11,23 +12,25 @@ import Utils.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class UpdateWindowController {
-    Client client = ApplicationClient.getClient();
+    private final Client client = ApplicationClient.getClient();
 
-    User user = client.getUser();
+    private final User user = client.getUser();
+
+    private Stack<Vehicle> vehicles = MainPageController.vehicles;
+
+    private Long id;
 
     private MainPageController mainPageController;
 
-    ObservableList<VehicleType> types = FXCollections.observableArrayList(VehicleType.BOAT, VehicleType.HOVERBOARD, VehicleType.SPACESHIP);
+    private final ObservableList<VehicleType> types = FXCollections.observableArrayList(VehicleType.BOAT, VehicleType.HOVERBOARD, VehicleType.SPACESHIP);
 
     @FXML
     private ResourceBundle resources;
@@ -48,6 +51,9 @@ public class UpdateWindowController {
     private Label messageLabel;
 
     @FXML
+    private MenuButton idChoiceField;
+
+    @FXML
     private TextField nameForm;
 
     @FXML
@@ -65,6 +71,19 @@ public class UpdateWindowController {
     @FXML
     void initialize() {
         typeChoiceBox.setItems(types);
+        typeChoiceBox.setValue(VehicleType.BOAT);
+        idChoiceField.setText("id");
+
+        for (Vehicle element : vehicles) {
+            var menuItem = new MenuItem(String.valueOf(element.getId()));
+
+            menuItem.setOnAction(actionEvent -> {
+                id = Long.parseLong(menuItem.getText());
+                idChoiceField.setText(element.getId().toString());
+            });
+
+            idChoiceField.getItems().addAll(menuItem);
+        }
 
         updateSubmitButton.setOnAction(actionEvent -> {
             try {
@@ -86,7 +105,8 @@ public class UpdateWindowController {
 
                 var type = typeChoiceBox.getValue();
 
-                var response = client.sendAndReceive(new Request(user, "update", "", new VehicleModel(name, coordinates, enginePower, capacity, distanceTravelled, type, user)));
+                var response = client.sendAndReceive(new Request(user, "update", id.toString(),
+                        new VehicleModel(name, coordinates, enginePower, capacity, distanceTravelled, type, user)));
                 mainPageController.printResponse(response.getMessage());
                 mainPageController.RefreshObjectsTable(response.getCollection());
 

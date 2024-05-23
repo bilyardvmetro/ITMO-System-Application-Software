@@ -104,7 +104,7 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "\n\nVehicle{\n" +
+        return "Vehicle{\n" +
                 "id = " + id +
                 ", \nname = '" + name + '\'' +
                 ", \ncoordinates = " + coordinates +

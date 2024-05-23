@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.MainPageController">
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.MainPageController">
     <TabPane fx:id="TabPanel" prefHeight="700.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="MainTab" text="Main page">
             <AnchorPane fx:id="MainPageAnchor" prefHeight="800.0" prefWidth="1280.0">
@@ -31,11 +42,7 @@
                 </TextField>
                 <ImageView fx:id="avatar" fitHeight="80.0" fitWidth="80.0" layoutX="970.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="1.0" translateY="1.0" translateZ="1.0" />
                 <Separator fx:id="mainPageSep" layoutY="410.0" prefHeight="10.0" prefWidth="1280.0" />
-                <TextArea fx:id="responseArea" editable="false" layoutX="45.0" layoutY="430.0" prefHeight="200.0" prefWidth="400.0" promptText="Response">
-                    <font>
-                        <Font name="Constantia" size="14.0" />
-                    </font>
-                </TextArea>
+                <TextArea fx:id="responseArea" editable="false" layoutX="45.0" layoutY="430.0" prefHeight="200.0" prefWidth="600.0" promptText="Response" />
                 <Label layoutX="10.0" layoutY="40.0" prefHeight="40.0" prefWidth="500.0" text="Это крутое приложение запущено специально для пацанов">
                     <font>
                         <Font size="18.0" />
@@ -70,19 +77,19 @@
         </Tab>
         <Tab fx:id="CanvasTab" text="Objects">
             <AnchorPane fx:id="CanvasTabAnchor" prefHeight="650.0" prefWidth="900.0">
-                <Canvas fx:id="ObjectCanvas" height="370.0" layoutX="30.0" layoutY="30.0" width="1200.0" />
                 <TextArea fx:id="InfoArea" editable="false" layoutX="30.0" layoutY="430.0" prefHeight="200.0" prefWidth="400.0" promptText="Item Info">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="12.0" />
                     </font>
                 </TextArea>
                 <Separator fx:id="CanvasSep" layoutY="410.0" prefHeight="10.0" prefWidth="1280.0" />
-                <Label fx:id="prikolLabel" alignment="TOP_LEFT" layoutX="490.0" layoutY="430.0" prefHeight="175.0" prefWidth="600.0" text="Delete item: right mouse click&#10;Update item: double mouse click&#10;Item info: mouse click&#10;&#10;Blue items are yours&#10;Red items - other users items&#10;">
+                <Label fx:id="prikolLabel" alignment="TOP_LEFT" layoutX="490.0" layoutY="430.0" prefHeight="175.0" prefWidth="600.0" text="Delete item: right mouse click&#10;Update item: double mouse click&#10;Item info: mouse click&#10;&#10;Blue items are yours&#10;Orange items - other users items&#10;">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
                 <Separator layoutX="452.0" layoutY="415.0" orientation="VERTICAL" prefHeight="255.0" prefWidth="10.0" />
+                <Pane fx:id="ObjectCanvas" layoutX="30.0" layoutY="30.0" prefHeight="370.0" prefWidth="1200.0" />
             </AnchorPane>
         </Tab>
     </TabPane>
