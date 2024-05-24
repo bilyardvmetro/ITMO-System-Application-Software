@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
@@ -141,6 +140,7 @@ public class Server {
             logger.error("Остановка сервера через консоль");
             System.exit(1);
         } catch (IOException e) {
+            e.printStackTrace();
             logger.error("Ошибка ввода/вывода");
         }
     }

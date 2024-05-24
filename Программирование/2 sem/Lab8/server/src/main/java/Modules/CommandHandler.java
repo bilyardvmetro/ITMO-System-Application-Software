@@ -1,7 +1,6 @@
 package Modules;
 
 
-import CollectionObject.Vehicle;
 import CollectionObject.VehicleModel;
 import CollectionObject.VehicleType;
 import Exceptions.DBProviderException;
@@ -9,9 +8,7 @@ import Exceptions.NonExistingElementException;
 import Network.Response;
 import Network.User;
 
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Stack;
 
 
 public class CommandHandler {
@@ -82,13 +79,12 @@ public class CommandHandler {
             return new Response("Неверные аргументы команды", null);
 
         } else {
-            Stack<Vehicle> collection;
             try {
-                collection = collectionService.add(objArgument);
+                if (collectionService.add(objArgument)) return new Response("Элемент успешно добавлен", null);
             } catch (DBProviderException e) {
                 return new Response(e.getMessage(), null);
             }
-            return new Response("Элемент успешно добавлен", collection);
+            return new Response("Что-то пошло не так", null);
         }
     }
 
@@ -107,8 +103,7 @@ public class CommandHandler {
                         if (CollectionService.collection.stream().anyMatch(vehicle -> vehicle.getId() == current_id
                                 && vehicle.getCreator().equals(user.getUsername()))) {
 
-                            var collection = collectionService.update(user, current_id, objArgument);
-                            return new Response("элемент c id " + current_id + " успешно обновлён", collection);
+                            if (collectionService.update(user, current_id, objArgument)) return new Response("элемент c id " + current_id + " успешно обновлён", null);
                         }
                         return new Response("Вы не можете изменить этот объект", null);
 
@@ -140,8 +135,7 @@ public class CommandHandler {
                         if (CollectionService.collection.stream().anyMatch(vehicle -> vehicle.getId() == id
                                 && vehicle.getCreator().equals(user.getUsername()))) {
 
-                            var collection = collectionService.removeById(user, id);
-                            return new Response("Элемент с id " + id + " успешно удалён", collection);
+                            if (collectionService.removeById(user, id)) return new Response("Элемент с id " + id + " успешно удалён", null);
                         }
                         return new Response("Вы не можете удалить этот объект", null);
                     }
@@ -162,13 +156,12 @@ public class CommandHandler {
             return new Response("Неверные аргументы команды", null);
 
         } else {
-            Stack<Vehicle> collection;
             try {
-                collection = collectionService.clear(user);
+                if (collectionService.clear(user)) return new Response("коллекция успешно очищена", null);
             } catch (DBProviderException e) {
                 return new Response(e.getMessage(), null);
             }
-            return new Response("коллекция успешно очищена", collection);
+            return new Response("Что-то пошло не так", null);
         }
     }
 
@@ -181,9 +174,7 @@ public class CommandHandler {
                 long startId = Long.parseLong(strArgument) + 1;
 
                 if (startId > 0) {
-                    var collection = collectionService.removeGreater(user, startId);
-                    return new Response("элементы успешно удалены", collection);
-
+                    if (collectionService.removeGreater(user, startId)) return new Response("элементы успешно удалены", null);
                 } else {
                     return new Response("id не может быть отрицательным", null);
                 }
@@ -194,6 +185,7 @@ public class CommandHandler {
                 return new Response(e.getMessage(), null);
             }
         }
+        return new Response("Что-то пошло не так", null);
     }
 
     public Response reorder(User user, String strArgument, VehicleModel objArgument) {
@@ -227,8 +219,7 @@ public class CommandHandler {
         } else {
             try {
                 VehicleType type = VehicleType.valueOf(strArgument.toUpperCase());
-                var collection = collectionService.removeAllByType(user, type);
-                return new Response("Транспортные средства с типом " + type + " успешно удалены", collection);
+                if (collectionService.removeAllByType(user, type)) return new Response("Транспортные средства с типом " + type + " успешно удалены", null);
 
             } catch (IllegalArgumentException e) {
                 return new Response("Такого типа транспортных средств не существует", null);
@@ -236,6 +227,7 @@ public class CommandHandler {
                 return new Response(e.getMessage(), null);
             }
         }
+        return new Response("Что-то пошло не так", null);
     }
 
     public Response countGreaterThanEnginePower(User user, String strArgument, VehicleModel objArgument) {

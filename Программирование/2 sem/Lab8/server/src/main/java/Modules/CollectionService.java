@@ -8,7 +8,6 @@ import Exceptions.DBProviderException;
 import Exceptions.NonExistingElementException;
 import Network.User;
 
-import java.nio.file.DirectoryNotEmptyException;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Stack;
@@ -44,7 +43,7 @@ public class CollectionService {
         }
     }
 
-    public Stack<Vehicle> add(VehicleModel element) throws DBProviderException {
+    public boolean add(VehicleModel element) throws DBProviderException {
         locker.lock();
         if (DBProvider.addVehicle(element)){
             ++elementsCount;
@@ -61,7 +60,7 @@ public class CollectionService {
             );
             collection.add(newElement);
             locker.unlock();
-            return sortByCoords(collection);
+            return true;
         }
         locker.unlock();
         throw new DBProviderException("произошла ошибка при добавлении элемента");
@@ -77,7 +76,7 @@ public class CollectionService {
         return sortByCoords(collection);
     }
 
-    public  Stack<Vehicle> update(User user, long current_id, VehicleModel element) throws DBProviderException {
+    public  boolean update(User user, long current_id, VehicleModel element) throws DBProviderException {
         locker.lock();
         try {
             if (DBProvider.updateVehicle(user, current_id, element)) {
@@ -102,7 +101,7 @@ public class CollectionService {
                         break;
                     }
                 }
-                return sortByCoords(collection);
+                return true;
             }
             throw new DBProviderException("Произошла ошибка во время изменения элемента");
         } finally {
@@ -110,12 +109,12 @@ public class CollectionService {
         }
     }
 
-    public  Stack<Vehicle> removeById(User user, long id) throws DBProviderException {
+    public boolean removeById(User user, long id) throws DBProviderException {
         locker.lock();
         try {
             if (DBProvider.removeVehicleById(id)){
                 collection.removeIf(vehicle -> vehicle.getId() == id);
-                return sortByCoords(collection);
+                return true;
             }
             throw new DBProviderException("Произошла ошибка при удалении элемента. Возможно элемента с таким id не существует");
         } finally {
@@ -123,12 +122,12 @@ public class CollectionService {
         }
     }
 
-    public  Stack<Vehicle> clear(User user) throws DBProviderException {
+    public  boolean clear(User user) throws DBProviderException {
         locker.lock();
         try {
             if (DBProvider.clearVehicles(user)){
                 collection.removeIf(vehicle -> vehicle.getCreator().equals(user.getUsername()));
-                return sortByCoords(collection);
+                return true;
             }
             throw new DBProviderException("произошла ошибка при добавлении элемента");
         } finally {
@@ -136,7 +135,7 @@ public class CollectionService {
         }
     }
 
-    public  Stack<Vehicle> removeGreater(User user, long startId) throws NonExistingElementException, DBProviderException {
+    public boolean removeGreater(User user, long startId) throws NonExistingElementException, DBProviderException {
         locker.lock();
         try {
             long endId = elementsCount;
@@ -146,7 +145,7 @@ public class CollectionService {
 
             if (DBProvider.removeVehiclesGreaterThanId(user, startId)){
                 collection.removeIf(vehicle -> vehicle.getId() >= startId && vehicle.getCreator().equals(user.getUsername()));
-                return sortByCoords(collection);
+                return true;
             }
             throw new DBProviderException("Произошла ошибка при удалении элементов");
         } finally {
@@ -160,7 +159,7 @@ public class CollectionService {
         return collection;
     }
 
-    public  Stack<Vehicle> removeAllByType(User user, VehicleType type) throws NonExistingElementException, DBProviderException {
+    public  boolean removeAllByType(User user, VehicleType type) throws NonExistingElementException, DBProviderException {
         locker.lock();
         try {
             var vehiclesToRemove = collection.stream().filter(vehicle -> vehicle.getType().equals(type)
@@ -171,7 +170,7 @@ public class CollectionService {
 
             if (DBProvider.removeVehiclesByType(user, type)){
                 collection.removeAll(vehiclesToRemove);
-                return sortByCoords(collection);
+                return true;
             }
             throw new DBProviderException("Произошла ошибка при удалении элементов");
         } finally {
