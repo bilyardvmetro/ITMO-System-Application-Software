@@ -10,7 +10,9 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
+
 
 public class CountGreaterThanEnginePowerWindowController {
 
@@ -19,6 +21,8 @@ public class CountGreaterThanEnginePowerWindowController {
     User user = client.getUser();
 
     private MainPageController mainPageController;
+
+    private Locale locale = MainPageController.locale;
 
     @FXML
     private ResourceBundle resources;
@@ -37,6 +41,10 @@ public class CountGreaterThanEnginePowerWindowController {
 
     @FXML
     void initialize() {
+        resources = ResourceBundle.getBundle("locales", locale);
+        enginePowerField.setPromptText(resources.getString("type_engine_power_here"));
+        submitButton.setText(resources.getString("submit"));
+
         submitButton.setOnAction(actionEvent -> {
             try {
                 var response = client.sendAndReceive(new Request(user, "countGreaterThanEnginePower", enginePowerField.getText()));

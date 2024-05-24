@@ -11,11 +11,13 @@ import Utils.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -30,7 +32,7 @@ public class AddWindowController {
 
     private MainPageController mainPageController;
 
-    static Locale locale;
+    static Locale locale = MainPageController.locale;
 
     @FXML
     private ResourceBundle resources;
@@ -71,6 +73,8 @@ public class AddWindowController {
     @FXML
     void initialize() {
         typeChoiceBox.setItems(types);
+        resources = ResourceBundle.getBundle("locales", locale);
+        setLocaleText();
 
         addSubmitButton.setOnAction(actionEvent -> {
             try {
@@ -94,7 +98,6 @@ public class AddWindowController {
 
                 var response = client.sendAndReceive(new Request(user, "add", "", new VehicleModel(name, coordinates, enginePower, capacity, distanceTravelled, type, user)));
                 mainPageController.printResponse(response.getMessage());
-                mainPageController.RefreshObjectsTable(response.getCollection());
 
             } catch (NegativeFieldException | EmptyFieldException e) {
                 messageLabel.setText(e.getMessage());
@@ -106,6 +109,14 @@ public class AddWindowController {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void setLocaleText(){
+        nameForm.setPromptText(resources.getString("name"));
+        enginePowerForm.setPromptText(resources.getString("engine_power"));
+        capacityForm.setPromptText(resources.getString("capacity"));
+        distanceTravelledForm.setPromptText(resources.getString("distance_travelled"));
+        addSubmitButton.setText(resources.getString("submit"));
     }
 
     public void setParent (MainPageController mainPageController){

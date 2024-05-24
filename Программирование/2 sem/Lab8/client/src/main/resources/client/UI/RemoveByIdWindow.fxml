@@ -4,14 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0"
-            prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="client.UI.RemoveByIdWindowController">
-    <Label alignment="CENTER" layoutX="50.0" layoutY="15.0" prefHeight="30.0" prefWidth="200.0"
-           text="Remove element by id"/>
-    <Button fx:id="submitButton" layoutX="125.0" layoutY="125.0" mnemonicParsing="false" text="submit"/>
-    <Label fx:id="messageLabel" alignment="CENTER" layoutX="50.0" layoutY="175.0" prefHeight="30.0" prefWidth="200.0"
-           textFill="#ed0606"/>
-    <MenuButton fx:id="idChoiceField" layoutX="75.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0"
-                prefWidth="149.0"/>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.RemoveByIdWindowController">
+    <Label alignment="CENTER" layoutX="50.0" layoutY="15.0" prefHeight="30.0" prefWidth="200.0" text="Remove element by id" />
+    <Button fx:id="submitButton" layoutX="118.0" layoutY="125.0" mnemonicParsing="false" text="%submit" />
+    <Label fx:id="messageLabel" alignment="CENTER" layoutX="50.0" layoutY="175.0" prefHeight="30.0" prefWidth="200.0" textFill="#ed0606" />
+    <MenuButton fx:id="idChoiceField" layoutX="75.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" />
 </AnchorPane>

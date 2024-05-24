@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.ConnectException;
+import java.net.SocketException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
@@ -19,11 +19,35 @@ import java.util.ResourceBundle;
 
 public class LoginRegisterPageController {
 
+    @FXML
+    public Label passwordLabel;
+
+    @FXML
+    public Label loginHereLabel;
+
+    @FXML
+    public Label welcomeLabel;
+
+    @FXML
+    public Label loginLabel;
+
+    @FXML
+    public Label loginLabelR;
+
+    @FXML
+    public Label passwordLabelR;
+
+    @FXML
+    public Label registerHereLabel;
+
+    @FXML
+    public Label welcomeLabelR;
+
     Client client = ApplicationClient.getClient();
 
     User user = client.getUser();
 
-    static Locale locale;
+    private static Locale locale;
 
     @FXML
     private ResourceBundle resources;
@@ -74,10 +98,34 @@ public class LoginRegisterPageController {
     private TextField registerUsernameField;
 
     @FXML
+    private Button russianButton;
+
+    @FXML
+    private Button russianButtonR;
+
+    @FXML
+    private Button slovakianButton;
+
+    @FXML
+    private Button slovakianButtonR;
+
+    @FXML
+    private Button spainButton;
+
+    @FXML
+    private Button spainButtonR;
+
+    @FXML
+    private Button swedenButton;
+
+    @FXML
+    private Button swedenButtonR;
+
+    @FXML
     void initialize() {
         try {
             client.connect();
-        } catch (ConnectException e) {
+        } catch (SocketException e) {
             loginErrorField.setText("Сервер недоступен в данный момент. Пожалуйста, повторите попытку позже");
             registerErrorField.setText("Сервер недоступен в данный момент. Пожалуйста, повторите попытку позже");
         }
@@ -114,12 +162,72 @@ public class LoginRegisterPageController {
                 e.printStackTrace();
             }
         });
+
+        russianButton.setOnAction(actionEvent -> {
+            locale = new Locale("ru", "RU");
+            setLocaleText();
+        });
+
+        slovakianButton.setOnAction(actionEvent -> {
+            locale = new Locale("sk", "SK");
+            setLocaleText();
+        });
+
+        swedenButton.setOnAction(actionEvent -> {
+            locale = new Locale("sv", "SE");
+            setLocaleText();
+        });
+
+        spainButton.setOnAction(actionEvent -> {
+            locale = new Locale("es", "ES");
+            setLocaleText();
+        });
+
+        russianButtonR.setOnAction(actionEvent -> {
+            locale = new Locale("ru", "RU");
+            setLocaleText();
+        });
+
+        slovakianButtonR.setOnAction(actionEvent -> {
+            locale = new Locale("sk", "SK");
+            setLocaleText();
+        });
+
+        swedenButtonR.setOnAction(actionEvent -> {
+            locale = new Locale("sv", "SE");
+            setLocaleText();
+        });
+
+        spainButtonR.setOnAction(actionEvent -> {
+            locale = new Locale("es", "ES");
+            setLocaleText();
+        });
+    }
+
+    private void setLocaleText() {
+        resources = ResourceBundle.getBundle("locales", locale);
+        loginTab.setText("login");
+        registerTab.setText("register");
+
+        loginButton.setText(resources.getString("login"));
+        registerButton.setText(resources.getString("register"));
+
+        loginLabel.setText(resources.getString("login"));
+        passwordLabel.setText(resources.getString("password"));
+        loginHereLabel.setText(resources.getString("pls_login_here"));
+        welcomeLabel.setText(resources.getString("welcome"));
+
+        loginLabelR.setText(resources.getString("login"));
+        passwordLabelR.setText(resources.getString("password"));
+        registerHereLabel.setText(resources.getString("pls_register_here"));
+        welcomeLabelR.setText(resources.getString("welcome"));
     }
 
     private void showMainPage(Button button) {
         button.getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(LoginRegisterPageController.class.getResource("MainPage.fxml"));
+        fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
         try {
             fxmlLoader.load();

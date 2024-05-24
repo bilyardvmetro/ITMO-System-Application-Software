@@ -16,8 +16,10 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Stack;
+
 
 public class UpdateWindowController {
     private final Client client = ApplicationClient.getClient();
@@ -34,6 +36,8 @@ public class UpdateWindowController {
 
     @FXML
     private ResourceBundle resources;
+
+    private Locale locale = MainPageController.locale;
 
     @FXML
     private URL location;
@@ -74,6 +78,10 @@ public class UpdateWindowController {
         typeChoiceBox.setValue(VehicleType.BOAT);
         idChoiceField.setText("id");
 
+        resources = ResourceBundle.getBundle("locales", locale);
+
+        setLocaleText();
+
         for (Vehicle element : vehicles) {
             var menuItem = new MenuItem(String.valueOf(element.getId()));
 
@@ -108,7 +116,6 @@ public class UpdateWindowController {
                 var response = client.sendAndReceive(new Request(user, "update", id.toString(),
                         new VehicleModel(name, coordinates, enginePower, capacity, distanceTravelled, type, user)));
                 mainPageController.printResponse(response.getMessage());
-                mainPageController.RefreshObjectsTable(response.getCollection());
 
             } catch (NegativeFieldException | EmptyFieldException e) {
                 messageLabel.setText(e.getMessage());
@@ -120,6 +127,15 @@ public class UpdateWindowController {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void setLocaleText(){
+        nameForm.setPromptText(resources.getString("name"));
+        enginePowerForm.setPromptText(resources.getString("engine_power"));
+        capacityForm.setPromptText(resources.getString("capacity"));
+        distanceTravelledForm.setPromptText(resources.getString("distance_travelled"));
+        updateSubmitButton.setText(resources.getString("submit"));
+
     }
 
     public void setParent(MainPageController mainPageController) {

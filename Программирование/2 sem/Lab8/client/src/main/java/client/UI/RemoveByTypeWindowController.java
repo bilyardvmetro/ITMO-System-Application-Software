@@ -10,10 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RemoveByTypeWindowController {
@@ -27,6 +27,7 @@ public class RemoveByTypeWindowController {
 
     @FXML
     private ResourceBundle resources;
+    private Locale locale = MainPageController.locale;
 
     @FXML
     private URL location;
@@ -44,12 +45,13 @@ public class RemoveByTypeWindowController {
     void initialize() {
         typeField.setItems(types);
         typeField.setValue(VehicleType.BOAT);
+        resources = ResourceBundle.getBundle("locales", locale);
+        submitButton.setText(resources.getString("submit"));
 
         submitButton.setOnAction(actionEvent -> {
             try {
                 var response = client.sendAndReceive(new Request(user, "removeByType", typeField.getValue().toString()));
                 mainPageController.printResponse(response.getMessage());
-                mainPageController.RefreshObjectsTable(response.getCollection());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {

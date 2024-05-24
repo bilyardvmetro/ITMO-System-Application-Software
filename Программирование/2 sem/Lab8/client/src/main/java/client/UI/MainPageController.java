@@ -45,6 +45,9 @@ public class MainPageController {
 
     private final User user = client.getUser();
 
+    @FXML
+    public Label welcomeLabel;
+
     private CountGreaterThanEnginePowerWindowController CGTEPController;
 
     private FilterStartsWithNameWindowController FSWNController;
@@ -77,7 +80,7 @@ public class MainPageController {
 
     private ObservableList<Vehicle> collection = FXCollections.observableList(vehicles);
 
-    static Locale locale;
+    protected static Locale locale;
 
     @FXML
     private ResourceBundle resources;
@@ -216,6 +219,17 @@ public class MainPageController {
 
     private Window mainWindow;
 
+    @FXML
+    private Button russianButton;
+
+    @FXML
+    private Button slovakianButton;
+
+    @FXML
+    private Button spainButton;
+
+    @FXML
+    private Button swedenButton;
 
     @FXML
     void initialize() {
@@ -227,9 +241,30 @@ public class MainPageController {
         Timeline pingServerTimeline = getTimeline();
         pingServerTimeline.play();
 
+        russianButton.setOnAction(actionEvent -> {
+            locale = new Locale("ru", "RU");
+            setLocaleText();
+        });
+
+        slovakianButton.setOnAction(actionEvent -> {
+            locale = new Locale("sk", "SK");
+            setLocaleText();
+        });
+
+        swedenButton.setOnAction(actionEvent -> {
+            locale = new Locale("sv", "SE");
+            setLocaleText();
+        });
+
+        spainButton.setOnAction(actionEvent -> {
+            locale = new Locale("es", "ES");
+            setLocaleText();
+        });
+
         addButton.setOnAction(actionEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(AddWindowController.class.getResource("AddWindow.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
             try {
                 fxmlLoader.load();
@@ -260,6 +295,7 @@ public class MainPageController {
         removeAllByTypeButton.setOnAction(actionEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(RemoveByTypeWindowController.class.getResource("RemoveByTypeWindow.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
             try {
                 fxmlLoader.load();
@@ -282,6 +318,7 @@ public class MainPageController {
         removeGreaterButton.setOnAction(actionEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(RemoveGreaterWindowController.class.getResource("RemoveGreaterWindow.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
             try {
                 fxmlLoader.load();
@@ -304,6 +341,7 @@ public class MainPageController {
         countGreaterThanEPButton.setOnAction(actionEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(CountGreaterThanEnginePowerWindowController.class.getResource("CountGreaterThanEnginePowerWindow.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
             try {
                 fxmlLoader.load();
@@ -326,6 +364,7 @@ public class MainPageController {
         nameFilterButton.setOnAction(actionEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(FilterStartsWithNameWindowController.class.getResource("FilterStartsWithNameWindow.fxml"));
+            fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
             try {
                 fxmlLoader.load();
@@ -356,27 +395,31 @@ public class MainPageController {
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("script files", "*.txt"));
             File scriptFile = fileChooser.showOpenDialog(mainWindow);
 
-            pingServerTimeline.stop();
-            try {
+            Thread scriptThread = new Thread(() -> {
+                try {
+                    pingServerTimeline.stop();
+                    client.executeScript(scriptFile.toString());
+                    responseArea.setPromptText("Script successfully done!!!");
+                    pingServerTimeline.play();
 
-                client.executeScript(scriptFile.toString());
-
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (FileNotFoundException e){
-                responseArea.setText("Файл " + scriptFile + " не найден");
-            } catch (NoSuchElementException e){
-                responseArea.setText("Файл " + scriptFile + " пуст");
-            } catch (IllegalStateException e){
-                responseArea.setText("Непредвиденная ошибка");
-            } catch (SecurityException e){
-                responseArea.setText("Недостаточно прав для чтения файла " + scriptFile);
-            } catch (InvalidPathException e){
-                responseArea.setText("Проверьте путь к файлу. В нём не должно быть лишних символов");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            pingServerTimeline.play();
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (FileNotFoundException e){
+                    responseArea.setText("Файл " + scriptFile + " не найден");
+                } catch (NoSuchElementException e){
+                    responseArea.setText("Файл " + scriptFile + " пуст");
+                } catch (IllegalStateException e){
+                    responseArea.setText("Непредвиденная ошибка");
+                } catch (SecurityException e){
+                    responseArea.setText("Недостаточно прав для чтения файла " + scriptFile);
+                } catch (InvalidPathException e){
+                    responseArea.setText("Проверьте путь к файлу. В нём не должно быть лишних символов");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            scriptThread.start();
+            responseArea.setPromptText("Script is running...");
 
         });
 
@@ -470,9 +513,33 @@ public class MainPageController {
 
     }
 
+    private void setLocaleText() {
+        resources = ResourceBundle.getBundle("locales", locale);
+        MainTab.setText(resources.getString("main_page"));
+        CanvasTab.setText(resources.getString("objects_tab"));
+
+        nameColumn.setText(resources.getString("name"));
+        dateColumn.setText(resources.getString("creation_date"));
+        EPColumn.setText(resources.getString("engine_power"));
+        capacityColumn.setText(resources.getString("capacity"));
+        DTColumn.setText(resources.getString("distance_travelled"));
+        typeColumn.setText(resources.getString("type"));
+        creatorColumn.setText(resources.getString("creator"));
+
+        welcomeLabel.setText(resources.getString("greeting_message"));
+
+        commandMenu.setText(resources.getString("commands"));
+        executeScriptMenu.setText(resources.getString("executeScript"));
+        exitButton.setText(resources.getString("exit"));
+
+        InfoArea.setPromptText(resources.getString("item_info"));
+        responseArea.setPromptText(resources.getString("response"));
+    }
+
     private void loadRemoveByIdWindow() {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(RemoveByIdWindowController.class.getResource("RemoveByIdWindow.fxml"));
+        fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
         try {
             fxmlLoader.load();
@@ -493,7 +560,7 @@ public class MainPageController {
     }
 
     private Timeline getTimeline() {
-        Timeline pingServerTimeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        Timeline pingServerTimeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
             try {
                 vehicles = client.sendAndReceive(new Request(user, "ping", "")).getCollection();
                 RefreshObjectsTable(vehicles);
@@ -510,18 +577,16 @@ public class MainPageController {
     }
 
     public void RefreshObjectsTable(Stack<Vehicle> vehicles) {
-        if (vehicles != null){
-            if (!vehicles.equals(vehiclesCopy)) {
-                ObjectCanvas.getChildren().clear();
+        if (!vehicles.equals(vehiclesCopy)) {
+            ObjectCanvas.getChildren().clear();
 
-                drawVehicles(vehicles);
-                vehiclesCopy = vehicles;
-            }
-
-            collection = FXCollections.observableList(vehicles);
-            ObjectTable.setItems(collection);
-            ObjectTable.refresh();
+            drawVehicles(vehicles);
+            vehiclesCopy = vehicles;
         }
+
+        collection = FXCollections.observableList(vehicles);
+        ObjectTable.setItems(collection);
+        ObjectTable.refresh();
     }
 
     private void processUserCommand(String command) {
@@ -602,6 +667,7 @@ public class MainPageController {
     private void loadUpdateWindow() {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(UpdateWindowController.class.getResource("UpdateWindow.fxml"));
+        fxmlLoader.setResources(ResourceBundle.getBundle("locales"));
 
         try {
             fxmlLoader.load();

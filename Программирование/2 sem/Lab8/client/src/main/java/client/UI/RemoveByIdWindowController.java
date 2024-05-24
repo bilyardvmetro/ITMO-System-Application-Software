@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
@@ -26,6 +27,8 @@ public class RemoveByIdWindowController {
     @FXML
     private ResourceBundle resources;
 
+    private Locale locale = MainPageController.locale;
+
     @FXML
     private URL location;
 
@@ -42,6 +45,9 @@ public class RemoveByIdWindowController {
     void initialize() {
         idChoiceField.setText("id");
 
+        resources = ResourceBundle.getBundle("locales", locale);
+        submitButton.setText(resources.getString("submit"));
+
         for (Vehicle element : vehicles) {
             var menuItem = new MenuItem(String.valueOf(element.getId()));
 
@@ -57,7 +63,6 @@ public class RemoveByIdWindowController {
             try {
                 var response = client.sendAndReceive(new Request(user, "removeById", idChoiceField.toString()));
                 mainPageController.printResponse(response.getMessage());
-                mainPageController.RefreshObjectsTable(response.getCollection());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {

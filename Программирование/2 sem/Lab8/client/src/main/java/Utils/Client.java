@@ -34,7 +34,6 @@ public class Client {
         this.port = port;
     }
 
-    // TODO: 28.04.2024 функция переподключения к серваку
     public void connect() throws ConnectException{
         try {
             SocketAddress address = new InetSocketAddress(host, port);
@@ -79,6 +78,7 @@ public class Client {
             VehicleModel objArgument = VehicleAsker.createElement(user);
             request = new Request(user, command, arguments, objArgument);
             response = sendAndReceive(request);
+            System.out.println(response.getMessage());
         }
         else if (command.equalsIgnoreCase("exit")){
             System.exit(0);
@@ -89,10 +89,11 @@ public class Client {
         else {
             request = new Request(user, command, arguments);
             response = sendAndReceive(request);
+            System.out.println(response.getMessage());
         }
     }
 
-    public Response sendAndReceive(Request request) throws IOException, ClassNotFoundException {
+    public synchronized Response sendAndReceive(Request request) throws IOException, ClassNotFoundException {
 
         try(ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(bytes)) {
@@ -167,6 +168,11 @@ public class Client {
             }
             else {
                 processScriptCommand(command, arguments);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         } while (scriptScanner.hasNextLine());
 
@@ -177,18 +183,5 @@ public class Client {
     public User getUser() {
         return user;
     }
-}
 
-//catch (FileNotFoundException e){
-//        System.out.println("Файл " + path + " не найден");
-//        } catch (NoSuchElementException e){
-//        System.out.println("Файл " + path + " пуст");
-//        } catch (IllegalStateException e){
-//        System.out.println("Непредвиденная ошибка");
-//        } catch (SecurityException e){
-//        System.out.println("Недостаточно прав для чтения файла " + path);
-//        } catch (IOException e) {
-//        System.out.println("Ошибка ввода/вывода");
-//        } catch (InvalidPathException e){
-//        System.out.println("Проверьте путь к файлу. В нём не должно быть лишних символов");
-//        }
+}

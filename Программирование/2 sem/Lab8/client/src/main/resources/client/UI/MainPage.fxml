@@ -17,79 +17,101 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.MainPageController">
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.MainPageController">
     <TabPane fx:id="TabPanel" prefHeight="700.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab fx:id="MainTab" text="Main page">
+        <Tab fx:id="MainTab" text="%main_page">
             <AnchorPane fx:id="MainPageAnchor" prefHeight="800.0" prefWidth="1280.0">
                 <TableView fx:id="ObjectTable" layoutX="45.0" layoutY="100.0" prefHeight="300.0" prefWidth="1180.0">
                     <columns>
-                        <TableColumn fx:id="idColumn" prefWidth="59.33333206176758" text="id" />
-                        <TableColumn fx:id="nameColumn" prefWidth="101.33333587646484" text="name" />
-                        <TableColumn prefWidth="71.33331298828125" text="x" fx:id="xColumn" />
-                        <TableColumn fx:id="yColumn" prefWidth="75.33332824707031" text="y" />
-                        <TableColumn fx:id="dateColumn" prefWidth="150.66665649414062" text="creation date" />
-                        <TableColumn fx:id="EPColumn" prefWidth="136.66671752929688" text="engine power" />
-                        <TableColumn fx:id="capacityColumn" prefWidth="125.3333740234375" text="capacity" />
-                        <TableColumn fx:id="DTColumn" minWidth="0.0" prefWidth="136.6666259765625" text="distance travelled" />
-                        <TableColumn fx:id="typeColumn" prefWidth="136.66668701171875" text="type" />
-                        <TableColumn fx:id="creatorColumn" prefWidth="191.3333740234375" text="creator" />
+                        <TableColumn fx:id="idColumn" prefWidth="59.33333206176758" text="id"/>
+                        <TableColumn fx:id="nameColumn" prefWidth="101.33333587646484" text="%name"/>
+                        <TableColumn prefWidth="71.33331298828125" text="x" fx:id="xColumn"/>
+                        <TableColumn fx:id="yColumn" prefWidth="75.33332824707031" text="y"/>
+                        <TableColumn fx:id="dateColumn" prefWidth="150.66665649414062" text="%creation_date"/>
+                        <TableColumn fx:id="EPColumn" prefWidth="136.66671752929688" text="%engine_power"/>
+                        <TableColumn fx:id="capacityColumn" prefWidth="125.3333740234375" text="%capacity"/>
+                        <TableColumn fx:id="DTColumn" minWidth="0.0" prefWidth="136.6666259765625"
+                                     text="%distance_travelled"/>
+                        <TableColumn fx:id="typeColumn" prefWidth="136.66668701171875" text="%type"/>
+                        <TableColumn fx:id="creatorColumn" prefWidth="191.3333740234375" text="%creator"/>
                     </columns>
                 </TableView>
-                <TextField fx:id="usernameBar" editable="false" layoutX="1060.0" layoutY="50.0" prefHeight="20.0" prefWidth="200.0" promptText="username">
+                <TextField fx:id="usernameBar" editable="false" layoutX="1060.0" layoutY="50.0" prefHeight="20.0"
+                           prefWidth="200.0" promptText="username">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </TextField>
-                <ImageView fx:id="avatar" fitHeight="80.0" fitWidth="80.0" layoutX="970.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="1.0" translateY="1.0" translateZ="1.0" />
-                <Separator fx:id="mainPageSep" layoutY="410.0" prefHeight="10.0" prefWidth="1280.0" />
-                <TextArea fx:id="responseArea" editable="false" layoutX="45.0" layoutY="430.0" prefHeight="200.0" prefWidth="600.0" promptText="Response" />
-                <Label layoutX="10.0" layoutY="40.0" prefHeight="40.0" prefWidth="500.0" text="Это крутое приложение запущено специально для пацанов">
+                <ImageView fx:id="avatar" fitHeight="80.0" fitWidth="80.0" layoutX="970.0" layoutY="10.0"
+                           pickOnBounds="true" preserveRatio="true" translateX="1.0" translateY="1.0" translateZ="1.0"/>
+                <Separator fx:id="mainPageSep" layoutY="410.0" prefHeight="10.0" prefWidth="1280.0"/>
+                <TextArea fx:id="responseArea" editable="false" layoutX="45.0" layoutY="430.0" prefHeight="200.0"
+                          prefWidth="600.0" promptText="%response"/>
+                <Label fx:id="welcomeLabel" layoutX="10.0" layoutY="40.0" prefHeight="40.0" prefWidth="500.0"
+                       text="%greeting_message">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Label>
                 <MenuBar fx:id="menuBar">
-                    <Menu fx:id="commandMenu" mnemonicParsing="false" text="Commands">
-                        <MenuItem fx:id="helpButton" mnemonicParsing="false" text="Help" />
-                        <MenuItem fx:id="infoButton" mnemonicParsing="false" text="Info" />
-                        <MenuItem fx:id="historyButton" mnemonicParsing="false" text="History" />
-                        <MenuItem fx:id="showButton" mnemonicParsing="false" text="Show" />
-                        <MenuItem fx:id="reorderButton" mnemonicParsing="false" text="Reorder" />
-                        <MenuItem fx:id="addButton" mnemonicParsing="false" text="Add" />
-                        <MenuItem fx:id="updateButton" mnemonicParsing="false" text="Update" />
-                        <MenuItem fx:id="removeByIdButton" mnemonicParsing="false" text="Remove By Id" />
-                        <MenuItem fx:id="removeGreaterButton" mnemonicParsing="false" text="Remove Greater Than Id" />
-                        <MenuItem fx:id="removeAllByTypeButton" mnemonicParsing="false" text="Remove All By Type" />
-                        <MenuItem fx:id="clearButton" mnemonicParsing="false" text="Clear" />
-                        <MenuItem fx:id="countGreaterThanEPButton" mnemonicParsing="false" text="Count Greater Than Engine Power" />
-                        <MenuItem fx:id="nameFilterButton" mnemonicParsing="false" text="Filter Starts With Name" />
+                    <Menu fx:id="commandMenu" mnemonicParsing="false" text="%commands">
+                        <MenuItem fx:id="helpButton" mnemonicParsing="false" text="Help"/>
+                        <MenuItem fx:id="infoButton" mnemonicParsing="false" text="Info"/>
+                        <MenuItem fx:id="historyButton" mnemonicParsing="false" text="History"/>
+                        <MenuItem fx:id="showButton" mnemonicParsing="false" text="Show"/>
+                        <MenuItem fx:id="reorderButton" mnemonicParsing="false" text="Reorder"/>
+                        <MenuItem fx:id="addButton" mnemonicParsing="false" text="Add"/>
+                        <MenuItem fx:id="updateButton" mnemonicParsing="false" text="Update"/>
+                        <MenuItem fx:id="removeByIdButton" mnemonicParsing="false" text="Remove By Id"/>
+                        <MenuItem fx:id="removeGreaterButton" mnemonicParsing="false" text="Remove Greater Than Id"/>
+                        <MenuItem fx:id="removeAllByTypeButton" mnemonicParsing="false" text="Remove All By Type"/>
+                        <MenuItem fx:id="clearButton" mnemonicParsing="false" text="Clear"/>
+                        <MenuItem fx:id="countGreaterThanEPButton" mnemonicParsing="false"
+                                  text="Count Greater Than Engine Power"/>
+                        <MenuItem fx:id="nameFilterButton" mnemonicParsing="false" text="Filter Starts With Name"/>
                     </Menu>
-                    <Menu fx:id="executeScriptMenu" mnemonicParsing="false" text="ExecuteScript">
-                        <MenuItem fx:id="scriptButton" mnemonicParsing="false" text="Execute Script" />
+                    <Menu fx:id="executeScriptMenu" mnemonicParsing="false" text="%executeScript">
+                        <MenuItem fx:id="scriptButton" mnemonicParsing="false" text="Execute Script"/>
                     </Menu>
                 </MenuBar>
-                <Button fx:id="exitButton" layoutX="1060.0" layoutY="10.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0" text="Exit">
+
+                <Button fx:id="russianButton" layoutX="1220.0" layoutY="430.0" mnemonicParsing="false" prefWidth="40.0"
+                        text="RU"/>
+                <Button fx:id="spainButton" layoutX="1174.0" layoutY="430.0" mnemonicParsing="false" prefWidth="40.0"
+                        text="ES"/>
+                <Button fx:id="swedenButton" layoutX="1174.0" layoutY="460.0" mnemonicParsing="false" prefWidth="40.0"
+                        text="SV"/>
+                <Button fx:id="slovakianButton" layoutX="1220.0" layoutY="460.0" mnemonicParsing="false"
+                        prefWidth="40.0" text="SK"/>
+
+                <Button fx:id="exitButton" layoutX="1060.0" layoutY="10.0" mnemonicParsing="false" prefHeight="20.0"
+                        prefWidth="200.0" text="%exit">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="14.0"/>
                     </font>
                 </Button>
             </AnchorPane>
         </Tab>
-        <Tab fx:id="CanvasTab" text="Objects">
+        <Tab fx:id="CanvasTab" text="%objects_tab">
             <AnchorPane fx:id="CanvasTabAnchor" prefHeight="650.0" prefWidth="900.0">
-                <TextArea fx:id="InfoArea" editable="false" layoutX="30.0" layoutY="430.0" prefHeight="200.0" prefWidth="400.0" promptText="Item Info">
+                <TextArea fx:id="InfoArea" editable="false" layoutX="30.0" layoutY="430.0" prefHeight="200.0"
+                          prefWidth="400.0" promptText="%item_info">
                     <font>
-                        <Font size="12.0" />
+                        <Font size="12.0"/>
                     </font>
                 </TextArea>
-                <Separator fx:id="CanvasSep" layoutY="410.0" prefHeight="10.0" prefWidth="1280.0" />
-                <Label fx:id="prikolLabel" alignment="TOP_LEFT" layoutX="490.0" layoutY="430.0" prefHeight="175.0" prefWidth="600.0" text="Delete item: right mouse click&#10;Update item: double mouse click&#10;Item info: mouse click&#10;&#10;Blue items are yours&#10;Orange items - other users items&#10;">
+                <Separator fx:id="CanvasSep" layoutY="410.0" prefHeight="10.0" prefWidth="1280.0"/>
+                <Label fx:id="prikolLabel" alignment="TOP_LEFT" layoutX="490.0" layoutY="430.0" prefHeight="175.0"
+                       prefWidth="600.0"
+                       text="Delete item: right mouse click&#10;Update item: double mouse click&#10;Item info: mouse click&#10;&#10;Blue items are yours&#10;Orange items - other users items&#10;">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Label>
-                <Separator layoutX="452.0" layoutY="415.0" orientation="VERTICAL" prefHeight="255.0" prefWidth="10.0" />
-                <Pane fx:id="ObjectCanvas" layoutX="30.0" layoutY="30.0" prefHeight="370.0" prefWidth="1200.0" />
+                <Separator layoutX="452.0" layoutY="415.0" orientation="VERTICAL" prefHeight="255.0" prefWidth="10.0"/>
+                <Pane fx:id="ObjectCanvas" layoutX="30.0" layoutY="30.0" prefHeight="370.0" prefWidth="1200.0"/>
             </AnchorPane>
         </Tab>
     </TabPane>
