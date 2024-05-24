@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="103481de-56cb-4759-929d-497b6970cc2f" name="Changes" comment="">
+    <list default="true" id="103481de-56cb-4759-929d-497b6970cc2f" name="Changes" comment=":construction: lab8 server done!!!">
       <change afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_es_ES.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_ru_RU.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_sk_SK.properties" afterDir="false" />
@@ -39,11 +39,6 @@
       <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_ru.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_sk.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_sv.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/CollectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/CollectionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,11 +109,24 @@
       <workItem from="1716558165488" duration="2566000" />
       <workItem from="1716568937856" duration="1457000" />
       <workItem from="1716575848860" duration="2548000" />
-      <workItem from="1716586405345" duration="3087000" />
+      <workItem from="1716586405345" duration="3287000" />
     </task>
+    <task id="LOCAL-00001" summary=":construction: lab8 server done!!!">
+      <option name="closed" value="true" />
+      <created>1716590168866</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716590168866</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":construction: lab8 server done!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: lab8 server done!!!" />
   </component>
 </project>
