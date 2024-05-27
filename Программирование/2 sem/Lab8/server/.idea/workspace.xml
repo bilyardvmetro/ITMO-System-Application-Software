@@ -5,40 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="103481de-56cb-4759-929d-497b6970cc2f" name="Changes" comment=":construction: lab8 server done!!!">
-      <change afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_es_ES.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_ru_RU.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_sk_SK.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_sv_SE.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../КиК/Поленов РТ КиК_24.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../КиК/Поленов РТ КиК_24.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/artifacts/client_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/artifacts/client_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/out/artifacts/client_jar/client.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/out/artifacts/client_jar/client.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/Utils/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/Utils/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/AddWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/AddWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/ApplicationStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/ApplicationStarter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/CountGreaterThanEnginePowerWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/CountGreaterThanEnginePowerWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/FilterStartsWithNameWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/FilterStartsWithNameWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/LoginRegisterPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/LoginRegisterPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/MainPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByIdWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByIdWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByTypeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveByTypeWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveGreaterWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/RemoveGreaterWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/main/java/client/UI/UpdateWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/client/UI/UpdateWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/AddWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/AddWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/CountGreaterThanEnginePowerWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/CountGreaterThanEnginePowerWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/FilterStartsWithNameWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/FilterStartsWithNameWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/LoginRegisterPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/LoginRegisterPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/MainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByIdWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByIdWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByTypeWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveByTypeWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveGreaterWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/RemoveGreaterWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/client/UI/UpdateWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/client/UI/UpdateWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_es.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_ru.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_sk.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_sv.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/main/resources/locales_es_ES.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/resources/locales_es_ES.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +84,12 @@
       <workItem from="1716568937856" duration="1457000" />
       <workItem from="1716575848860" duration="2548000" />
       <workItem from="1716586405345" duration="3287000" />
+      <workItem from="1716629700211" duration="1074000" />
+      <workItem from="1716637568469" duration="624000" />
+      <workItem from="1716642512148" duration="556000" />
+      <workItem from="1716673921946" duration="960000" />
+      <workItem from="1716720052056" duration="303000" />
+      <workItem from="1716799377619" duration="7284000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: lab8 server done!!!">
       <option name="closed" value="true" />

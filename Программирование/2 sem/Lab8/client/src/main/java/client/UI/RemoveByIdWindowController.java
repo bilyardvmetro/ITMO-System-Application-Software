@@ -61,7 +61,7 @@ public class RemoveByIdWindowController {
 
         submitButton.setOnAction(actionEvent -> {
             try {
-                var response = client.sendAndReceive(new Request(user, "removeById", idChoiceField.toString()));
+                var response = client.sendAndReceive(new Request(user, "removeById", id.toString()));
                 mainPageController.printResponse(response.getMessage());
             } catch (IOException e) {
                 throw new RuntimeException(e);

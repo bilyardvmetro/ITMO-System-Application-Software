@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.PickResult;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -35,6 +37,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.InvalidPathException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -80,7 +83,7 @@ public class MainPageController {
 
     private ObservableList<Vehicle> collection = FXCollections.observableList(vehicles);
 
-    protected static Locale locale;
+    protected static Locale locale = new Locale("ru", "RU");
 
     @FXML
     private ResourceBundle resources;
@@ -423,6 +426,21 @@ public class MainPageController {
 
         });
 
+        ObjectTable.setOnMouseClicked(mouseEvent ->{
+            if (mouseEvent.getClickCount() == 2){
+                PickResult pickResult = mouseEvent.getPickResult();
+//                try {
+                    Text node = (Text) pickResult.getIntersectedNode();
+                    var id = node.getText();
+                    var filteredCollection = vehicles.stream().filter(vehicle -> vehicle.getId().equals(Long.parseLong(id))).collect(Collectors.toCollection(Stack::new));
+                    UpdateWindowController.calledFromTable = true;
+                    UpdateWindowController.vehicleToUpdate = filteredCollection.get(0);
+//                } catch (ClassCastException ignored){}
+
+                loadUpdateWindow();
+            }
+        });
+
         showButton.setOnAction(actionEvent -> processUserCommand("show"));
 
         historyButton.setOnAction(actionEvent -> processUserCommand("history"));
@@ -611,23 +629,25 @@ public class MainPageController {
     }
 
     private void drawVehicles(Stack<Vehicle> vehicles) {
-        var x = 0;
-        var y = 0;
+//        var x = 0;
+//        var y = 0;
 
         for (Vehicle element : vehicles) {
-            if (x >= 1200) {
-                x = 0;
-                y += 74;
-            }
+//            if (x >= 1200) {
+//                x = 0;
+//                y += 74;
+//            }
 
             Circle circle = new Circle(15);
-            circle.setCenterX(x);
-            circle.setCenterY(y);
+            circle.setCenterX(element.getCoordinates().getX());
+            circle.setCenterY(element.getCoordinates().getY());
 
             if (element.getCreator().equals(user.getUsername())) {
                 circle.setFill(Color.DEEPSKYBLUE);
             } else {
-                circle.setFill(Color.ORANGERED);
+                int seed = element.getCreator().transform(s -> s.length() % 2);
+                Random generator = new Random(seed);
+                circle.setFill(Color.color(generator.nextDouble(), generator.nextDouble(), generator.nextDouble()));
             }
 
             ScaleTransition circleAnimation = new ScaleTransition(Duration.millis(800), circle);
@@ -636,18 +656,18 @@ public class MainPageController {
             circleAnimation.setFromY(0.2);
             circleAnimation.setToY(1);
 
-            var text = getCircleText(element, x, y);
+            var text = getCircleText(element, element.getCoordinates().getX(), element.getCoordinates().getY());
 
             circleAnimation.play();
 
             ObjectCanvas.getChildren().addAll(circle, text);
 
-            x += 40;
+//            x += 40;
         }
 
     }
 
-    private Text getCircleText(Vehicle element, int x, int y) {
+    private Text getCircleText(Vehicle element, float x, double y) {
         var text = new Text(x - 13, y + 4, element.getId().toString());
 
         text.setOnMouseClicked(mouseEvent -> {
@@ -687,6 +707,8 @@ public class MainPageController {
         updateWindowController.setParent(this);
     }
 
+
+
     private void initializeTable(ObservableList<Vehicle> collection) {
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
         nameColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getName()));
@@ -700,6 +722,7 @@ public class MainPageController {
         creatorColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCreator()));
 
         ObjectTable.setItems(collection);
+
     }
 
 }

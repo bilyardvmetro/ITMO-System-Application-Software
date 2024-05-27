@@ -30,6 +30,10 @@ public class UpdateWindowController {
 
     private Long id;
 
+    public static boolean calledFromTable;
+
+    public static Vehicle vehicleToUpdate;
+
     private MainPageController mainPageController;
 
     private final ObservableList<VehicleType> types = FXCollections.observableArrayList(VehicleType.BOAT, VehicleType.HOVERBOARD, VehicleType.SPACESHIP);
@@ -91,6 +95,20 @@ public class UpdateWindowController {
             });
 
             idChoiceField.getItems().addAll(menuItem);
+        }
+
+        if (calledFromTable){
+            id = vehicleToUpdate.getId();
+            idChoiceField.setText(vehicleToUpdate.getId().toString());
+            nameForm.setText(vehicleToUpdate.getName());
+            xForm.setText(vehicleToUpdate.getCoordinates().getX().toString());
+            Double y = vehicleToUpdate.getCoordinates().getY();
+            yForm.setText(y.toString());
+            enginePowerForm.setText(vehicleToUpdate.getEnginePower().toString());
+            capacityForm.setText(vehicleToUpdate.getCapacity().toString());
+            Float dis = vehicleToUpdate.getDistanceTravelled();
+            distanceTravelledForm.setText(dis.toString());
+            typeChoiceBox.setValue(vehicleToUpdate.getType());
         }
 
         updateSubmitButton.setOnAction(actionEvent -> {
