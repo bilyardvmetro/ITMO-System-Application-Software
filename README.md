@@ -60,7 +60,7 @@ https://github.com/JustAGod1/bevm
 | Предмет / семестр | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 | ----------------- | - | - | - | - | - | - | - | - |
 | Основы профессиональной деятельности | :white_check_mark: (86)| :construction: | - | - | - | - | - | - |
-| Программирование | :white_check_mark: (80)| :construction: | - | - | - | - | - | - |
+| Программирование | :white_check_mark: (80)| :white_check_mark: (92.84) | - | - | - | - | - | - |
 | Информатика | :white_check_mark: (90.26)| - | - | - | - | - | - | - |
 | Дискретная математика | :white_check_mark: (80)| :construction: | - | - | - | - | - | - |
 | Мат. анализ | :white_check_mark: (80.75)| :construction: | - | - | - | - | - | - |
