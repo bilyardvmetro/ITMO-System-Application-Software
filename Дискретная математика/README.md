@@ -30,4 +30,4 @@
 |  ДЗ 4  | :white_check_mark: |
 |  ДЗ 5  | :white_check_mark: |
 |  ДЗ 6  | :white_check_mark: |
-| Курсач | :construction: |
+| Курсач | :white_check_mark: |
