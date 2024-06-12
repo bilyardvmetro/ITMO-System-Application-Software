@@ -62,7 +62,7 @@ https://github.com/JustAGod1/bevm
 | Основы профессиональной деятельности | :white_check_mark: (86)| :construction: | - | - | - | - | - | - |
 | Программирование | :white_check_mark: (80)| :white_check_mark: (92.84) | - | - | - | - | - | - |
 | Информатика | :white_check_mark: (90.26)| - | - | - | - | - | - | - |
-| Дискретная математика | :white_check_mark: (80)| :construction: | - | - | - | - | - | - |
+| Дискретная математика | :white_check_mark: (80)| :white_check_mark: (80) | - | - | - | - | - | - |
 | Мат. анализ | :white_check_mark: (80.75)| :construction: | - | - | - | - | - | - |
 | Лин. алгебра | :white_check_mark: (85)| :construction: | - | - | - | - | - | - |
 | Англ язык | :white_check_mark: (69)| :white_check_mark: (78) | - | - | - | - | - | - |
