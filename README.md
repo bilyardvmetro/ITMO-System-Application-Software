@@ -31,6 +31,7 @@ https://github.com/frizyyu/first_year_in_ITMO
 
 ##### Максим Ванешик
 https://github.com/Vaneshik/VT-Labs
+> б6 порнодемон
 
 
 ##### Слава Петров
