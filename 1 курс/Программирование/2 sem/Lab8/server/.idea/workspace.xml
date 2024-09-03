@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="103481de-56cb-4759-929d-497b6970cc2f" name="Changes" comment=":construction: lab8 server done!!!">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2gbUzCzEYkuUL1krh6ZUC7kH8xm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ITMO-System-Application-Software/Программирование/2 sem/Lab8/server/src/main/java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ITMO-System-Application-Software\Программирование\2 sem\Lab8\server\src\main\java" />
+      <recent name="E:\ITMO-System-Application-Software\Программирование\2 sem\Lab8\server\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Server" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="103481de-56cb-4759-929d-497b6970cc2f" name="Changes" comment="" />
+      <created>1715966032310</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715966032310</updated>
+      <workItem from="1715966033487" duration="3560000" />
+      <workItem from="1716022030509" duration="75000" />
+      <workItem from="1716150047458" duration="14200000" />
+      <workItem from="1716237739662" duration="2776000" />
+      <workItem from="1716283814685" duration="6380000" />
+      <workItem from="1716369819167" duration="3666000" />
+      <workItem from="1716399780590" duration="5506000" />
+      <workItem from="1716469767212" duration="9636000" />
+      <workItem from="1716493559442" duration="3949000" />
+      <workItem from="1716499365137" duration="248000" />
+      <workItem from="1716499627848" duration="96000" />
+      <workItem from="1716553234187" duration="3460000" />
+      <workItem from="1716558165488" duration="2566000" />
+      <workItem from="1716568937856" duration="1457000" />
+      <workItem from="1716575848860" duration="2548000" />
+      <workItem from="1716586405345" duration="3287000" />
+      <workItem from="1716629700211" duration="1074000" />
+      <workItem from="1716637568469" duration="624000" />
+      <workItem from="1716642512148" duration="556000" />
+      <workItem from="1716673921946" duration="960000" />
+      <workItem from="1716720052056" duration="303000" />
+      <workItem from="1716799377619" duration="7284000" />
+      <workItem from="1718302746726" duration="330000" />
+    </task>
+    <task id="LOCAL-00001" summary=":construction: lab8 server done!!!">
+      <option name="closed" value="true" />
+      <created>1716590168866</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716590168866</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":construction: lab8 server done!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: lab8 server done!!!" />
+  </component>
+</project>

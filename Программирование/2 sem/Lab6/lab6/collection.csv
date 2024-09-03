@@ -1,7 +1,0 @@
-id,Название,Координата x,Координата y,Дата создания,Мощность двигателя,Объем двигателя,Пробег,Тип
-1,carti,32.0,4.0,Mon Apr 08 13:11:27 MSK 2024,2313.0,3.32432423E16,5.7347577E22,HOVERBOARD
-2,hello from script,6.0,6.0,Mon Apr 08 13:11:49 MSK 2024,6.0,6.0,6.0,SPACESHIP
-4,hello from script,6.0,6.0,Mon Apr 08 13:12:16 MSK 2024,6.0,6.0,6.0,SPACESHIP
-5,hello from script,6.0,6.0,Mon Apr 08 13:12:17 MSK 2024,6.0,6.0,6.0,SPACESHIP
-6,hello from script,6.0,6.0,Mon Apr 08 13:12:18 MSK 2024,6.0,6.0,6.0,SPACESHIP
-7,hello from script,6.0,6.0,Mon Apr 08 13:12:19 MSK 2024,6.0,6.0,6.0,SPACESHIP
