@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Lab 1</title>
+
+    <link rel="stylesheet" href="MainPage.css">
+</head>
+
+<body>
+
+<header>
+    <div class="name-and-group">
+        Поленов Кирилл Александрович
+        <br>
+        PЗ213
+    </div>
+
+    <div class="title-and-variant">
+        <div class="title">
+            Web Lab 1
+        </div>
+
+        <div class="variant">
+            Var 413044
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="coords-and-inputs-container">
+        <div class="inputs">
+            <form id="coords-form" method="get" onsubmit="submitForm(event)">
+                <div class="x-input">
+                    <h5>Выберите X</h5>
+                    <br>
+                    X:
+                    <button class="x-button" type="button" data-value="-4"> -4 </button>
+
+                    <button class="x-button" type="button" data-value="-3"> -3 </button>
+
+                    <button class="x-button" type="button" data-value="-2"> -2 </button>
+
+                    <button class="x-button" type="button" data-value="-1"> -1 </button>
+
+                    <button class="x-button" type="button" data-value="0"> 0 </button>
+
+                    <button class="x-button" type="button" data-value="1"> 1 </button>
+
+                    <button class="x-button" type="button" data-value="2"> 2 </button>
+
+                    <button class="x-button" type="button" data-value="3"> 3 </button>
+
+                    <button class="x-button" type="button" data-value="4"> 4 </button>
+                </div>
+
+                <div class="y-input">
+                    <h5>Введите Y</h5>
+                    <br>
+                    <label>
+                        Y:
+                        <input id="YInput" type="text" placeholder="from -5 to 3" min="-5" max="3"/>
+                    </label>
+                </div>
+
+                <div class="r-input">
+                    <h5>Введите R</h5>
+                    <br>
+                    <label>
+                        R:
+                        <input id="RInput" type="text" placeholder="from 1 to 4" min="1" max="4"/>
+                    </label>
+                </div>
+
+                <button id="submitButton" type="submit"
+                        onmouseover="document.body.style.backgroundImage='url(https://preview.redd.it/name-you-favorite-movie-but-add-getting-jonkled-by-jonkler-v0-38cm2dx9f63d1.jpeg?auto=webp&s=1b99067f243c076da1e8b2df2e0fa0071dcdb721)'"
+                        onmouseout="document.body.style.backgroundImage=''">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+        <div class="coordinate-plane">
+            <canvas id="coordinate-plane"></canvas>
+        </div>
+    </div>
+
+    <table class="res-table">
+        <thead id="table-head">
+            <tr>
+                <th>
+                    X
+                </th>
+                <th>
+                    Y
+                </th>
+                <th>
+                    R
+                </th>
+                <th>
+                    Текущее время
+                </th>
+                <th>
+                    Время исполнения
+                </th>
+                <th>
+                    Результат
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <small> bilyardvmetro Porno Entertainment Inc. Enterprise Copyright. All Rights Reserved.</small>
+</footer>
+
+<script src="canvas.js"></script>
+<script src="sendRequest.js"></script>
+
+</body>
+</html>

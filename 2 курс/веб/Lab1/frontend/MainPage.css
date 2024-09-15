@@ -1,0 +1,137 @@
+* {
+    font-family: "Goudy Bookletter 1911", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --navy-blue: #05668d;
+    --blue: #427aa1;
+    --white: #ebf2fa;
+    --dark-green: #679436;
+    --light-green: #a5be00;
+}
+
+body {
+    background-color: var(--white);
+    width: 100svw;
+    height: 100svh;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+header {
+    background-color: var(--light-green);
+    display: flex;
+    width: 100%;
+
+    .name-and-group {
+        padding-left: 10px;
+        font-size: 20px;
+        display: flex;
+        place-items: center;
+    }
+
+    .title-and-variant {
+        width: 300px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        margin-left: auto;
+        font-size: 18px;
+        background-color: var(--dark-green);
+
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.coords-and-inputs-container {
+    display: flex;
+}
+
+.inputs {
+    background-color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.x-input, .y-input, .r-input {
+    margin: 5px;
+
+}
+
+.x-button {
+    margin: 3px;
+    padding: 2px;
+    width: 40px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.x-button:focus {
+    background-color: var(--dark-green);
+}
+
+.x-button:hover {
+    background-color: blue;
+    color: var(--white);
+    box-shadow: 0 0 10px 4px deepskyblue;
+}
+
+#RInput, #YInput {
+    padding: 5px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+#submitButton {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: var(--light-green);
+    border: 1px solid black;
+    color: black;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#submitButton:hover {
+    background-color: var(--dark-green);
+}
+
+.coordinate-plane {
+    place-content: center;
+    margin-left: 210px;
+}
+
+table {
+    margin: 5px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+th {
+    border-left: 2px solid black;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    place-content: center;
+    background-color: #1f1f1f;
+    color: gray;
+}
