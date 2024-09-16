@@ -1,7 +1,4 @@
 let x;
-let yForm = document.getElementById("YInput");
-let rForm = document.getElementById("RInput");
-
 document.querySelectorAll(".x-button").forEach(button => {
     button.addEventListener("click", function () {
         x = this.getAttribute("data-value");
@@ -15,11 +12,26 @@ async function submitForm(event){
     const yValue = parseFloat(document.getElementById("YInput").value);
     const rValue = parseFloat(document.getElementById("RInput").value);
 
-    if (isNaN(yValue) || isNaN(rValue) || checkForms(yValue, rValue)){
+    if (isNaN(xValue)){
+        alert("Введите X");
+        return
+    }
+
+    if (isNaN(yValue)){
+        alert("Введите Y");
+        return
+    }
+
+    if (isNaN(rValue)){
+        alert("Введите R");
+        return
+    }
+
+    if (checkY(yValue) || checkR(rValue)){
         return;
     }
 
-    drawDot(xValue, yValue, rValue);
+    // drawDot(xValue, yValue, rValue);
 
     const url = `http://localhost:8080/fcgi-bin/FcgiServer.jar?x=${xValue}&y=${yValue}&r=${rValue}`;
     console.log(url)
@@ -33,18 +45,19 @@ async function submitForm(event){
     });
 }
 
-function checkForms(y, r){
-    //TODO починить валейдаторы
+function checkY(y){
     if (!((-5 <= y) && (y <= 3))){
-        yForm.setCustomValidity("Y введён неверно");
+        alert("Y введён неверно")
         return true;
     }
+    return false;
+}
 
+function checkR(r){
     if (!((1 <= r) && (r <= 4))){
-        rForm.setCustomValidity("R введён неверно");
+        alert("R введён неверно")
         return true;
     }
-
     return false;
 }
 
@@ -81,11 +94,13 @@ function addTableRow(data, x, y, r){
 }
 
 function drawDot(x, y, r){
+
+    // TODO починить отрисовку точки
     const canvas = document.getElementById('coordinate-plane');
     const ctx = canvas.getContext('2d');
 
     let plotX = 2*x/r * 30;
-    let plotY = 2*y/r * 30;
+    let plotY = 2*-y/r * 30;
 
     ctx.beginPath();
     ctx.translate(canvas.width/2, canvas.height/2);
