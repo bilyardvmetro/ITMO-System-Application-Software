@@ -13,11 +13,19 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     background-color: var(--white);
     width: 100svw;
     height: 100svh;
     background-attachment: fixed;
     background-size: cover;
+}
+
+/*селектор дочерних элементов*/
+header > div {
+    display: flex;
+    place-items: center;
 }
 
 header {
@@ -28,16 +36,12 @@ header {
     .name-and-group {
         padding-left: 10px;
         font-size: 20px;
-        display: flex;
-        place-items: center;
     }
 
     .title-and-variant {
         width: 300px;
         padding: 15px;
-        display: flex;
         flex-direction: column;
-        place-items: center;
         margin-left: auto;
         font-size: 18px;
         background-color: var(--dark-green);
@@ -48,10 +52,19 @@ header {
 main {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .coords-and-inputs-container {
     display: flex;
+}
+
+/* селектор потомств */
+form input {
+    padding: 5px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid black;
 }
 
 .inputs {
@@ -69,7 +82,8 @@ main {
 
 }
 
-.x-button {
+/*селектор по атрибуту*/
+button[type=button] {
     margin: 3px;
     padding: 2px;
     width: 40px;
@@ -87,13 +101,6 @@ main {
     box-shadow: 0 0 10px 4px deepskyblue;
 }
 
-#RInput, #YInput {
-    padding: 5px;
-    width: 200px;
-    height: 20px;
-    border: 1px solid black;
-}
-
 #submitButton {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -105,6 +112,7 @@ main {
     border-radius: 10px;
 }
 
+/*селектор псевдоклассов*/
 #submitButton:hover {
     background-color: var(--dark-green);
 }
@@ -115,20 +123,26 @@ main {
 }
 
 table {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
     margin: 5px;
     text-align: center;
     border: 3px solid black;
     border-radius: 10px;
 }
 
-th {
-    border-left: 2px solid black;
+th, td{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+th:nth-child(n), td:nth-child(n) {
+    width: 200px;
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    height: 40px;
+    margin-top: 30px;
     width: 100%;
     text-align: center;
     place-content: center;

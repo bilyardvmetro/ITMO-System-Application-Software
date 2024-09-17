@@ -1,7 +1,4 @@
 let x;
-let yForm = document.getElementById("YInput");
-let rForm = document.getElementById("RInput");
-
 document.querySelectorAll(".x-button").forEach(button => {
     button.addEventListener("click", function () {
         x = this.getAttribute("data-value");
@@ -15,15 +12,35 @@ async function submitForm(event){
     const yValue = parseFloat(document.getElementById("YInput").value);
     const rValue = parseFloat(document.getElementById("RInput").value);
 
-    if (isNaN(yValue) || isNaN(rValue) || checkForms(yValue, rValue)){
+    if (isNaN(xValue)){
+        alert("Введите X");
+        return
+    }
+
+    if (isNaN(yValue)){
+        alert("Введите Y");
+        return
+    }
+
+    if (isNaN(rValue)){
+        alert("Введите R");
+        return
+    }
+
+    if (checkY(yValue) || checkR(rValue)){
         return;
     }
 
-    const url = `http://localhost:8083/fcgi-bin/FcgiServer.jar?x=${xValue}&y=${yValue}&r=${rValue}`;
+    // drawDot(xValue, yValue, rValue);
+
+    const url = `http://localhost:8082/fcgi-bin/FcgiServer.jar?x=${xValue}&y=${yValue}&r=${rValue}`;
     console.log(url)
 
     fetch(url, {method: 'GET'}).then(response => response.json()).then(data => {
         console.log("otvet prishel\n")
+        if (data.hasOwnProperty("error")){
+            addErrorRow(data);
+        }
         addTableRow(data, xValue, yValue, rValue);
 
     }).catch((error) => {
@@ -31,25 +48,26 @@ async function submitForm(event){
     });
 }
 
-function checkForms(y, r){
-    //TODO сделать правильные алерты
+function checkY(y){
     if (!((-5 <= y) && (y <= 3))){
-        yForm.setCustomValidity("Проверьте число Y на корректность");
+        alert("Y введён неверно")
         return true;
     }
+    return false;
+}
 
+function checkR(r){
     if (!((1 <= r) && (r <= 4))){
-        rForm.setCustomValidity("Проверьте число R на корректность");
+        alert("R введён неверно")
         return true;
     }
-
     return false;
 }
 
 function addTableRow(data, x, y, r){
     console.log("tablica delaetsya")
     let tbody = document.querySelector("tbody");
-    let newRow = tbody.insertRow();
+    let newRow = document.createElement("tr");
 
     let xCell = newRow.insertCell();
     let xValue = document.createTextNode(x)
@@ -74,6 +92,33 @@ function addTableRow(data, x, y, r){
     let resultCell = newRow.insertCell();
     let resultValue = document.createTextNode(data.result);
     resultCell.appendChild(resultValue);
+
+    tbody.prepend(newRow);
 }
 
-//TODO  добавить отрисовку точки
+function addErrorRow (data){
+    let tbody = document.querySelector("tbody");
+    let newRow = document.createElement("tr");
+
+    let errorCell = newRow.insertCell();
+    let errorMsg = document.createTextNode(data.error);
+    errorCell.appendChild(errorMsg);
+}
+
+function drawDot(x, y, r){
+
+    // TODO починить отрисовку точки
+    const canvas = document.getElementById('coordinate-plane');
+    const ctx = canvas.getContext('2d');
+
+    let plotX = 2*x/r * 30;
+    let plotY = 2*-y/r * 30;
+
+    ctx.beginPath();
+    ctx.translate(canvas.width/2, canvas.height/2);
+    ctx.arc(plotX, plotY, 6, 0, 2*Math.PI);
+    ctx.fillStyle = 'purple';
+    ctx.fill();
+    ctx.resetTransform();
+    ctx.closePath();
+}
