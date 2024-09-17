@@ -12,32 +12,40 @@ async function submitForm(event){
     const yValue = parseFloat(document.getElementById("YInput").value);
     const rValue = parseFloat(document.getElementById("RInput").value);
 
+    let errorsStr = "";
+
     if (isNaN(xValue)){
-        alert("Введите X");
-        return
+        errorsStr += "Введите X\n";
     }
 
     if (isNaN(yValue)){
-        alert("Введите Y");
-        return
+        errorsStr += ("Введите Y\n");
+    } else if (checkY(yValue)){
+        errorsStr += ("Y введён неверно\n");
     }
 
     if (isNaN(rValue)){
-        alert("Введите R");
-        return
+        errorsStr += ("Введите R\n");
+    } else if (checkR(rValue)){
+        errorsStr += ("R введён неверно\n");
     }
+    console.log(errorsStr)
 
-    if (checkY(yValue) || checkR(rValue)){
-        return;
+    if (errorsStr){
+        alert(errorsStr);
+        return
     }
 
     // drawDot(xValue, yValue, rValue);
 
-    const url = `http://localhost:8080/fcgi-bin/FcgiServer.jar?x=${xValue}&y=${yValue}&r=${rValue}`;
+    const url = `http://localhost:8082/fcgi-bin/FcgiServer.jar?x=${xValue}&y=${yValue}&r=${rValue}`;
     console.log(url)
 
     fetch(url, {method: 'GET'}).then(response => response.json()).then(data => {
         console.log("otvet prishel\n")
+        if (data.hasOwnProperty("error")){
+            addErrorRow(data);
+        }
         addTableRow(data, xValue, yValue, rValue);
 
     }).catch((error) => {
@@ -46,19 +54,13 @@ async function submitForm(event){
 }
 
 function checkY(y){
-    if (!((-5 <= y) && (y <= 3))){
-        alert("Y введён неверно")
-        return true;
-    }
-    return false;
+    return !((-5 <= y) && (y <= 3));
+
 }
 
 function checkR(r){
-    if (!((1 <= r) && (r <= 4))){
-        alert("R введён неверно")
-        return true;
-    }
-    return false;
+    return !((1 <= r) && (r <= 4));
+
 }
 
 function addTableRow(data, x, y, r){
@@ -91,6 +93,15 @@ function addTableRow(data, x, y, r){
     resultCell.appendChild(resultValue);
 
     tbody.prepend(newRow);
+}
+
+function addErrorRow (data){
+    let tbody = document.querySelector("tbody");
+    let newRow = document.createElement("tr");
+
+    let errorCell = newRow.insertCell();
+    let errorMsg = document.createTextNode(data.error);
+    errorCell.appendChild(errorMsg);
 }
 
 function drawDot(x, y, r){

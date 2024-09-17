@@ -59,7 +59,7 @@
                     <br>
                     <label>
                         Y:
-                        <input id="YInput" type="text" placeholder="from -5 to 3" min="-5" max="3"/>
+                        <input id="YInput" type="text" placeholder="from -5 to 3" maxlength="6"/>
                     </label>
                 </div>
 
@@ -68,13 +68,14 @@
                     <br>
                     <label>
                         R:
-                        <input id="RInput" type="text" placeholder="from 1 to 4" min="1" max="4"/>
+                        <input id="RInput" type="text" placeholder="from 1 to 4" maxlength="6"/>
                     </label>
                 </div>
 
                 <button id="submitButton" type="submit"
                         onmouseover="document.body.style.backgroundImage='url(https://preview.redd.it/name-you-favorite-movie-but-add-getting-jonkled-by-jonkler-v0-38cm2dx9f63d1.jpeg?auto=webp&s=1b99067f243c076da1e8b2df2e0fa0071dcdb721)'"
-                        onmouseout="document.body.style.backgroundImage=''">
+                        onmouseout="document.body.style.backgroundImage=''"
+                onclick="play()">
                     Submit
                 </button>
             </form>
@@ -101,7 +102,7 @@
                     Текущее время
                 </th>
                 <th>
-                    Время исполнения
+                    Время исполнения (ms)
                 </th>
                 <th>
                     Результат
@@ -121,6 +122,17 @@
 
 <script src="canvas.js"></script>
 <script src="sendRequest.js"></script>
+
+<audio id="52">
+    <source src="52.mp3" type="audio/mp3"/>
+</audio>
+
+<script>
+    function play() {
+        const audio = document.getElementById("52");
+        audio.play();
+    }
+</script>
 
 </body>
 </html>

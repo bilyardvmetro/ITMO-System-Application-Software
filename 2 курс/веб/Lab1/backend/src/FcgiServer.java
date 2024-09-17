@@ -30,8 +30,12 @@ public class FcgiServer {
         System.out.println(response);
     }
 
-    private HashMap<String, String> parseRequest(String request) {
+    private HashMap<String, String> parseRequest(String request) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
         String[] equalities = request.split("&");
+        if (equalities.length > 3) {
+            throw new IllegalArgumentException("Request must contain 3 parameters");
+        }
+
         HashMap<String, String> parsedValues = new HashMap<>();
 
         log.info(Arrays.toString(equalities));
@@ -67,34 +71,89 @@ public class FcgiServer {
                 String request = FCGIInterface.request.params.getProperty("QUERY_STRING");
                 log.info("\n" + request);
 
-                var valuesMap = parseRequest(request);
-                var x = Integer.parseInt(valuesMap.get("x"));
-                var y = Float.parseFloat(valuesMap.get("y"));
-                var r = Float.parseFloat(valuesMap.get("r"));
+                HashMap<String, String> valuesMap;
 
-                if (!(MathFunctions.hitCheck(x, y, r))){
-                    sendResponse("""
-                {
-                "x": %d,
-                "y": %.2f,
-                "r": %.2f,
-                "execution_time": "%tS",
-                "result": "Miss"
-                }
-                """.formatted(x, y, r, System.nanoTime() - executionStart));
-                    log.info("Miss response sent");
+                try{
+                    valuesMap = parseRequest(request);
+                    if (valuesMap.get("x").isEmpty() || valuesMap.get("y").isEmpty() || valuesMap.get("r").isEmpty()) {
 
-                } else {
+                    }
+                    var x = Integer.parseInt(valuesMap.get("x"));
+                    var y = Float.parseFloat(valuesMap.get("y"));
+                    var r = Float.parseFloat(valuesMap.get("r"));
+
+                    if (Validator.checkX(x)){
+                        sendResponse("""
+                        {
+                        "error": "R is invalid"
+                        }
+                        """);
+                        log.info("Error response sent");
+                    }
+
+                    if (Validator.checkY(y)){
+                        sendResponse("""
+                        {
+                        "error": "Y is invalid"
+                        }
+                        """);
+                        log.info("Error response sent");
+                    }
+
+                    if (Validator.checkR(r)){
+                        sendResponse("""
+                        {
+                        "error": "R is invalid"
+                        }
+                        """);
+                        log.info("Error response sent");
+                    }
+
+                    if (!(MathFunctions.hitCheck(x, y, r))){
+                        sendResponse("""
+                        {
+                        "x": %d,
+                        "y": %.2f,
+                        "r": %.2f,
+                        "execution_time": "%tS",
+                        "result": "Miss"
+                        }
+                        """.formatted(x, y, r, System.nanoTime() - executionStart));
+                        log.info("Miss response sent");
+
+                    } else {
+                        sendResponse("""
+                        {
+                        "x": %d,
+                        "y": %.2f,
+                        "r": %.2f,
+                        "execution_time": "%tS",
+                        "result": "Hit"
+                        }
+                        """.formatted(x, y, r, System.nanoTime() - executionStart));
+                        log.info("Hit response sent");
+                    }
+                } catch (NumberFormatException e){
                     sendResponse("""
-                {
-                "x": %d,
-                "y": %.2f,
-                "r": %.2f,
-                "execution_time": "%tS",
-                "result": "Hit"
-                }
-                """.formatted(x, y, r, System.nanoTime() - executionStart));
-                    log.info("Hit response sent");
+                    {
+                    "error": "Some of values are not a numbers"
+                    }
+                    """);
+                    log.info("Error response sent");
+                } catch (IllegalArgumentException e){
+                    sendResponse("""
+                    {
+                    "error": "Request contains more than 3 values"
+                    }
+                    """);
+                    log.info("Error response sent");
+                } catch (ArrayIndexOutOfBoundsException e){
+                    sendResponse("""
+                    {
+                    "error": "Request contains empty values"
+                    }
+                    """);
+                    log.info("Error response sent");
                 }
             }
         }
