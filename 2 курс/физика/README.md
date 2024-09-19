@@ -1,0 +1,19 @@
+# Физика
+
+![pic](https://github.com/bilyardvmetro/ITMO-System-Application-Software/blob/main/gifs/physics.gif)
+
+> Лектор: - (дистант)
+>
+> Практик: Иванов Владимир Сергеевич
+
+
+---
+
+### Прогресс
+| Лаба | баллы | максимум |
+| ---- | ----- | -------- | 
+| 1  |    -     |    5    |
+| 2  |  :lock:  |    5    |
+| 3  |  :lock:  |    5    |
+| 4  |  :lock:  |    5    |
+| 5  |  :lock:  |    5    |

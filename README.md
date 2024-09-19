@@ -12,20 +12,25 @@ https://youtube.com/@kirill_pael_supa?si=ZZd0hK14WgjjF3Uj
 
 ### Репы других ребят
 
-##### Сеня Альхимович (АРтём дабстеп)
+##### Женя
+https://github.com/2BuRy1
+> МОНТАНА
+
+
+##### Сеня(Артём дабстеп)
 https://www.youtube.com/@artemdabstep_diy/videos
 
 https://github.com/senya-2011
 > лучший образовательный канал по версии журнала playboy
 
 
-##### Даня Батманов
+##### Даня
 https://github.com/CodeAxeAttacks
 > легенда второго курса. Лучший муж, сын, преподаватель майнкрафта
 
 
-##### Тёма Васильев
-https://github.com/frizyyu/first_year_in_ITMO
+##### Тёма
+https://github.com/frizyyu
 > псих дискры
 
 
@@ -39,11 +44,11 @@ https://github.com/petrovviacheslav
 > сын Макса Барсукова
 
 
-##### Андрей Казарин
+##### Андрей К.
 https://github.com/L1mPeX
 
 
-##### Андрей Шмунк
+##### Андрей Ш.
 https://github.com/Gastozavr
 > спиздил у меня таблицу с этой ридмишки
 
