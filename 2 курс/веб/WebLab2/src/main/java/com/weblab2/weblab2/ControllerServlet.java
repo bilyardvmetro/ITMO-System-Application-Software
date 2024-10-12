@@ -20,34 +20,22 @@ public class ControllerServlet extends HttpServlet {
         var y = request.getParameter("y");
         var r = request.getParameter("r");
 
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(r);
-
-
-        if ((x != null && y != null && r != null)
-//                && (!x.isEmpty() && !y.isEmpty() && !r.isEmpty())
-        ) {
+        if ((x != null && y != null && r != null)) {
             try {
-                int parsedX = Integer.parseInt(x);
+                float parsedX = Float.parseFloat(x);
                 float parsedY = Float.parseFloat(y);
-                int parsedR = Integer.parseInt(r);
+                float parsedR = Float.parseFloat(r);
 
-                System.out.println(parsedX);
-                System.out.println(parsedY);
-                System.out.println(parsedR);
+                System.out.println(parsedX + " " + parsedY + " " + parsedR);
 
                 var xCheck = checkX(parsedX);
                 var yCheck = checkY(parsedY);
                 var rCheck = checkR(parsedR);
 
-                System.out.println(xCheck);
-                System.out.println(yCheck);
-                System.out.println(rCheck);
-
+                System.out.println(xCheck + " " + yCheck + " " + rCheck);
 
                 if (!(xCheck || yCheck || rCheck)){
-                    System.out.println("YES");
+                    System.out.println("goto calc");
                     request.getRequestDispatcher("/checkArea").forward(request, response);
                 } else {
                     if (xCheck) {

@@ -2,7 +2,7 @@ package com.weblab2.weblab2;
 
 public class Validator {
 
-    public static boolean checkX(int x){
+    public static boolean checkX(float x){
         return x < -3 || x > 5;
     }
 

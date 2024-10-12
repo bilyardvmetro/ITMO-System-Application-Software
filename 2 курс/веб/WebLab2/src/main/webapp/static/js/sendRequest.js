@@ -1,22 +1,59 @@
-// const ctx = document.getElementById('coordinate-plane').getContext('2d');
-//
-// ctx.addEventListener("mousedown", (event) =>{
-//     drawDot(event)
-// })
+const plane = document.getElementById('coordinate-plane')
+const form = document.getElementById('coords-form')
 
-let form = document.getElementById('coords-form')
+plane.addEventListener("mousedown", async (event) => {
+    event.preventDefault()
+
+    let r = document.querySelector(".r-checkbox:checked")
+    if (r == null) {
+        alert("Введите R");
+        return
+    }
+
+    let canvasPos = canvas.getBoundingClientRect()
+    const clickX = event.clientX - canvasPos.left
+    const clickY = event.clientY - canvasPos.top
+
+    console.log(clickX, clickY)
+
+    let x = ((clickX.toFixed(4) - 150) / 30).toFixed(4)
+    let y = ((150 - clickY.toFixed(4)) / 30).toFixed(4)
+    let rVal = r.value
+
+    console.log(x, y, rVal)
+
+    let formData = new URLSearchParams()
+    formData.set('x', x.toString())
+    formData.set('y', y.toString())
+    formData.set('r', rVal)
+
+    await fetch('http://127.0.0.1:8080/WebLab2/controller',
+        {
+            method: 'POST',
+            body: formData
+        })
+        .then(function (response) {
+            return response.text()
+        }).then((html) => {
+            document.body.innerHTML = html
+        });
+    console.log("data fetched")
+
+    drawDot(plane, x, y, rVal)
+})
 
 form.addEventListener("submit", (event) =>{
     event.preventDefault()
     sendData()
 })
 
+
 async function sendData(){
     let x = document.getElementById("x-selector")
     let r = document.querySelector(".r-checkbox:checked")
 
     if (r == null){
-        alert("Введиет R");
+        alert("Введите R");
         return
     }
 
@@ -65,6 +102,8 @@ async function sendData(){
             document.body.innerHTML = html
         });
     console.log("data fetched")
+
+    drawDot(plane, xValue, yValue, rValue)
 }
 
 function checkX(x){
@@ -82,23 +121,29 @@ function checkR(r){
 
 }
 
+function drawDot(canvas, x, y, r){
+    const ctx = canvas.getContext('2d')
 
-function drawDot(ctx, event){
-    let canvasPos = ctx.getBoundingClientRect()
-    const x = event.clientX - canvasPos.left
-    const y = event.clientY - canvasPos.top
+    ctx.beginPath();
+    ctx.translate(canvas.width/2, canvas.height/2);
+    let plotX = x*(120/r);
+    let plotY = -y*(120/r);
 
-    console.log(x, y)
+    ctx.arc(plotX, plotY, 6, 0, 2*Math.PI);
+    ctx.fillStyle = 'purple';
+    ctx.fill();
 
-    // let plotX = 2*x/r * 30;
-    // let plotY = 2*-y/r * 30;
-    //
-    // ctx.beginPath();
-    // ctx.translate(canvas.width/2, canvas.height/2);
-    // ctx.arc(plotX, plotY, 6, 0, 2*Math.PI);
-    // ctx.fillStyle = 'purple';
-    //
-    // ctx.fill();
-    // ctx.resetTransform();
-    // ctx.closePath();
+    ctx.resetTransform();
+    ctx.closePath()
+
+    localStorage.setItem("x", x.toString())
+    localStorage.setItem("y", y.toString())
+    localStorage.setItem("r", r.toString())
+}
+
+function selectOnlyThis(checkBoxId){
+    for (let i = 1; i <= 5; i++){
+        document.getElementById("r" + i).checked = false
+    }
+    document.getElementById(checkBoxId).checked = true
 }

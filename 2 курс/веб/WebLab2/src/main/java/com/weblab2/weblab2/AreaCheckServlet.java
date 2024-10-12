@@ -23,9 +23,9 @@ public class AreaCheckServlet extends HttpServlet {
         var y = request.getParameter("y");
         var r = request.getParameter("r");
 
-        int parsedX = Integer.parseInt(x);
+        float parsedX = Float.parseFloat(x);
         float parsedY = Float.parseFloat(y);
-        int parsedR = Integer.parseInt(r);
+        float parsedR = Float.parseFloat(r);
 
         var hitResult = hitCheck(parsedX, parsedY, parsedR);
 

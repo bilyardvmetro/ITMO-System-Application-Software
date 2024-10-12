@@ -32,6 +32,7 @@
     <div class="error_msg">
         <%= request.getAttribute("error") %>
     </div>
+    <br>
     <a href="index.jsp">На главную</a>
 </main>
 

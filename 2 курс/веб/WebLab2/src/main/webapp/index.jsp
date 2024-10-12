@@ -68,19 +68,19 @@
                     <br>
 
                     R:
-                    <input class="r-checkbox" type="checkbox" id="r1" value="1">
+                    <input class="r-checkbox" type="checkbox" id="r1" value="1" onclick="selectOnlyThis(this.id)">
                     <label for="r1">1</label>
 
-                    <input class="r-checkbox" type="checkbox" id="r2" value="2">
+                    <input class="r-checkbox" type="checkbox" id="r2" value="2" onclick="selectOnlyThis(this.id)">
                     <label for="r2">2</label>
 
-                    <input class="r-checkbox" type="checkbox" id="r3" value="3">
+                    <input class="r-checkbox" type="checkbox" id="r3" value="3" onclick="selectOnlyThis(this.id)">
                     <label for="r3">3</label>
 
-                    <input class="r-checkbox" type="checkbox" id="r4" value="4">
+                    <input class="r-checkbox" type="checkbox" id="r4" value="4" onclick="selectOnlyThis(this.id)">
                     <label for="r4">4</label>
 
-                    <input class="r-checkbox" type="checkbox" id="r5" value="5">
+                    <input class="r-checkbox" type="checkbox" id="r5" value="5" onclick="selectOnlyThis(this.id)">
                     <label for="r5">5</label>
                 </div>
 
@@ -159,6 +159,13 @@
     function play() {
         const audio = document.getElementById("52");
         audio.play();
+    }
+</script>
+
+<script>
+    window.onload = function (){
+        const plane = document.getElementById('coordinate-plane')
+        drawDot(plane, Number(localStorage.getItem("x")), Number(localStorage.getItem("y")), Number(localStorage.getItem("r")))
     }
 </script>
 

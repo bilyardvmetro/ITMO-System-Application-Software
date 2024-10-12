@@ -30,7 +30,6 @@
 </header>
 
 <main>
-    <a href="index.jsp">На главную</a>
     <table class="res-table">
         <thead id="table-head">
         <tr>
@@ -75,6 +74,8 @@
         <% } %>
         </tbody>
     </table>
+    <br>
+    <a href="index.jsp">На главную</a>
 </main>
 
 <footer>

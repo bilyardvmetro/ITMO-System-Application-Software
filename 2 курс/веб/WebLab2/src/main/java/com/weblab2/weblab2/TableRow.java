@@ -1,20 +1,20 @@
 package com.weblab2.weblab2;
 
 public class TableRow {
-    private int x;
+    private float x;
     private float y;
-    private int r;
+    private float r;
 
     private boolean result;
 
-    public TableRow(int x, float y, int r, boolean result) {
+    public TableRow(float x, float y, float r, boolean result) {
         this.x = x;
         this.y = y;
         this.r = r;
         this.result = result;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
@@ -22,7 +22,7 @@ public class TableRow {
         return y;
     }
 
-    public int getR() {
+    public float getR() {
         return r;
     }
 
