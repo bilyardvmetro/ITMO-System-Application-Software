@@ -1,0 +1,216 @@
+* {
+    font-family: "Goudy Bookletter 1911", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --navy-blue: #05668d;
+    --blue: #427aa1;
+    --white: #ebf2fa;
+    --dark-green: #679436;
+    --light-green: #a5be00;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    width: 100svw;
+    height: 100svh;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/*селектор дочерних элементов*/
+header > div {
+    display: flex;
+    place-items: center;
+}
+
+header {
+    background-color: var(--light-green);
+    display: flex;
+    width: 100%;
+
+    .name-and-group {
+        padding-left: 10px;
+        font-size: 20px;
+    }
+
+    .title-and-variant {
+        width: 300px;
+        padding: 15px;
+        flex-direction: column;
+        margin-left: auto;
+        font-size: 18px;
+        background-color: var(--dark-green);
+
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/*.error_msg {*/
+/*    */
+/*}*/
+
+.coords-and-inputs-container {
+    display: flex;
+}
+
+.inputs {
+    background-color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    margin: 15px;
+    padding: 10px;
+    width: 500px;
+    border-radius: 15px;
+}
+
+.x-input, .y-input, .r-input {
+    margin: 5px;
+
+}
+
+#x-selector {
+    padding: 5px;
+    width: 210px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+select > option {
+    padding: 2px;
+    width: 60px;
+    height: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.r-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.r-checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+.r-checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.r-checkbox:checked+label::before {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+/* стили при наведении курсора на checkbox */
+.r-checkbox:not(:disabled):not(:checked)+label:hover::before {
+    border-color: #b3d7ff;
+}
+/* стили для активного состояния чекбокса (при нажатии на него) */
+.r-checkbox:not(:disabled):active+label::before {
+    background-color: #b3d7ff;
+    border-color: #b3d7ff;
+}
+/* стили для чекбокса, находящегося в фокусе */
+.r-checkbox:focus+label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+.r-checkbox:focus:not(:checked)+label::before {
+    border-color: #80bdff;
+}
+/* стили для чекбокса, находящегося в состоянии disabled */
+.r-checkbox:disabled+label::before {
+    background-color: #e9ecef;
+}
+
+/*селектор по атрибуту*/
+input[type=text] {
+    padding: 5px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+input[type=checkbox]:focus {
+    background-color: var(--dark-green);
+}
+
+.x-var:hover {
+    background-color: blue;
+    color: var(--white);
+    box-shadow: 0 0 10px 4px deepskyblue;
+}
+
+#submitButton {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: var(--light-green);
+    border: 1px solid black;
+    color: black;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/*селектор псевдоклассов*/
+#submitButton:hover {
+    background-color: var(--dark-green);
+}
+
+.coordinate-plane {
+    place-content: center;
+    margin-left: 210px;
+}
+
+table {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    margin: 5px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+th, td{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+th:nth-child(n), td:nth-child(n) {
+    width: 200px;
+}
+
+footer {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+    place-content: center;
+    background-color: #1f1f1f;
+    color: gray;
+}
