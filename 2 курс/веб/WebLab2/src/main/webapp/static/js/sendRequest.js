@@ -1,54 +1,43 @@
 const plane = document.getElementById('coordinate-plane')
 const form = document.getElementById('coords-form')
 
-plane.addEventListener("mousedown", async (event) => {
-    event.preventDefault()
-
-    let r = document.querySelector(".r-checkbox:checked")
-    if (r == null) {
-        alert("Введите R");
-        return
+function selectOnlyThis(checkBoxId){
+    for (let i = 1; i <= 5; i++){
+        document.getElementById("r" + i).checked = false
     }
+    document.getElementById(checkBoxId).checked = true
+}
 
-    let canvasPos = canvas.getBoundingClientRect()
-    const clickX = event.clientX - canvasPos.left
-    const clickY = event.clientY - canvasPos.top
+function checkX(x){
+    return !((-3 <= x) && (x <= 5));
+}
 
-    console.log(clickX, clickY)
+function checkY(y){
+    return !((-5 <= y) && (y <= 3));
+}
 
-    let x = ((clickX.toFixed(4) - 150) / 30).toFixed(4)
-    let y = ((150 - clickY.toFixed(4)) / 30).toFixed(4)
-    let rVal = r.value
+function checkR(r){
+    return !((1 <= r) && (r <= 5));
+}
 
-    console.log(x, y, rVal)
-
+async function sendData(x, y, r){
     let formData = new URLSearchParams()
-    formData.set('x', x.toString())
-    formData.set('y', y.toString())
-    formData.set('r', rVal)
+    formData.set('x', x)
+    formData.set('y', y)
+    formData.set('r', r)
 
     await fetch('http://127.0.0.1:8080/WebLab2/controller',
         {
             method: 'POST',
             body: formData
         })
-        .then(function (response) {
-            return response.text()
-        }).then((html) => {
+        .then(function (response) {return response.text()}).then((html) => {
             document.body.innerHTML = html
         });
     console.log("data fetched")
+}
 
-    drawDot(plane, x, y, rVal)
-})
-
-form.addEventListener("submit", (event) =>{
-    event.preventDefault()
-    sendData()
-})
-
-
-async function sendData(){
+function parseFormData(){
     let x = document.getElementById("x-selector")
     let r = document.querySelector(".r-checkbox:checked")
 
@@ -88,37 +77,14 @@ async function sendData(){
         return
     }
 
-    let formData = new URLSearchParams()
-    formData.set('x', x.options[x.selectedIndex].value)
-    formData.set('y', document.getElementById("YInput").value)
-    formData.set('r', r.value)
-
-    await fetch('http://127.0.0.1:8080/WebLab2/controller',
-        {
-            method: 'POST',
-            body: formData
-        })
-        .then(function (response) {return response.text()}).then((html) => {
-            document.body.innerHTML = html
-        });
-    console.log("data fetched")
-
+    sendData(x.options[x.selectedIndex].value, document.getElementById("YInput").value, r.value)
     drawDot(plane, xValue, yValue, rValue)
 }
 
-function checkX(x){
-    return !((-3 <= x) && (x <= 5));
-
-}
-
-function checkY(y){
-    return !((-5 <= y) && (y <= 3));
-
-}
-
-function checkR(r){
-    return !((1 <= r) && (r <= 5));
-
+function saveDot(x, y, r) {
+    localStorage.setItem("x", x.toString())
+    localStorage.setItem("y", y.toString())
+    localStorage.setItem("r", r.toString())
 }
 
 function drawDot(canvas, x, y, r){
@@ -129,21 +95,42 @@ function drawDot(canvas, x, y, r){
     let plotX = x*(120/r);
     let plotY = -y*(120/r);
 
-    ctx.arc(plotX, plotY, 6, 0, 2*Math.PI);
+    ctx.arc(plotX, plotY, 5, 0, 2*Math.PI);
     ctx.fillStyle = 'purple';
     ctx.fill();
 
     ctx.resetTransform();
     ctx.closePath()
 
-    localStorage.setItem("x", x.toString())
-    localStorage.setItem("y", y.toString())
-    localStorage.setItem("r", r.toString())
+    saveDot(x, y, r);
 }
 
-function selectOnlyThis(checkBoxId){
-    for (let i = 1; i <= 5; i++){
-        document.getElementById("r" + i).checked = false
+form.addEventListener("submit", (event) =>{
+    event.preventDefault()
+    parseFormData()
+})
+
+plane.addEventListener("mousedown", async (event) => {
+    event.preventDefault()
+
+    let r = document.querySelector(".r-checkbox:checked")
+    if (r == null) {
+        alert("Введите R");
+        return
     }
-    document.getElementById(checkBoxId).checked = true
-}
+
+    let canvasPos = canvas.getBoundingClientRect()
+    const clickX = event.clientX - canvasPos.left
+    const clickY = event.clientY - canvasPos.top
+
+    console.log(clickX, clickY)
+
+    let rVal = r.value
+    let x = ((clickX.toFixed(4) - 150) / (120/rVal)).toFixed(4)
+    let y = ((150 - clickY.toFixed(4)) / (120/rVal)).toFixed(4)
+
+    console.log(x, y, rVal)
+
+    sendData(x.toString(), y.toString(), rVal.toString())
+    drawDot(plane, x, y, rVal)
+})
