@@ -85,7 +85,7 @@ public class FcgiServer {
                     if (Validator.checkX(x)){
                         sendResponse("""
                         {
-                        "error": "R is invalid"
+                        "error": "X is invalid"
                         }
                         """);
                         log.info("Error response sent");
