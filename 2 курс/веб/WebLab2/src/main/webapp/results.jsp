@@ -1,4 +1,5 @@
 <%@ page import="com.weblab2.weblab2.TableRow" %>
+<%@ page errorPage="error.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +76,9 @@
         </tbody>
     </table>
     <br>
-    <a href="index.jsp">На главную</a>
+    <div class="home-link">
+        <a href="index.jsp">На главную</a>
+    </div>
 </main>
 
 <footer>

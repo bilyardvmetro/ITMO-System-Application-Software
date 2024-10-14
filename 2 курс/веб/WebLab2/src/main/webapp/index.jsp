@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page errorPage="error.jsp" %>
 <%@ page import="com.weblab2.weblab2.TableRow" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>

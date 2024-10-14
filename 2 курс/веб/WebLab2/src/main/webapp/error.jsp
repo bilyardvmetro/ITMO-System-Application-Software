@@ -30,10 +30,14 @@
 
 <main>
     <div class="error_msg">
+        Sry. Something went wrong (
+        <br>
         <%= request.getAttribute("error") %>
     </div>
     <br>
-    <a href="index.jsp">На главную</a>
+    <div class="home-link">
+        <a href="index.jsp">На главную</a>
+    </div>
 </main>
 
 <footer>

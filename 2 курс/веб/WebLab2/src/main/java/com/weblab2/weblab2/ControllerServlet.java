@@ -12,7 +12,7 @@ import static com.weblab2.weblab2.Validator.*;
 
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
-    private final String ERROR_MESSAGE = "Sry. Smth went wrong \n Cause: %s";
+    private final String ERROR_MESSAGE = "Cause: %s";
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
