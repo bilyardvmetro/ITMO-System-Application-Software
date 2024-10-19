@@ -26,7 +26,7 @@ async function sendData(x, y, r){
     formData.set('y', y)
     formData.set('r', r)
 
-    await fetch('http://127.0.0.1:8080/WebLab2/controller',
+    await fetch('http://localhost:44044/WebLab2/controller',
         {
             method: 'POST',
             body: formData

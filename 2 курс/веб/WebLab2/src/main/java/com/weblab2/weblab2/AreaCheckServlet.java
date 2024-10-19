@@ -31,11 +31,11 @@ public class AreaCheckServlet extends HttpServlet {
 
         var newRow = new TableRow(parsedX, parsedY, parsedR, hitResult);
 
-        Object rows = context.getAttribute("rows");
+        List<TableRow> rows = (List<TableRow>) context.getAttribute("rows");
         List<TableRow> rowList = new LinkedList<>();
 
         if (rows != null) {
-            rowList.addAll((List<TableRow>) rows);
+            rowList.addAll(rows);
         }
         rowList.add(newRow);
 
