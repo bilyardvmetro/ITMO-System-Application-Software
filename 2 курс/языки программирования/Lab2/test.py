@@ -46,9 +46,27 @@ class TestDictionary(unittest.TestCase):
         self.assertEqual(out, welcome_string + "\n" + output + "\n")
         self.assertEqual(err, "")
 
-    def test_empty_key(self):
+    def test_simple_key(self):
         input = "a"
         output = "не придумал что здесь написать"
+
+        out, err = self.run_program(input)
+
+        self.assertEqual(out, welcome_string + "\n" + output + "\n")
+        self.assertEqual(err, "")
+
+    def test_key_255(self):
+        input = "f"*255
+        output = "wassup"
+
+        out, err = self.run_program(input)
+
+        self.assertEqual(out, welcome_string + "\n" + output + "\n")
+        self.assertEqual(err, "")
+
+    def test_empty_key(self):
+        input = ""
+        output = "dev/null"
 
         out, err = self.run_program(input)
 

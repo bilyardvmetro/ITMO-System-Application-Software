@@ -1,9 +1,11 @@
 section .data
-%define EXIT_SYSCALL 60
-%define STD_OUT 1
-%define STD_IN  0
-%define WRITE_SYSCALL 1
-%define READ_SYSCALL 0
+%xdefine EXIT_SYSCALL 60
+%xdefine STD_IN  0
+%xdefine STD_OUT 1
+%xdefine STD_ERR 2
+%xdefine WRITE_SYSCALL 1
+%xdefine READ_SYSCALL 0
+%xdefine ERROR_CODE 1
 
 section .text
 
@@ -15,10 +17,12 @@ global string_equals
 
 global read_word
 global read_char
+global read_string
 
 global print_char
 global print_string
 global print_newline
+global print_error
 
 global parse_int
 global parse_uint
@@ -428,3 +432,62 @@ string_copy:
 		
     .return:
 		ret
+
+read_string: ; 8
+	xor rax, rax
+	push r12
+	push r13
+	push r14
+	mov r12, rdi
+	mov r13, rsi
+	xor r14, r14	; обнуляем счетчик
+	
+		
+	.loop:			
+		call read_char		; считываем символ
+		
+		cmp rax, `\n` 		
+		je .success_by_enter
+		
+		mov [r12 + r14], rax		; закидываем символ в буфер
+		
+		inc r14				; увеличиваем длину строки
+		
+		test rax, rax 		; проверка на нуль-терминатор. Если он есть, то мы уже дописали его к строке
+							; при помощи инструкции выше
+		je .success
+		
+		cmp r14, r13		; проверка на выход за пределы буфера
+		jge .fail
+		
+		jmp .loop
+	
+	.success_by_enter:
+		mov byte[r12 + r14], 0
+	.success:
+		mov rax, r12			; адрес буфера в rax
+		mov rdx, r14			; длину в rdx
+		jmp .return
+	
+	.fail:
+		xor rax, rax	; 0 в rax и rdx
+		xor rdx, rdx
+		
+	.return:
+		pop r14
+		pop r13
+		pop r12
+		
+		ret
+
+
+print_error:
+	mov rax, WRITE_SYSCALL
+	mov rdi, STD_ERR
+	; перед вызовом функции аргументы сискола уже лежат в rsi и rdx
+	
+	syscall
+	
+	call print_newline
+	mov rdi, ERROR_CODE
+	call exit

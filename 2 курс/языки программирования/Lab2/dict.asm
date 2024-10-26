@@ -4,6 +4,7 @@
 section .text
 
 global find_word
+global get_value
 
 ; rdi - key to search
 ; rsi - map beginnig pointer
@@ -47,3 +48,13 @@ find_word:	; sp 8
 		pop r12
 		pop rsi
 		ret
+		
+; rdi - pointer to key
+get_value:
+	push rdi				; stack alignment
+	call string_length		; get key length
+	add rdi, rax			; set rdi to key end
+	inc rdi					; don't forget 'bout null-terminator
+	mov rax, rdi			; return pointer to value
+	pop rdi
+	ret

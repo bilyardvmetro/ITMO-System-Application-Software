@@ -20,3 +20,9 @@ db "wegabadirodogifabono", 0
 
 colon "a", simple_key
 db "не придумал что здесь написать", 0
+
+colon "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", max_key
+db "wassup", 0
+
+colon "", empty_key
+db "dev/null", 0
