@@ -17,3 +17,21 @@
 [submodule "2 курс/метопты/Lab4"]
 	path = 2 курс/метопты/Lab4
 	url = https://github.com/bilyardvmetro/OptMethsLab4
+[submodule "2 курс/вычмат/Lab1"]
+	path = 2 курс/вычмат/Lab1
+	url = https://github.com/bilyardvmetro/CompMathLab1
+[submodule "2 курс/вычмат/Lab2"]
+	path = 2 курс/вычмат/Lab2
+	url = https://github.com/bilyardvmetro/CompMathLab2
+[submodule "2 курс/вычмат/Lab3"]
+	path = 2 курс/вычмат/Lab3
+	url = https://github.com/bilyardvmetro/CompMathLab3
+[submodule "2 курс/вычмат/Lab5"]
+	path = 2 курс/вычмат/Lab5
+	url = https://github.com/bilyardvmetro/CompMathLab5
+[submodule "2 курс/вычмат/Lab4"]
+	path = 2 курс/вычмат/Lab4
+	url = https://github.com/bilyardvmetro/CompMathLab4
+[submodule "2 курс/вычмат/Lab6"]
+	path = 2 курс/вычмат/Lab6
+	url = https://github.com/bilyardvmetro/CompMathLab6
