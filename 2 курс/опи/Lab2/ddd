@@ -1,0 +1,97 @@
+*   [33mcommit 9308fdfdf3a765edbec7154444dd4751ac6da0a5[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+[31m|[m[32m\[m  Merge: 9b975a3 bd8fc58
+[31m|[m [32m|[m Author: red@example.com <polenovkirill@gmail.com>
+[31m|[m [32m|[m Date:   Mon Mar 31 17:20:30 2025 +0300
+[31m|[m [32m|[m 
+[31m|[m [32m|[m     r14 (red)
+[31m|[m [32m|[m 
+[31m|[m * [33mcommit bd8fc5893a04118579caf9bbc274d699fcfb3b08[m[33m ([m[1;32mbranch3[m[33m)[m
+[31m|[m [32m|[m Author: red@example.com <polenovkirill@gmail.com>
+[31m|[m [32m|[m Date:   Mon Mar 31 17:20:30 2025 +0300
+[31m|[m [32m|[m 
+[31m|[m [32m|[m     r13 (red)
+[31m|[m [32m|[m   
+[31m|[m *   [33mcommit 947fbed1e5365b955fca5d490e32cf27e885875f[m
+[31m|[m [33m|[m[34m\[m  Merge: 9419477 f82c976
+[31m|[m [33m|[m [34m|[m Author: red@example.com <polenovkirill@gmail.com>
+[31m|[m [33m|[m [34m|[m Date:   Mon Mar 31 17:20:30 2025 +0300
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m [34m|[m     r12 (red)
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m * [33mcommit f82c976d1e3196f1e28fd78ab51e3ac7919cd491[m[33m ([m[1;32mbranch2[m[33m)[m
+[31m|[m [33m|[m [34m|[m Author: blue <blue@example.com>
+[31m|[m [33m|[m [34m|[m Date:   Mon Mar 31 17:20:29 2025 +0300
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m [34m|[m     r11 (blue)
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m * [33mcommit 5493a48ad7aabf395f68f36119e6967a847e9b5a[m
+[31m|[m [33m|[m [34m|[m Author: blue <blue@example.com>
+[31m|[m [33m|[m [34m|[m Date:   Mon Mar 31 17:20:28 2025 +0300
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m [34m|[m     r7 (blue)
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m * [33mcommit a137579f08a28fe3d975b9019fee209a48171c05[m
+[31m|[m [33m|[m [34m|[m Author: blue <blue@example.com>
+[31m|[m [33m|[m [34m|[m Date:   Mon Mar 31 17:20:27 2025 +0300
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m [34m|[m     r5 (blue)
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m * [33mcommit 43154aebe1876389f24196e6a9cc0e1416a59a2e[m
+[31m|[m [33m|[m [34m|[m Author: blue <blue@example.com>
+[31m|[m [33m|[m [34m|[m Date:   Mon Mar 31 17:20:27 2025 +0300
+[31m|[m [33m|[m [34m|[m 
+[31m|[m [33m|[m [34m|[m     r4 (blue)
+[31m|[m [33m|[m [34m|[m 
+[31m|[m * [34m|[m [33mcommit 9419477266a03d8a7a827c16ae0828981d6b46b8[m
+[31m|[m [34m|[m [34m|[m Author: red@example.com <polenovkirill@gmail.com>
+[31m|[m [34m|[m [34m|[m Date:   Mon Mar 31 17:20:29 2025 +0300
+[31m|[m [34m|[m [34m|[m 
+[31m|[m [34m|[m [34m|[m     r10 (red)
+[31m|[m [34m|[m [34m|[m 
+[31m|[m * [34m|[m [33mcommit 9f55f4d21d8c3b1eb8a406e1695a4e4d66030bb2[m
+[31m|[m [34m|[m [34m|[m Author: red@example.com <polenovkirill@gmail.com>
+[31m|[m [34m|[m [34m|[m Date:   Mon Mar 31 17:20:29 2025 +0300
+[31m|[m [34m|[m [34m|[m 
+[31m|[m [34m|[m [34m|[m     r9 (red)
+[31m|[m [34m|[m [34m|[m 
+[31m|[m * [34m|[m [33mcommit 075fe118d33f2cc6b5defee5f1e84e205da85927[m
+[31m|[m [34m|[m[34m/[m  Author: red@example.com <polenovkirill@gmail.com>
+[31m|[m [34m|[m   Date:   Mon Mar 31 17:20:28 2025 +0300
+[31m|[m [34m|[m   
+[31m|[m [34m|[m       r6 (red)
+[31m|[m [34m|[m 
+[31m|[m * [33mcommit 484302c709495e6582165f4256d6a9ece89f7845[m
+[31m|[m [34m|[m Author: blue <blue@example.com>
+[31m|[m [34m|[m Date:   Mon Mar 31 17:20:27 2025 +0300
+[31m|[m [34m|[m 
+[31m|[m [34m|[m     r2 (blue)
+[31m|[m [34m|[m 
+* [34m|[m [33mcommit 9b975a3c1d38e1ceb639608f8e8e2aeaaa16a669[m
+[34m|[m[34m/[m  Author: red@example.com <polenovkirill@gmail.com>
+[34m|[m   Date:   Mon Mar 31 17:20:28 2025 +0300
+[34m|[m   
+[34m|[m       r8 (red)
+[34m|[m 
+* [33mcommit 41eaacb7dd766e0f9ee9db8d8cb29b618bb42afc[m
+[34m|[m Author: red@example.com <polenovkirill@gmail.com>
+[34m|[m Date:   Mon Mar 31 17:20:26 2025 +0300
+[34m|[m 
+[34m|[m     r1 (red)
+[34m|[m 
+* [33mcommit 06bf642d9532b6110318ac4012f4671ebcc603d1[m
+[34m|[m Author: red@example.com <polenovkirill@gmail.com>
+[34m|[m Date:   Mon Mar 31 17:20:26 2025 +0300
+[34m|[m 
+[34m|[m     r0 (red)
+[34m|[m 
+* [33mcommit 169510777b42f728dbb086d4218261e003bd539e[m
+[34m|[m Author: red@example.com <polenovkirill@gmail.com>
+[34m|[m Date:   Mon Mar 31 17:20:26 2025 +0300
+[34m|[m 
+[34m|[m     add .gitignore
+[34m|[m 
+* [33mcommit 0749722257b8f0baa852d9bb3310350896505f80[m
+  Author: red@example.com <polenovkirill@gmail.com>
+  Date:   Mon Mar 31 17:20:26 2025 +0300
+  
+      initial commit
