@@ -11,3 +11,9 @@
 [submodule "2 курс/ак/CSA-Lab4"]
 	path = 2 курс/ак/CSA-Lab4
 	url = https://github.com/bilyardvmetro/CSA-Lab4
+[submodule "2 курс/метопты/Lab2 & Lab3"]
+	path = 2 курс/метопты/Lab2 & Lab3
+	url = https://github.com/bilyardvmetro/OptMethsLab2Lab3
+[submodule "2 курс/метопты/Lab4"]
+	path = 2 курс/метопты/Lab4
+	url = https://github.com/bilyardvmetro/OptMethsLab4
