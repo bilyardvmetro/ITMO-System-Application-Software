@@ -8,3 +8,6 @@
 [submodule "2 курс/веб/Lab4 Front"]
 	path = 2 курс/веб/Lab4 Front
 	url = https://github.com/bilyardvmetro/WebLab4Front
+[submodule "2 курс/ак/CSA-Lab4"]
+	path = 2 курс/ак/CSA-Lab4
+	url = https://github.com/bilyardvmetro/CSA-Lab4

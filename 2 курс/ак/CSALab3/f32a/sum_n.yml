@@ -1,0 +1,24 @@
+name: assert sum_n(5) == 15
+limit: 2000
+memory_size: 0x1000
+input_streams:
+  0x80: [5]
+  0x84: []
+reports:
+  - name: Step-by-step
+    slice: all
+    view: |
+      T            A            S            R
+      {T:hex}   {A:hex}   {S:hex}   {R:hex}
+      {pc}: {instruction} {pc:label}
+  - name: Check results
+    slice: last
+    filter:
+      - state
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [15]
+

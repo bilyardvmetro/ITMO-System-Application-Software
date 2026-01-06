@@ -1,0 +1,24 @@
+name: assert big_to_little_endian(2018915346) == 305419896
+limit: 2000
+memory_size: 0x1000
+input_streams:
+  0x80: [2018915346]
+  0x84: []
+reports:
+  - name: Step-by-step
+    slice: all
+    view: |
+      t0           t2            t3           t4            a0           a1
+      {T0:hex}   {T2:hex}    {T3:hex}   {T4:hex}    {A0:hex}   {A1:dec}
+      {pc}: {instruction} {pc:label}
+  - name: Check results
+    slice: last
+    filter:
+      - state
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [305419896]
+

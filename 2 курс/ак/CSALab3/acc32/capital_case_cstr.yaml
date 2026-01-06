@@ -1,0 +1,26 @@
+limit: 2000
+memory_size: 0x1000
+input_streams:
+  0x80: [72, 69, 76, 76, 79, 32, 87, 79, 82, 76, 68, 33, 10]
+  0x84: []
+reports:
+  - name: Step-by-step
+    slice: all
+    view: |
+      {pc}: {instruction}    {pc:label}
+  - name: Check results
+    slice: last
+    filter:
+      - state
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+      symio[0x80]: {io:0x80:sym}
+      symio[0x84]: {io:0x84:sym}
+      {memory:0:31}
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [72,101,108,108,111,32,87,111,114,108,100,33]
+      symio[0x80]: "" >>> ""
+      symio[0x84]: "" >>> "Hello World!"
+      mem[0..31]: 	48 65 6c 6c 6f 20 57 6f 72 6c 64 21 00 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f
