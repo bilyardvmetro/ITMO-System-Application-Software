@@ -1,0 +1,12 @@
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/CMakeFiles/test.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/CMakeFiles/edit_cache.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/solution/CMakeFiles/image-transform.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/solution/CMakeFiles/test.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/solution/CMakeFiles/edit_cache.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/solution/CMakeFiles/rebuild_cache.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/tester/CMakeFiles/image-matcher.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/tester/CMakeFiles/check.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/tester/CMakeFiles/test.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/tester/CMakeFiles/edit_cache.dir
+E:/ProgLangs/assignment-3-image-transform/cmake-build-debug/tester/CMakeFiles/rebuild_cache.dir

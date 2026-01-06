@@ -1,0 +1,11 @@
+# ninja log v6
+24	55	7547747681208499	E:/ProgLangs/assignment-3-image-transform/solution/out/build/asan/CMakeFiles/cmake.verify_globs	8cfcf9fedbd09c5c
+55	415	7547747683913246	build.ninja	37ceda2c2017aec9
+19	52	7547747685047583	E:/ProgLangs/assignment-3-image-transform/solution/out/build/asan/CMakeFiles/cmake.verify_globs	8cfcf9fedbd09c5c
+56	212	7547747685418429	CMakeFiles/image-transform.dir/src/bmp_utils.obj	21060ef1c4b76dd9
+64	216	7547747685498456	CMakeFiles/image-transform.dir/src/io.obj	6793bf23690d174e
+72	222	7547747685579140	CMakeFiles/image-transform.dir/src/utilities.obj	4e67620e65039e56
+53	225	7547747685388451	CMakeFiles/image-transform.dir/src/bmp_transformation.obj	27824f876c080be3
+60	232	7547747685458452	CMakeFiles/image-transform.dir/src/error_handler.obj	bf8d2b601302aacd
+68	241	7547747685538458	CMakeFiles/image-transform.dir/src/main.obj	d89c64febc0e86cc
+241	340	7547747687266241	image-transform.exe	58dd63875c06eb0c

@@ -1,0 +1,20 @@
+# ninja log v6
+46	240	7547747779760601	CMakeFiles/image-transform.dir/src/bmp_transformation.obj	27824f876c080be3
+65	234	7547747779943649	CMakeFiles/image-transform.dir/src/utilities.obj	4e67620e65039e56
+49	229	7547747779790792	CMakeFiles/image-transform.dir/src/bmp_utils.obj	21060ef1c4b76dd9
+67	108	7548285320965174	E:/ProgLangs/assignment-3-image-transform/solution/out/build/lsan/CMakeFiles/cmake.verify_globs	f5067ba6571a5ded
+66	394	7548285329168867	build.ninja	b63a9ee6db793de7
+56	231	7547747779862866	CMakeFiles/image-transform.dir/src/io.obj	6793bf23690d174e
+53	224	7547747779822062	CMakeFiles/image-transform.dir/src/error_handler.obj	bf8d2b601302aacd
+45	145	7547748222906900	CMakeFiles/image-transform.dir/src/main.obj	d89c64febc0e86cc
+145	250	7547748223912480	image-transform.exe	58dd63875c06eb0c
+108	1018	7548285329168867	build.ninja	b63a9ee6db793de7
+17	45	7548285330260278	E:/ProgLangs/assignment-3-image-transform/solution/out/build/lsan/CMakeFiles/cmake.verify_globs	f5067ba6571a5ded
+65	491	7548285330740328	CMakeFiles/image-transform.dir/src/main.obj	d89c64febc0e86cc
+70	492	7548285330790343	CMakeFiles/image-transform.dir/src/utilities.obj	4e67620e65039e56
+48	494	7548285330570275	CMakeFiles/image-transform.dir/src/bmp_transformation.obj	27824f876c080be3
+60	498	7548285330690275	CMakeFiles/image-transform.dir/src/io.obj	6793bf23690d174e
+55	499	7548285330650301	CMakeFiles/image-transform.dir/src/error_handler.obj	bf8d2b601302aacd
+51	501	7548285330600338	CMakeFiles/image-transform.dir/src/bmp_utils.obj	21060ef1c4b76dd9
+501	904	7548285335100994	image-transform.exe	58dd63875c06eb0c
+28	66	7548287713041483	E:/ProgLangs/assignment-3-image-transform/solution/out/build/lsan/CMakeFiles/cmake.verify_globs	f5067ba6571a5ded

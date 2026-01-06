@@ -1,0 +1,56 @@
+[
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/solution/src -IE:/ProgLangs/assignment-3-image-transform/solution/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o solution\\CMakeFiles\\image-transform.dir\\src\\bmp_transformation.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\bmp_transformation.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\bmp_transformation.c",
+  "output": "solution\\CMakeFiles\\image-transform.dir\\src\\bmp_transformation.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/solution/src -IE:/ProgLangs/assignment-3-image-transform/solution/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o solution\\CMakeFiles\\image-transform.dir\\src\\bmp_utils.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\bmp_utils.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\bmp_utils.c",
+  "output": "solution\\CMakeFiles\\image-transform.dir\\src\\bmp_utils.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/solution/src -IE:/ProgLangs/assignment-3-image-transform/solution/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o solution\\CMakeFiles\\image-transform.dir\\src\\error_handler.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\error_handler.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\error_handler.c",
+  "output": "solution\\CMakeFiles\\image-transform.dir\\src\\error_handler.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/solution/src -IE:/ProgLangs/assignment-3-image-transform/solution/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o solution\\CMakeFiles\\image-transform.dir\\src\\io.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\io.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\io.c",
+  "output": "solution\\CMakeFiles\\image-transform.dir\\src\\io.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/solution/src -IE:/ProgLangs/assignment-3-image-transform/solution/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o solution\\CMakeFiles\\image-transform.dir\\src\\main.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\main.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\solution\\src\\main.c",
+  "output": "solution\\CMakeFiles\\image-transform.dir\\src\\main.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/tester/src -IE:/ProgLangs/assignment-3-image-transform/tester/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o tester\\CMakeFiles\\image-matcher.dir\\src\\bmp.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\bmp.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\bmp.c",
+  "output": "tester\\CMakeFiles\\image-matcher.dir\\src\\bmp.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/tester/src -IE:/ProgLangs/assignment-3-image-transform/tester/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o tester\\CMakeFiles\\image-matcher.dir\\src\\file_cmp.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\file_cmp.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\file_cmp.c",
+  "output": "tester\\CMakeFiles\\image-matcher.dir\\src\\file_cmp.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/tester/src -IE:/ProgLangs/assignment-3-image-transform/tester/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o tester\\CMakeFiles\\image-matcher.dir\\src\\main.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\main.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\main.c",
+  "output": "tester\\CMakeFiles\\image-matcher.dir\\src\\main.c.obj"
+},
+{
+  "directory": "E:/ProgLangs/assignment-3-image-transform/cmake-build-debug",
+  "command": "\"E:\\CLion 2024.2.1\\bin\\mingw\\bin\\gcc.exe\" -D_CRT_SECURE_NO_WARNINGS -IE:/ProgLangs/assignment-3-image-transform/tester/src -IE:/ProgLangs/assignment-3-image-transform/tester/include -std=c17 -pedantic -Wall -Werror -ggdb -g -fdiagnostics-color=always -o tester\\CMakeFiles\\image-matcher.dir\\src\\util.c.obj -c E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\util.c",
+  "file": "E:\\ProgLangs\\assignment-3-image-transform\\tester\\src\\util.c",
+  "output": "tester\\CMakeFiles\\image-matcher.dir\\src\\util.c.obj"
+}
+]
