@@ -1,3 +1,10 @@
 [submodule "2 курс/веб/лаба3"]
 	path = 2 курс/веб/лаба3
 	url = https://github.com/bilyardvmetro/WebLabs
+
+[submodule "2 курс/веб/Lab4 Back"]
+	path = 2 курс/веб/Lab4 Back
+	url = https://github.com/bilyardvmetro/WebLab4Back
+[submodule "2 курс/веб/Lab4 Front"]
+	path = 2 курс/веб/Lab4 Front
+	url = https://github.com/bilyardvmetro/WebLab4Front
