@@ -1,0 +1,3 @@
+ssh -p 2222 -L 8080:localhost:44044 s413041@helios.cs.ifmo.ru
+httpd -f ~/httpd-root/conf/httpd.conf -k start
+java -DFCGI_PORT=44045 -jar FcgiServer.jar

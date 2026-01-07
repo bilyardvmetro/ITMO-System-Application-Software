@@ -1,0 +1,3 @@
+server: webLab2/wildfly-33.0.2.Final/bin/standalone.sh
+webapp: ssh -p 2222 s413041@se.ifmo.ru -Y -L 44044:localhost:44044
+console: ssh -p 2222 s413041@se.ifmo.ru -Y -L 44054:localhost:44054
