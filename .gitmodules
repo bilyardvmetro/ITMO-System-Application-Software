@@ -35,3 +35,9 @@
 [submodule "2 курс/вычмат/Lab6"]
 	path = 2 курс/вычмат/Lab6
 	url = https://github.com/bilyardvmetro/CompMathLab6
+[submodule "2 курс/опи/Lab3"]
+	path = 2 курс/опи/Lab3
+	url = https://github.com/bilyardvmetro/OPILab3
+[submodule "2 курс/опи/Lab4"]
+	path = 2 курс/опи/Lab4
+	url = https://github.com/bilyardvmetro/OPI-Lab4
