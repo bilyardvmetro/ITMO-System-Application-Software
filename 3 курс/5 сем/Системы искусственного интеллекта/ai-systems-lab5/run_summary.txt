@@ -1,0 +1,5 @@
+Rows: 145, Features: 30
+Train size: 116, Test size: 29
+max_depth=20, min_samples_split=2, seed=42
+Accuracy=0.5862, Precision=0.5882, Recall=0.6667
+AUC_ROC=0.4167, AUC_PR=0.1842
