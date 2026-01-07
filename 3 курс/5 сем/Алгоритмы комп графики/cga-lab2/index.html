@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>brightness contrast grayscale</title>
+    <style>
+        /* CSS будет здесь */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Инструкция */
+        .instruction ol {
+            padding-left: 20px;
+        }
+
+        /* Блок с основными кнопками */
+        .main-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .main-buttons button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 150px;
+            color: white;
+        }
+
+        .main-buttons button:nth-child(1) {
+            background-color: #007bff;
+        }
+
+        /* Выберите файл */
+        .main-buttons button:nth-child(2) {
+            background-color: #007bff;
+        }
+
+        /* Яркость */
+        .main-buttons button:nth-child(3) {
+            background-color: #007bff;
+        }
+
+        /* Контраст */
+        .main-buttons button:nth-child(4) {
+            background-color: #007bff;
+        }
+
+        /* Черно-белое */
+        .main-buttons button:nth-child(5) {
+            background-color: #007bff;
+        }
+
+        .main-buttons button:nth-child(6) {
+            background-color: #007bff;
+        }
+
+        /* Секция с изображениями и ползунками */
+        .image-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .image-block {
+            flex: 1;
+            min-width: 0; /* Важно для гибкости */
+        }
+
+        .image-block img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #ccc; /* Границы вокруг изображений */
+        }
+
+        .slider-control {
+            margin-top: 10px;
+            padding: 5px 0;
+        }
+
+        .slider-control input[type="range"] {
+            width: 80%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            border-radius: 4px;
+        }
+
+        .slider-label {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* Секция с гистограммами */
+        .histogram-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+            align-items: flex-end; /* Выравнивание по нижнему краю, как на картинке */
+        }
+
+        .histogram-block {
+            flex: 1;
+            min-width: 0;
+            padding-top: 10px;
+        }
+
+        .histogram-legend {
+            display: flex;
+            justify-content: center;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .legend-item {
+            margin: 0 5px;
+        }
+
+        .legend-item span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 3px;
+            border-radius: 50%;
+        }
+
+        .legend-item.red span {
+            background-color: red;
+        }
+
+        .legend-item.green span {
+            background-color: green;
+        }
+
+        .legend-item.blue span {
+            background-color: blue;
+        }
+
+        /* Заглушки для гистограмм (для имитации) */
+        .histogram-placeholder {
+            width: 100%;
+            height: 150px; /* Фиксированная высота для имитации */
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            /* Здесь в реальном коде будут элементы SVG/Canvas для графика */
+        }
+
+        /* Заглушка для последнего графика (монохромный) */
+        .histogram-placeholder.grayscale {
+            /* Имитация коричневого/оранжевого цвета гистограммы */
+            background: linear-gradient(to right, #8b4513 50%, #d2b48c 100%);
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1 style="font-size: 1.2em; border-bottom: 1px solid #ccc; padding-bottom: 10px;">brightness contrast
+            grayscale</h1>
+    </div>
+
+    <div class="instruction">
+        <h2>Как пользоваться</h2>
+        <ol>
+            <li>Нажмите кнопку "Выберите файл": Затем выберите картинку, которую хотите загрузить.</li>
+            <li>Настройте ползунки яркости, контраста и блюра по вкусу. Для применения изменений нажмите соответствующую
+                кнопку. Каждый раз, меняя ползунок, для обновления картинки
+                нажмите кнопку.
+            </li>
+            <li>Для получения черно-белого изображения нажмите кнопку "Черно-белое".</li>
+        </ol>
+    </div>
+
+    <div class="main-buttons">
+        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+        <button id="selectFileButton">Выберите файл</button>
+
+        <button id="applyBrightnessButton">Яркость</button>
+        <button id="applyContrastButton">Контраст</button>
+        <button id="applyGrayscaleButton">Черно-белое</button>
+        <button id="applyBlurButton">Блюр</button>
+    </div>
+
+    <div class="image-section">
+
+        <div class="image-block">
+            <img id="originalImage" src="" alt="Original Image" style="background-color: #f0f8ff;">
+        </div>
+
+        <div class="image-block">
+            <img id="brightnessImage" src="" alt="Brightness Image" style="background-color: #f0f8ff;">
+            <div class="slider-control">
+                <input id="brightnessSlider" type="range" min="0" max="200" step="1">
+                <div class="slider-label">Яркость: <span id="brightnessValue">100%</span></div>
+            </div>
+        </div>
+
+        <div class="image-block">
+            <img id="contrastImage" src="" alt="Contrast Image" style="background-color: #f0f8ff;">
+            <div class="slider-control">
+                <input id="contrastSlider" type="range" min="0" max="200" step="1">
+                <div class="slider-label">Контраст: <span id="contrastValue">100%</span></div>
+            </div>
+        </div>
+
+        <div class="image-block">
+            <img id="grayscaleImage" src="" alt="Grayscale Image" style="background-color: #f0f8ff;">
+        </div>
+
+        <div class="image-block">
+            <img id="blurImage" src="" alt="Blur Image" style="background-color: #f0f8ff;">
+            <div class="slider-control">
+                <input type="range" id="blurSlider" min="0" max="20" value="0" step="1">
+                <div class="slider-label">Блюр: <span id="blurValue">0px</span></div>
+            </div>
+        </div>
+
+    </div>
+
+        <div class="histogram-section">
+
+            <div class="histogram-block">
+                <div class="histogram-legend">
+                    <div class="legend-item red"><span></span>R</div>
+                    <div class="legend-item green"><span></span>G</div>
+                    <div class="legend-item blue"><span></span>B</div>
+                </div>
+                <div class="histogram-block">
+                    <canvas id="chartOriginal"></canvas>
+                </div>
+            </div>
+
+            <div class="histogram-block">
+                <div class="histogram-legend">
+                    <div class="legend-item red"><span></span>R</div>
+                    <div class="legend-item green"><span></span>G</div>
+                    <div class="legend-item blue"><span></span>B</div>
+                </div>
+                <div class="histogram-block">
+                    <canvas id="chartOriginal"></canvas>
+                </div>
+            </div>
+
+            <div class="histogram-block">
+                <div class="histogram-legend">
+                    <div class="legend-item red"><span></span>R</div>
+                    <div class="legend-item green"><span></span>G</div>
+                    <div class="legend-item blue"><span></span>B</div>
+                </div>
+                <div class="histogram-block">
+                    <canvas id="chartOriginal"></canvas>
+                </div>
+            </div>
+
+            <div class="histogram-block">
+                <div class="histogram-legend">
+                    <div class="legend-item red"><span></span>R</div>
+                    <div class="legend-item green"><span></span>G</div>
+                    <div class="legend-item blue"><span></span>B</div>
+                </div>
+                <div class="histogram-placeholder grayscale"></div>
+            </div>
+
+            <div class="histogram-block">
+                <div class="histogram-legend">
+                    <div class="legend-item red"><span></span>R</div>
+                    <div class="legend-item green"><span></span>G</div>
+                    <div class="legend-item blue"><span></span>B</div>
+                </div>
+                <div class="histogram-block">
+                    <canvas id="chartOriginal"></canvas>
+                </div>
+            </div>
+
+        </div>
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
